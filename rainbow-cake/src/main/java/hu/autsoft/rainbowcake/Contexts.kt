@@ -5,7 +5,6 @@ import kotlinx.coroutines.experimental.Dispatchers
 import kotlinx.coroutines.experimental.IO
 import kotlinx.coroutines.experimental.android.Main
 import kotlinx.coroutines.experimental.withContext
-import kotlinx.coroutines.experimental.android.UI as AndroidUI
 
 object Contexts {
 
