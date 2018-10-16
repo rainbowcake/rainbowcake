@@ -5,10 +5,10 @@ import javax.inject.Inject
 
 class ExampleViewModel @Inject constructor(
         private val examplePresenter: ExamplePresenter
-) : JobViewModel<ExampleViewState>(ExampleViewState()) {
+) : JobViewModel<ExampleViewState>(NoDataState) {
 
     fun load() = execute {
-        viewState = ExampleViewState(examplePresenter.getData())
+        viewState = DataState(examplePresenter.getData())
     }
 
 }
