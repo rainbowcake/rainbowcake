@@ -1,3 +1,8 @@
 package hu.autsoft.rainbowcake.demo.ui.example
 
-data class ExampleViewState(val data: String = "")
+
+sealed class ExampleViewState
+
+class DataState(val data: String = "") : ExampleViewState()
+
+object NoDataState : ExampleViewState()

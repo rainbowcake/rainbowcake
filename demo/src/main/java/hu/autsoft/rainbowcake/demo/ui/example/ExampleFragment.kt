@@ -5,6 +5,7 @@ import android.view.View
 import hu.autsoft.rainbowcake.base.BaseFragment
 import hu.autsoft.rainbowcake.base.getViewModelFromFactory
 import hu.autsoft.rainbowcake.demo.R
+import hu.autsoft.rainbowcake.extensions.exhaustive
 
 class ExampleFragment : BaseFragment<ExampleViewState, ExampleViewModel>() {
 
@@ -24,7 +25,14 @@ class ExampleFragment : BaseFragment<ExampleViewState, ExampleViewModel>() {
     }
 
     override fun render(viewState: ExampleViewState) {
-        // TODO Render state
+        when (viewState) {
+            is DataState -> {
+                // TODO render
+            }
+            NoDataState -> {
+                // TODO render
+            }
+        }.exhaustive
     }
 
 }
