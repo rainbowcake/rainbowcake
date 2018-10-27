@@ -7,8 +7,26 @@ import android.support.v4.app.Fragment
 
 /**
  * Adds an arguments Bundle to the receiver Fragment, performing [argSetup] on the Bundle.
+ *
+ * @return the Fragment instance
  */
+@Deprecated(
+        message = "Use applyArgs instead.",
+        replaceWith = ReplaceWith("applyArgs(argSetup)"),
+        level = DeprecationLevel.WARNING
+)
 inline fun <T : Fragment> T.withArgs(argSetup: Bundle.() -> Unit): T = apply {
+    val bundle = Bundle()
+    bundle.argSetup()
+    arguments = bundle
+}
+
+/**
+ * Adds an arguments Bundle to the receiver Fragment, performing [argSetup] on the Bundle.
+ *
+ * @return the Fragment instance
+ */
+inline fun <T : Fragment> T.applyArgs(argSetup: Bundle.() -> Unit): T = apply {
     val bundle = Bundle()
     bundle.argSetup()
     arguments = bundle
