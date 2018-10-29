@@ -34,7 +34,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     // Coroutines
-    def coroutines_version = '0.26.0'
+    def coroutines_version = '1.0.0'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
@@ -42,10 +42,4 @@ dependencies {
     def dagger_version = '2.16'
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-}
-
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
 }
