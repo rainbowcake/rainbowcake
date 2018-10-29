@@ -1,6 +1,6 @@
 package hu.autsoft.rainbowcake.channels
 
-import kotlinx.coroutines.experimental.channels.Channel
+import kotlinx.coroutines.channels.Channel
 
 /**
  * An implementation of the [ChannelCollection] interface that may be
