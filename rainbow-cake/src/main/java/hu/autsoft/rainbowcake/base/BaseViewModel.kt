@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import hu.autsoft.rainbowcake.channels.ChannelViewModel
+import hu.autsoft.rainbowcake.extensions.internal.distinct
 
 /**
  * A ViewModel base class that provides safe view state handling via [LiveData]

@@ -2,9 +2,9 @@ package hu.autsoft.rainbowcake.channels
 
 import hu.autsoft.rainbowcake.base.BaseViewModel
 import hu.autsoft.rainbowcake.base.JobViewModel
-import kotlinx.coroutines.experimental.CancellationException
-import kotlinx.coroutines.experimental.channels.Channel
-import kotlinx.coroutines.experimental.channels.ReceiveChannel
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
 import timber.log.Timber
 
 /**

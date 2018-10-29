@@ -1,12 +1,12 @@
 package hu.autsoft.rainbowcake.base
 
 import hu.autsoft.rainbowcake.Contexts
-import kotlinx.coroutines.experimental.CancellationException
-import kotlinx.coroutines.experimental.CoroutineScope
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlin.coroutines.CoroutineContext
 
 
 /**
