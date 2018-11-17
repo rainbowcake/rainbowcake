@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.coroutines.CoroutineContext
 
 
 /**
@@ -27,8 +26,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
      * in this scope will get their dispatcher from the UI context (i.e. run
      * on the main thread) and have [rootJob] as their parent.
      */
-    final override val coroutineContext: CoroutineContext
-        get() = Contexts.UI + rootJob
+    final override val coroutineContext = Contexts.UI + rootJob
 
     override fun onCleared() {
         super.onCleared()
