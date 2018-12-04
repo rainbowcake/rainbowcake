@@ -24,8 +24,7 @@ abstract class NavActivity<VS : Any, VM : BaseViewModel<VS>> : BaseActivity<VS, 
     private lateinit var navigatorImpl: NavigatorImpl
 
     @CallSuper
-    override fun
-            onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
