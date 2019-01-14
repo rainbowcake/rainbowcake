@@ -1,5 +1,7 @@
 package hu.autsoft.rainbowcake.navigation
 
+import android.support.annotation.AnimRes
+import android.support.annotation.AnimatorRes
 import android.support.v4.app.Fragment
 import kotlin.reflect.KClass
 
@@ -15,9 +17,57 @@ interface Navigator {
     fun add(fragment: Fragment)
 
     /**
+     * Adds [fragment] to the top of the current Fragment stack. All four
+     * animation parameters must be provided, with a 0 value indicating if
+     * no animation should take place.
+     *
+     * @param fragment The new Fragment that will replace the _current_ one.
+     * @param enterAnim The enter animation used for the view of the [fragment]
+     *                  that's being added.
+     * @param exitAnim The exit animation used for the view of the _current_
+     *                 Fragment that's being replaced (covered).
+     * @param popEnterAnim The enter animation for the view of the _current_
+     *                     Fragment when it reappears due to [fragment] being
+     *                     popped.
+     * @param popExitAnim The exit animation for the view of [fragment] when
+     *                    it's eventually popped from the stack.
+     */
+    fun add(fragment: Fragment,
+            @AnimatorRes @AnimRes enterAnim: Int,
+            @AnimatorRes @AnimRes exitAnim: Int,
+            @AnimatorRes @AnimRes popEnterAnim: Int,
+            @AnimatorRes @AnimRes popExitAnim: Int
+    )
+
+    /**
      * Replaces the top Fragment on the stack with [fragment].
      */
-    fun replace(fragment: Fragment)
+    fun replace(
+            fragment: Fragment
+    )
+
+    /**
+     * Replaces the top Fragment on the stack with [fragment], with
+     * customized animations. All four animation parameters must be provided,
+     * with a 0 value indicating if no animation should take place.
+     *
+     * @param fragment The new Fragment that will replace the _current_ one.
+     * @param enterAnim The enter animation used for the view of the [fragment]
+     *                  that's being added.
+     * @param exitAnim The exit animation used for the view of the _current_
+     *                 Fragment that's being removed.
+     * @param popEnterAnim The enter animation for the view of the Fragment
+     *                     that is revealed when [fragment] is popped.
+     * @param popExitAnim The exit animation for the view of [fragment] when
+     *                    it's eventually popped from the stack.
+     */
+    fun replace(
+            fragment: Fragment,
+            @AnimatorRes @AnimRes enterAnim: Int,
+            @AnimatorRes @AnimRes exitAnim: Int,
+            @AnimatorRes @AnimRes popEnterAnim: Int,
+            @AnimatorRes @AnimRes popExitAnim: Int
+    )
 
     /**
      * Removes the top Fragment from the stack.
@@ -53,7 +103,7 @@ val Fragment.navigator: Navigator?
         val activity = activity ?: return null
         return (activity as? NavActivity<*, *>)
                 ?.navigator
-                ?: throw IllegalStateException("Fragment is not in an Activity that implements Navigator")
+                ?: throw IllegalStateException("Fragment is not in an Activity that extends NavActivity")
     }
 
 /**
