@@ -3,11 +3,17 @@ package hu.autsoft.rainbowcake.base
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.annotation.AnimRes
+import android.support.annotation.AnimatorRes
 import android.support.annotation.CallSuper
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import hu.autsoft.rainbowcake.navigation.NavigatorImpl
+import hu.autsoft.rainbowcake.navigation.NoAnimation
 
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
@@ -70,6 +76,29 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
      */
     @LayoutRes
     abstract fun getViewResource(): Int
+
+    /**
+     * Implementation detail of navigation support. [NavigatorImpl] sets this property
+     * when the next animation to be created by this Fragment needs to be overridden.
+     */
+    @AnimRes
+    @AnimatorRes
+    internal var overrideAnimation: Int? = null
+
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        overrideAnimation?.let { override ->
+            val animation = if (override != 0) {
+                AnimationUtils.loadAnimation(context, override)
+            } else {
+                NoAnimation
+            }
+
+            overrideAnimation = null
+
+            return animation
+        }
+        return null
+    }
 
 }
 
