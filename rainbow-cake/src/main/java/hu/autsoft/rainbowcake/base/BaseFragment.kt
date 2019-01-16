@@ -112,6 +112,6 @@ inline fun <F : BaseFragment<VS, VM>, VS, reified VM : BaseViewModel<VS>> F.getV
     return if (key == null) {
         ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
     } else {
-        ViewModelProviders.of(this, viewModelFactory).get(key, VM::class.java)
+        ViewModelProviders.of(requireActivity(), viewModelFactory).get(key, VM::class.java)
     }
 }
