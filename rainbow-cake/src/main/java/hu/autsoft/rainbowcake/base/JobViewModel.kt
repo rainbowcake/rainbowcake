@@ -1,5 +1,6 @@
 package hu.autsoft.rainbowcake.base
 
+import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.Contexts
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -28,6 +29,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
      */
     final override val coroutineContext = Contexts.UI + rootJob
 
+    @CallSuper
     override fun onCleared() {
         super.onCleared()
         rootJob.cancel()
