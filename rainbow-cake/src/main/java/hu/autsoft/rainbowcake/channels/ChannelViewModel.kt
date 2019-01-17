@@ -1,5 +1,6 @@
 package hu.autsoft.rainbowcake.channels
 
+import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.base.BaseViewModel
 import hu.autsoft.rainbowcake.base.JobViewModel
 import kotlinx.coroutines.CancellationException
@@ -48,6 +49,12 @@ import timber.log.Timber
 abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(initialState) {
 
     private val observations = hashMapOf<String, ReceiveChannel<*>>()
+
+    @CallSuper
+    override fun onCleared() {
+        super.onCleared()
+        observations.clear()
+    }
 
     /**
      * Checks whether there's an existing *observation* with the given key.
