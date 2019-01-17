@@ -29,8 +29,7 @@ import timber.log.Timber
  * ##### Observation
  *
  * In the context of this class, an *observation* is a collective name for a channel
- * and the callbacks connected to it via the [
- * observe] methods. There's always a
+ * and the callbacks connected to it via the [observe] methods. There's always a
  * one-to-one relation between *observations* in channels when using this class.
  *
  * When an *observation* is cancelled, the ViewModel stops receiving updates from
