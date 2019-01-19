@@ -2,16 +2,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/exampleFragmentRoot"
     android:layout_width="match_parent"
-    android:background="#F00"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="RainbowCake demos"
+        app:titleTextColor="@color/white" />
+
+    <Button
+        android:id="@+id/sharedVMDemoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ExampleFragment"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="8dp"
+        android:text="Shared ViewModels"
+        app:layout_constraintBottom_toTopOf="@+id/customAnimationDemoButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/customAnimationDemoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Custom animations"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sharedVMDemoButton" />
 
 </android.support.constraint.ConstraintLayout>

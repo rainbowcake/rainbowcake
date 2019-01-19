@@ -57,6 +57,12 @@ abstract class BaseActivity<VS : Any, VM : BaseViewModel<VS>> : InjectedActivity
  * Uses the ViewModelFactory in the receiver [BaseActivity] to fetch the appropriate
  * ViewModel instance for the Activity.
  */
-inline fun <T : BaseActivity<VS, VM>, VS, reified VM : BaseViewModel<VS>> T.getViewModelFromFactory(): VM {
-    return ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
+inline fun <A : BaseActivity<VS, VM>, VS, reified VM : BaseViewModel<VS>> A.getViewModelFromFactory(
+        key: String? = null
+): VM {
+    return if (key == null) {
+        ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
+    } else {
+        ViewModelProviders.of(this, viewModelFactory).get(key, VM::class.java)
+    }
 }
