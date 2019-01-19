@@ -8,7 +8,9 @@ class MainActivity : SimpleNavActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        navigator.add(ExampleFragment())
+        if (savedInstanceState == null) {
+            navigator.add(ExampleFragment())
+        }
     }
 
 }
