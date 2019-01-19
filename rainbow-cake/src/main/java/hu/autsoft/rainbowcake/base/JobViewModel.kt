@@ -5,6 +5,7 @@ import hu.autsoft.rainbowcake.Contexts
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -20,7 +21,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
      * This Job is cancelled when the ViewModel is cleared, which also
      * cancels all its children coroutines.
      */
-    private val rootJob = Job()
+    private val rootJob = SupervisorJob()
 
     /**
      * Implementation of the [CoroutineScope] interface. Coroutines launched
