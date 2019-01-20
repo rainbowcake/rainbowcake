@@ -29,7 +29,8 @@ abstract class BaseActivity<VS : Any, VM : BaseViewModel<VS>> : InjectedActivity
     }
 
     /**
-     * This method MUST (see RFC 2119) always return the result of the [getViewModelFromFactory] call.
+     * This method MUST (as in RFC 2119 MUST) always return the result of the
+     * [getViewModelFromFactory] call.
      *
      * This is a requirement because the base class can't refer to the concrete ViewModel
      * type with a reified parameter.
