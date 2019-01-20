@@ -12,6 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import hu.autsoft.rainbowcake.base.ViewModelScope.Activity
+import hu.autsoft.rainbowcake.base.ViewModelScope.Default
+import hu.autsoft.rainbowcake.base.ViewModelScope.ParentFragment
 import hu.autsoft.rainbowcake.navigation.NavigatorImpl
 import hu.autsoft.rainbowcake.navigation.NoAnimation
 
@@ -26,7 +29,7 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
     protected lateinit var viewModel: VM
 
     /**
-     * Calls to super for this method may be omitted if the View inflation needs
+     * Calls to super for this method MAY be omitted if the View inflation needs
      * to be customized. In these cases, [getViewResource] can return any value
      * as it won't be used (recommendation: 0).
      */
@@ -49,7 +52,8 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
     }
 
     /**
-     * This method MUST (see RFC 2119) always return the result of the [getViewModelFromFactory] call.
+     * This method MUST (as in RFC 2119 MUST) always return the result of the
+     * [getViewModelFromFactory] call.
      *
      * This is a requirement because the base class can't refer to the concrete ViewModel
      * type with a reified parameter.
@@ -63,11 +67,15 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
      * Must be implemented in a way so that previous view states do not affect the current
      * state of the UI. In other words, the same view state being set must always result
      * in the same state for the displayed UI.
+     *
+     * @param viewState The new state of the ViewModel.
      */
     abstract fun render(viewState: VS)
 
     /**
      * Handles one-time events emitted by the ViewModel.
+     *
+     * @param event An event emitted by the ViewModel.
      */
     open fun onEvent(event: OneShotEvent) {}
 
@@ -105,13 +113,27 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
 /**
  * Uses the ViewModelFactory in the receiver [BaseFragment] to fetch the appropriate
  * ViewModel instance for the Fragment.
+ *
+ * @param scope The scope that the ViewModel should be fetched from and exist in.
+ *              See [ViewModelScope] for details.
  */
 inline fun <F : BaseFragment<VS, VM>, VS, reified VM : BaseViewModel<VS>> F.getViewModelFromFactory(
-        key: String? = null
+        scope: ViewModelScope = Default
 ): VM {
-    return if (key == null) {
-        ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
-    } else {
-        ViewModelProviders.of(requireActivity(), viewModelFactory).get(key, VM::class.java)
+    return when (scope) {
+        Default -> {
+            ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
+        }
+        ParentFragment -> {
+            val parentFragment = getParentFragment() ?: throw IllegalStateException("No parent Fragment")
+            ViewModelProviders.of(parentFragment, viewModelFactory).get(VM::class.java)
+        }
+        is Activity -> {
+            if (scope.key != null) {
+                ViewModelProviders.of(requireActivity(), viewModelFactory).get(scope.key, VM::class.java)
+            } else {
+                ViewModelProviders.of(requireActivity(), viewModelFactory).get(VM::class.java)
+            }
+        }
     }
 }
