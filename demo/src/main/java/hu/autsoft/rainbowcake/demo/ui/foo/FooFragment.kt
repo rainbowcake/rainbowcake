@@ -1,29 +1,24 @@
-package hu.autsoft.rainbowcake.demo.ui.example
+package hu.autsoft.rainbowcake.demo.ui.foo
 
 import android.os.Bundle
 import android.view.View
 import hu.autsoft.rainbowcake.base.BaseFragment
 import hu.autsoft.rainbowcake.base.getViewModelFromFactory
 import hu.autsoft.rainbowcake.demo.R
-import hu.autsoft.rainbowcake.demo.ui.foo.FooFragment
-import hu.autsoft.rainbowcake.demo.ui.sharedvmpager.SharedVMPagerFragment
+import hu.autsoft.rainbowcake.demo.ui.bar.BarFragment
 import hu.autsoft.rainbowcake.navigation.navigator
-import kotlinx.android.synthetic.main.fragment_example.*
+import kotlinx.android.synthetic.main.fragment_foo.*
 
-class ExampleFragment : BaseFragment<ExampleViewState, ExampleViewModel>() {
+class FooFragment : BaseFragment<FooViewState, FooViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
-    override fun getViewResource() = R.layout.fragment_example
+    override fun getViewResource() = R.layout.fragment_foo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedVMDemoButton.setOnClickListener {
-            navigator?.add(SharedVMPagerFragment())
-        }
-
-        customAnimationDemoButton.setOnClickListener {
-            navigator?.add(FooFragment(),
+        fooFragmentRoot.setOnClickListener {
+            navigator?.replace(BarFragment(),
                     enterAnim = R.anim.slide_in_right,
                     exitAnim = R.anim.slide_out_left,
                     popEnterAnim = R.anim.slide_in_left,
@@ -31,8 +26,14 @@ class ExampleFragment : BaseFragment<ExampleViewState, ExampleViewModel>() {
         }
     }
 
-    override fun render(viewState: ExampleViewState) {
+    override fun onStart() {
+        super.onStart()
 
+        viewModel.load()
+    }
+
+    override fun render(viewState: FooViewState) {
+        // TODO Render state
     }
 
 }

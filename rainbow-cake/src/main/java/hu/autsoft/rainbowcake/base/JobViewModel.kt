@@ -1,12 +1,13 @@
 package hu.autsoft.rainbowcake.base
 
+import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.Contexts
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.coroutines.CoroutineContext
 
 
 /**
@@ -20,16 +21,16 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
      * This Job is cancelled when the ViewModel is cleared, which also
      * cancels all its children coroutines.
      */
-    private val rootJob = Job()
+    private val rootJob = SupervisorJob()
 
     /**
      * Implementation of the [CoroutineScope] interface. Coroutines launched
      * in this scope will get their dispatcher from the UI context (i.e. run
      * on the main thread) and have [rootJob] as their parent.
      */
-    final override val coroutineContext: CoroutineContext
-        get() = Contexts.UI + rootJob
+    final override val coroutineContext = Contexts.UI + rootJob
 
+    @CallSuper
     override fun onCleared() {
         super.onCleared()
         rootJob.cancel()
@@ -59,9 +60,34 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
      * @param blocking Whether this [execute] call should block other job
      *                 launches via [execute] until it completes.
      */
-    @Suppress("TooGenericExceptionCaught")
-    protected fun execute(blocking: Boolean = true, task: suspend () -> Unit) {
-        launch {
+    @Suppress("RedundantUnitReturnType")
+    protected fun execute(blocking: Boolean = true, task: suspend () -> Unit): Unit {
+        executeImpl(blocking, task)
+    }
+
+    /**
+     * Convenience method for running [execute] in a non-blocking way with a
+     * (subjectively) cleaner syntax.
+     */
+    @Suppress("RedundantUnitReturnType")
+    protected fun executeNonBlocking(task: suspend () -> Unit): Unit {
+        executeImpl(blocking = false, task = task)
+    }
+
+    /**
+     * A variation of [execute] that returns the Job for the coroutine it
+     * started, mainly for manual coroutine cancellation purposes.
+     */
+    protected fun executeCancellable(blocking: Boolean = true, task: suspend () -> Unit): Job {
+        return executeImpl(blocking, task)
+    }
+
+    /**
+     * Actual private implementation of executing a given task. For details,
+     * see [execute], which is the usual entry point to this method.
+     */
+    private fun executeImpl(blocking: Boolean = true, task: suspend () -> Unit): Job {
+        return launch {
             if (blocking) {
                 if (busy) {
                     Timber.d("Denying job launch, busy")
@@ -85,11 +111,5 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
             }
         }
     }
-
-    /**
-     * Convenience method for running [execute] in a non-blocking way with a
-     * cleaner syntax.
-     */
-    protected fun executeNonBlocking(task: suspend () -> Unit) = execute(blocking = false, task = task)
 
 }

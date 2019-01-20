@@ -1,5 +1,6 @@
 package hu.autsoft.rainbowcake.channels
 
+import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.base.BaseViewModel
 import hu.autsoft.rainbowcake.base.JobViewModel
 import kotlinx.coroutines.CancellationException
@@ -29,8 +30,7 @@ import timber.log.Timber
  * ##### Observation
  *
  * In the context of this class, an *observation* is a collective name for a channel
- * and the callbacks connected to it via the [
- * observe] methods. There's always a
+ * and the callbacks connected to it via the [observe] methods. There's always a
  * one-to-one relation between *observations* in channels when using this class.
  *
  * When an *observation* is cancelled, the ViewModel stops receiving updates from
@@ -49,6 +49,12 @@ import timber.log.Timber
 abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(initialState) {
 
     private val observations = hashMapOf<String, ReceiveChannel<*>>()
+
+    @CallSuper
+    override fun onCleared() {
+        super.onCleared()
+        observations.clear()
+    }
 
     /**
      * Checks whether there's an existing *observation* with the given key.

@@ -29,7 +29,8 @@ abstract class BaseActivity<VS : Any, VM : BaseViewModel<VS>> : InjectedActivity
     }
 
     /**
-     * This method MUST (see RFC 2119) always return the result of the [getViewModelFromFactory] call.
+     * This method MUST (as in RFC 2119 MUST) always return the result of the
+     * [getViewModelFromFactory] call.
      *
      * This is a requirement because the base class can't refer to the concrete ViewModel
      * type with a reified parameter.
@@ -57,6 +58,6 @@ abstract class BaseActivity<VS : Any, VM : BaseViewModel<VS>> : InjectedActivity
  * Uses the ViewModelFactory in the receiver [BaseActivity] to fetch the appropriate
  * ViewModel instance for the Activity.
  */
-inline fun <T : BaseActivity<VS, VM>, VS, reified VM : BaseViewModel<VS>> T.getViewModelFromFactory(): VM {
+inline fun <A : BaseActivity<VS, VM>, VS, reified VM : BaseViewModel<VS>> A.getViewModelFromFactory(): VM {
     return ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
 }
