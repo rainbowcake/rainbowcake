@@ -12,6 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import hu.autsoft.rainbowcake.base.ViewModelScope.Activity
+import hu.autsoft.rainbowcake.base.ViewModelScope.Default
+import hu.autsoft.rainbowcake.base.ViewModelScope.ParentFragment
 import hu.autsoft.rainbowcake.navigation.NavigatorImpl
 import hu.autsoft.rainbowcake.navigation.NoAnimation
 
@@ -107,11 +110,18 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
  * ViewModel instance for the Fragment.
  */
 inline fun <F : BaseFragment<VS, VM>, VS, reified VM : BaseViewModel<VS>> F.getViewModelFromFactory(
-        key: String? = null
+        scope: ViewModelScope = Default
 ): VM {
-    return if (key == null) {
-        ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
-    } else {
-        ViewModelProviders.of(requireActivity(), viewModelFactory).get(key, VM::class.java)
+    return when (scope) {
+        Default -> {
+            ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
+        }
+        ParentFragment -> {
+            val parentFragment = getParentFragment() ?: throw IllegalStateException("No parent Fragment")
+            ViewModelProviders.of(parentFragment, viewModelFactory).get(VM::class.java)
+        }
+        is Activity -> {
+            ViewModelProviders.of(requireActivity(), viewModelFactory).get(scope.key, VM::class.java)
+        }
     }
 }
