@@ -10,6 +10,8 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "0.1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -44,6 +46,9 @@ dependencies {
     // Logging
     api 'com.jakewharton.timber:timber:4.7.1'
 
+    // Testing
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation "com.google.dagger:dagger:$dagger_version"
     kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
