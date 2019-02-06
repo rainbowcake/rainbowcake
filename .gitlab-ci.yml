@@ -8,6 +8,7 @@ cache:
 
 stages:
   - build
+  - test
   - deploy
 
 before_script:
@@ -38,7 +39,7 @@ before_script:
   before_script:
     - echo UI teszt
   script:
-    - ./gradlew autsoftInstrumentationTest
+    - ./gradlew rainbow-cake:connectedAndroidTest
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -61,6 +62,9 @@ before_script:
 
 build:
   <<: *build
+
+instrumentationTest:
+  <<: *instrumentationTest
 
 deploy to artifactory:
   <<: *deploy

@@ -81,10 +81,16 @@ interface Navigator {
     fun popUntil(fragmentKClass: KClass<out Fragment>): Boolean
 
     /**
-     * Clears the entire Fragment backstack, and adds the [fragments] to it, in the
-     * order they're passed to this function (last on top of the stack).
+     * Clears the entire Fragment stack, and adds [fragments] to it, in the order they're
+     * passed to this function (i.e. the last one will be placed on top of the stack).
      */
     fun setStack(vararg fragments: Fragment)
+
+    /**
+     * Clears the entire Fragment stack, and adds [fragments] to it, in the order they're
+     * passed to this function (i.e. the last one will be placed on top of the stack).
+     */
+    fun setStack(fragments: Iterable<Fragment>)
 
     /**
      * Finishes the current Activity.
