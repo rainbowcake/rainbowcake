@@ -95,6 +95,15 @@ internal class NavigatorImpl(
         fragments.forEach(this::add)
     }
 
+    override fun setStack(fragments: Iterable<Fragment>) {
+        if (supportFragmentManager.isStateSaved) {
+            return
+        }
+
+        supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        fragments.forEach(this::add)
+    }
+
     override fun closeApplication() {
         activity.finish()
     }
