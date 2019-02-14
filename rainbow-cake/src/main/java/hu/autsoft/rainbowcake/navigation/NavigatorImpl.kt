@@ -57,6 +57,10 @@ internal class NavigatorImpl(
             @AnimatorRes @AnimRes popEnterAnim: Int,
             @AnimatorRes @AnimRes popExitAnim: Int
     ) {
+        if (supportFragmentManager.isStateSaved) {
+            return
+        }
+
         (getTopFragment() as? BaseFragment<*, *>)?.overrideAnimation = exitAnim
         supportFragmentManager.popBackStackImmediate()
 
