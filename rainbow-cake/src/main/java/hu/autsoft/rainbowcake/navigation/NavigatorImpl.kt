@@ -128,4 +128,8 @@ internal class NavigatorImpl(
         return supportFragmentManager.findFragmentById(R.id.contentFrame)
     }
 
+    override fun executePending() {
+        supportFragmentManager.executePendingTransactions()
+    }
+
 }

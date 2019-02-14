@@ -97,6 +97,11 @@ interface Navigator {
      */
     fun closeApplication()
 
+    /**
+     * Execute all currently pending navigation actions together.
+     */
+    fun executePending()
+
 }
 
 /**
