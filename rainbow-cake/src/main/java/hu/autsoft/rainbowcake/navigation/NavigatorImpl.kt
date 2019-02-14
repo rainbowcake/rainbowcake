@@ -57,6 +57,10 @@ internal class NavigatorImpl(
             @AnimatorRes @AnimRes popEnterAnim: Int,
             @AnimatorRes @AnimRes popExitAnim: Int
     ) {
+        if (supportFragmentManager.isStateSaved) {
+            return
+        }
+
         (getTopFragment() as? BaseFragment<*, *>)?.overrideAnimation = exitAnim
         supportFragmentManager.popBackStackImmediate()
 
@@ -122,6 +126,10 @@ internal class NavigatorImpl(
 
     override fun getTopFragment(): Fragment? {
         return supportFragmentManager.findFragmentById(R.id.contentFrame)
+    }
+
+    override fun executePending() {
+        supportFragmentManager.executePendingTransactions()
     }
 
 }
