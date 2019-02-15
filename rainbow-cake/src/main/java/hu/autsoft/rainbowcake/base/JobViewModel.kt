@@ -21,7 +21,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
      * This Job is cancelled when the ViewModel is cleared, which also
      * cancels all its children coroutines.
      */
-    private val rootJob = SupervisorJob()
+    private val rootJob: Job = SupervisorJob()
 
     /**
      * Implementation of the [CoroutineScope] interface. Coroutines launched
