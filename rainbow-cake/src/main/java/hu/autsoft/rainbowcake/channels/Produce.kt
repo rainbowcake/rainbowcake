@@ -4,7 +4,6 @@ package hu.autsoft.rainbowcake.channels
 
 import hu.autsoft.rainbowcake.Contexts
 import kotlinx.coroutines.CompletionHandler
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.channels.ProducerScope
@@ -17,8 +16,7 @@ import kotlinx.coroutines.channels.produce
  *
  * For more details, see the [GlobalScope.produce] function that this function delegates to.
  */
-@ExperimentalCoroutinesApi
-@InternalCoroutinesApi
+@UseExperimental(InternalCoroutinesApi::class)
 fun <T> produceInIOContext(
         capacity: Int = 0,
         onCompletion: CompletionHandler? = null,
