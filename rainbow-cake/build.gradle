@@ -51,6 +51,15 @@ dependencies {
     kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xuse-experimental=kotlin.Experimental'
+        ]
+    }
+}
+
 /////////////////  Publishing  /////////////////
 
 apply plugin: 'maven-publish'

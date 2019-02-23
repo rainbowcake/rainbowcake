@@ -1,5 +1,3 @@
-@file:Suppress("EXPERIMENTAL_API_USAGE")
-
 package hu.autsoft.rainbowcake.channels
 
 import hu.autsoft.rainbowcake.Contexts
@@ -16,6 +14,7 @@ import kotlinx.coroutines.channels.produce
  *
  * For more details, see the [GlobalScope.produce] function that this function delegates to.
  */
+@Suppress("EXPERIMENTAL_API_USAGE")
 @UseExperimental(InternalCoroutinesApi::class)
 fun <T> produceInIOContext(
         capacity: Int = 0,
