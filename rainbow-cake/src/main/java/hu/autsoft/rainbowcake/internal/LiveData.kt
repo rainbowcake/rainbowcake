@@ -1,4 +1,4 @@
-package hu.autsoft.rainbowcake.extensions.internal
+package hu.autsoft.rainbowcake.internal
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData

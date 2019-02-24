@@ -1,10 +1,14 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package hu.autsoft.rainbowcake.base
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import hu.autsoft.rainbowcake.channels.ChannelViewModel
-import hu.autsoft.rainbowcake.extensions.internal.distinct
+import hu.autsoft.rainbowcake.internal.QueuedSingleShotLiveData
+import hu.autsoft.rainbowcake.internal.SingleShotLiveData
+import hu.autsoft.rainbowcake.internal.distinct
 
 /**
  * A ViewModel base class that provides safe view state handling via [LiveData]
@@ -15,7 +19,7 @@ abstract class BaseViewModel<VS : Any>(initialState: VS) : ViewModel() {
     /**
      * The [MutableLiveData] instance actually containing the current view state.
      */
-    private val _state = MutableLiveData<VS>()
+    private val _state: MutableLiveData<VS> = MutableLiveData()
 
     init {
         // This initialization ensures that _state never holds a null value
@@ -29,7 +33,7 @@ abstract class BaseViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * so that it only emits distinct values (i.e. subsequent duplicates
      * don't trigger updates on it).
      */
-    val state: LiveData<VS> = _state.distinct()
+    public val state: LiveData<VS> = _state.distinct()
 
     /**
      * The view state exposed to the ViewModel subclasses to be able to read the
@@ -60,21 +64,23 @@ abstract class BaseViewModel<VS : Any>(initialState: VS) : ViewModel() {
     }
 
     /**
-     * The [SingleShotLiveData] instance dispatching one-time events from
+     * The [QueuedSingleShotLiveData] instance dispatching one-time events from
      * ViewModel to Fragment or Activity.
      */
-    private val viewEvents = SingleShotLiveData<OneShotEvent>()
+    private val viewEvents: MutableLiveData<OneShotEvent> = QueuedSingleShotLiveData()
 
     /**
      * The [LiveData] to be observed by the [BaseFragment] or [BaseActivity]
      * connected to this ViewModel to receive events. This is a read-only
-     * view of the contained [SingleShotLiveData].
+     * view of the contained [QueuedSingleShotLiveData].
      */
-    val events: LiveData<OneShotEvent> = viewEvents
+    public val events: LiveData<OneShotEvent> = viewEvents
 
     /**
      * Posts a new event to the connected Fragment or Activity.
      */
-    protected fun postEvent(event: OneShotEvent) = viewEvents.postValue(event)
+    protected fun postEvent(event: OneShotEvent) {
+        viewEvents.postValue(event)
+    }
 
 }

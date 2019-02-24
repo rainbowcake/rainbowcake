@@ -38,6 +38,8 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
         return inflater.inflate(getViewResource(), container, false)
     }
 
+    protected open val observesEvents = true
+
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,9 +48,12 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
         viewModel.state.observe(viewLifecycleOwner, Observer { viewState ->
             viewState?.let { render(it) }
         })
-        viewModel.events.observe(viewLifecycleOwner, Observer { event ->
-            event?.let { onEvent(it) }
-        })
+
+        if (observesEvents) {
+            viewModel.events.observe(viewLifecycleOwner, Observer { event ->
+                event?.let { onEvent(it) }
+            })
+        }
     }
 
     /**
