@@ -6,3 +6,8 @@ package hu.autsoft.rainbowcake.base
  * associated methods don't deal with the very broad [Any] type.
  */
 interface OneShotEvent
+
+/**
+ *
+ */
+interface QueuedOneShotEvent

@@ -6,6 +6,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import hu.autsoft.rainbowcake.channels.ChannelViewModel
+import hu.autsoft.rainbowcake.internal.ActiveOnlySingleShotLiveData
+import hu.autsoft.rainbowcake.internal.LiveDataCollection
+import hu.autsoft.rainbowcake.internal.MutableLiveDataCollection
+import hu.autsoft.rainbowcake.internal.MutableLiveDataCollectionImpl
 import hu.autsoft.rainbowcake.internal.QueuedSingleShotLiveData
 import hu.autsoft.rainbowcake.internal.SingleShotLiveData
 import hu.autsoft.rainbowcake.internal.distinct
@@ -63,24 +67,47 @@ abstract class BaseViewModel<VS : Any>(initialState: VS) : ViewModel() {
         _state.postValue(viewState)
     }
 
+
     /**
-     * The [QueuedSingleShotLiveData] instance dispatching one-time events from
+     * The [ActiveOnlySingleShotLiveData] instance dispatching one-time events from
      * ViewModel to Fragment or Activity.
      */
-    private val viewEvents: MutableLiveData<OneShotEvent> = QueuedSingleShotLiveData()
+    private val viewEvents: MutableLiveDataCollection<OneShotEvent> =
+            MutableLiveDataCollectionImpl(::ActiveOnlySingleShotLiveData)
 
     /**
      * The [LiveData] to be observed by the [BaseFragment] or [BaseActivity]
      * connected to this ViewModel to receive events. This is a read-only
-     * view of the contained [QueuedSingleShotLiveData].
+     * view of the contained [ActiveOnlySingleShotLiveData].
      */
-    public val events: LiveData<OneShotEvent> = viewEvents
+    internal val events: LiveDataCollection<OneShotEvent> = viewEvents
 
     /**
      * Posts a new event to the connected Fragment or Activity.
      */
+    @Suppress("UsePropertyAccessSyntax")
     protected fun postEvent(event: OneShotEvent) {
-        viewEvents.postValue(event)
+        viewEvents.setValue(event)
+    }
+
+
+    /**
+     *
+     */
+    private val queuedViewEvents: MutableLiveDataCollection<QueuedOneShotEvent> =
+            MutableLiveDataCollectionImpl(::QueuedSingleShotLiveData)
+
+    /**
+     *
+     */
+    internal val queuedEvents: LiveDataCollection<QueuedOneShotEvent> = queuedViewEvents
+
+    /**
+     *
+     */
+    @Suppress("UsePropertyAccessSyntax")
+    protected fun postQueuedEvent(event: QueuedOneShotEvent) {
+        queuedViewEvents.setValue(event)
     }
 
 }
