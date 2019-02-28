@@ -124,9 +124,13 @@ inline fun <F : BaseFragment<VS, VM>, VS, reified VM : BaseViewModel<VS>> F.getV
         Default -> {
             ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
         }
-        ParentFragment -> {
+        is ParentFragment -> {
             val parentFragment = getParentFragment() ?: throw IllegalStateException("No parent Fragment")
-            ViewModelProviders.of(parentFragment, viewModelFactory).get(VM::class.java)
+            if (scope.key != null) {
+                ViewModelProviders.of(parentFragment, viewModelFactory).get(scope.key, VM::class.java)
+            } else {
+                ViewModelProviders.of(parentFragment, viewModelFactory).get(VM::class.java)
+            }
         }
         is Activity -> {
             if (scope.key != null) {

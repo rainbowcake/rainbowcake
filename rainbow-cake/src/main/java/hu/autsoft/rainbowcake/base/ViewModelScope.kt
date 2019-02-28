@@ -29,7 +29,7 @@ sealed class ViewModelScope {
      * need to share data amongst themselves through a ViewModel, e.g. those
      * in a ViewPager.
      */
-    object ParentFragment : ViewModelScope()
+    data class ParentFragment(val key: String? = null) : ViewModelScope()
 
     /**
      * A ViewModel with this scope is scoped to the current Activity.
