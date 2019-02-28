@@ -12,7 +12,6 @@ class ScreenOneFragment : BaseFragment<ScreenViewState, ScreenViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory(scope = ParentFragment)
     override fun getViewResource() = R.layout.fragment_screen_one
-    override val observesEvents = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
