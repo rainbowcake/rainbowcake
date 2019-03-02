@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils
 import hu.autsoft.rainbowcake.base.ViewModelScope.Activity
 import hu.autsoft.rainbowcake.base.ViewModelScope.Default
 import hu.autsoft.rainbowcake.base.ViewModelScope.ParentFragment
+import hu.autsoft.rainbowcake.logging.log
 import hu.autsoft.rainbowcake.navigation.NavigatorImpl
 import hu.autsoft.rainbowcake.navigation.NoAnimation
 
@@ -49,6 +50,8 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
         viewModel.events.observe(viewLifecycleOwner, Observer { event ->
             event?.let { onEvent(it) }
         })
+
+        log("view created")
     }
 
     /**
