@@ -8,6 +8,11 @@ package hu.autsoft.rainbowcake.base
 interface OneShotEvent
 
 /**
+ * An additional marker interface for a more specific kind of [OneShotEvent].
+ * Events implementing this interface can not only be dispatched immediately,
+ * but may also be queued if the given Fragment or Activity is not currently
+ * active. See [postQueuedEvent][BaseViewModel.postQueuedEvent] and
+ * [queuedEvents][BaseViewModel.queuedEvents].
  *
  */
 interface QueuedOneShotEvent : OneShotEvent
