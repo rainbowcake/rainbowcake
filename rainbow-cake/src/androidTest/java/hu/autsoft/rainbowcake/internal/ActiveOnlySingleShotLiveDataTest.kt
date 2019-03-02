@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle.Event.ON_START
 import android.arch.lifecycle.Lifecycle.Event.ON_STOP
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import hu.autsoft.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
 import hu.autsoft.rainbowcake.util.LifecycleTest
 import hu.autsoft.rainbowcake.util.MockObserver
 import org.junit.Before

@@ -1,4 +1,4 @@
-package hu.autsoft.rainbowcake.internal
+package hu.autsoft.rainbowcake.internal.livedata
 
 import android.os.Handler
 import android.os.Looper

@@ -4,6 +4,7 @@ import android.arch.lifecycle.Lifecycle.Event.ON_CREATE
 import android.arch.lifecycle.Lifecycle.Event.ON_DESTROY
 import android.arch.lifecycle.Lifecycle.Event.ON_START
 import android.arch.lifecycle.MutableLiveData
+import hu.autsoft.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
 import hu.autsoft.rainbowcake.util.LifecycleTest
 import hu.autsoft.rainbowcake.util.MockObserver
 import org.junit.Assert.assertEquals

@@ -15,7 +15,7 @@ import android.view.animation.AnimationUtils
 import hu.autsoft.rainbowcake.base.ViewModelScope.Activity
 import hu.autsoft.rainbowcake.base.ViewModelScope.Default
 import hu.autsoft.rainbowcake.base.ViewModelScope.ParentFragment
-import hu.autsoft.rainbowcake.logging.log
+import hu.autsoft.rainbowcake.internal.config.log
 import hu.autsoft.rainbowcake.navigation.NavigatorImpl
 import hu.autsoft.rainbowcake.navigation.NoAnimation
 
