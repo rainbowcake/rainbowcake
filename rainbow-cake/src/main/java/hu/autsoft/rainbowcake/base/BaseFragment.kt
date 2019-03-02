@@ -28,6 +28,20 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
      */
     protected lateinit var viewModel: VM
 
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel = provideViewModel()
+
+        viewModel.events.observe(this, Observer { event ->
+            event?.let { onEvent(it) }
+        })
+        viewModel.queuedEvents.observe(this, Observer { event ->
+            event?.let { onEvent(it) }
+        })
+    }
+
     /**
      * Calls to super for this method MAY be omitted if the View inflation needs
      * to be customized. In these cases, [getViewResource] can return any value
@@ -42,13 +56,9 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = provideViewModel()
 
         viewModel.state.observe(viewLifecycleOwner, Observer { viewState ->
             viewState?.let { render(it) }
-        })
-        viewModel.events.observe(this, Observer { event ->
-            event?.let { onEvent(it) }
         })
     }
 

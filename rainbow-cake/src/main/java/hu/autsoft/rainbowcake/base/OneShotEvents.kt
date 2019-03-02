@@ -10,4 +10,4 @@ interface OneShotEvent
 /**
  *
  */
-interface QueuedOneShotEvent
+interface QueuedOneShotEvent : OneShotEvent
