@@ -22,7 +22,8 @@ internal class MutableLiveDataCollectionImpl<T : Any>(
 
     override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
         val liveData = factory()
-        addRemover(owner, liveData)
+        attachRemover(owner, liveData)
+        liveData.observe(owner, observer)
         activeLiveData += liveData
     }
 
@@ -44,7 +45,7 @@ internal class MutableLiveDataCollectionImpl<T : Any>(
     /**
      *
      */
-    private fun addRemover(owner: LifecycleOwner, liveData: MutableLiveData<T>) {
+    private fun attachRemover(owner: LifecycleOwner, liveData: MutableLiveData<T>) {
         val watcher = LiveDataRemover(liveData)
         owner.lifecycle.addObserver(watcher)
     }
