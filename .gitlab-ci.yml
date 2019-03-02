@@ -11,6 +11,7 @@ cache:
 stages:
   - build base library
   - build modules
+  - build demo app
   - test
   - deploy
 
@@ -83,6 +84,14 @@ rainbow-cake-timber build:
   stage: build modules
   variables:
     MODULE_NAME: rainbow-cake-timber
+
+### Demo app build ###
+
+demo app build:
+  <<: *build
+  stage: build demo app
+  variables:
+    MODULE_NAME: demo
 
 ### Tests ###
 
