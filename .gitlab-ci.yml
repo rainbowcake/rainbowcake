@@ -4,14 +4,13 @@ image: "gitlab.autsoft.hu:4567/devops/androidciimage:latest"
 
 cache:
   paths:
-    - .gradle/wrapper
-    - .gradle/caches
+    - .gradle
     - .android/build-cache/
 
 stages:
   - build base library
   - build modules
-  - build demo app
+  - demo app build
   - test
   - deploy
 
@@ -23,7 +22,22 @@ before_script:
 
 ########## Job templates ##########
 
-.build: &build
+.debugBuild: &debugBuild
+  tags:
+    - docker
+  script:
+    - >
+      ./gradlew
+      ${MODULE_NAME}:assembleDebug
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - "*/build"
+    expire_in: 2 hours
+  except:
+    - tags
+
+.releaseBuild: &releaseBuild
   tags:
     - docker
   script:
@@ -36,6 +50,8 @@ before_script:
     paths:
       - "*/build"
     expire_in: 2 hours
+  only:
+    - /^.*-RELEASE$/
 
 .instrumentationTest: &instrumentationTest
   stage: test
@@ -71,27 +87,42 @@ before_script:
 
 ### Base library build ###
 
-rainbow-cake build:
-  <<: *build
+rainbow-cake debug build:
+  <<: *debugBuild
+  stage: build base library
+  variables:
+    MODULE_NAME: rainbow-cake
+
+rainbow-cake release build:
+  <<: *releaseBuild
   stage: build base library
   variables:
     MODULE_NAME: rainbow-cake
 
 ### Module library builds ###
 
-rainbow-cake-timber build:
-  <<: *build
+rainbow-cake-timber debug build:
+  <<: *debugBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-timber
+
+rainbow-cake-timber release build:
+  <<: *releaseBuild
   stage: build modules
   variables:
     MODULE_NAME: rainbow-cake-timber
 
 ### Demo app build ###
 
-demo app build:
-  <<: *build
-  stage: build demo app
+demo app debug build:
+  <<: *debugBuild
+  stage: demo app build
   variables:
     MODULE_NAME: demo
+  dependencies:
+    - rainbow-cake debug build
+    - rainbow-cake-timber debug build
 
 ### Tests ###
 
@@ -99,6 +130,8 @@ rainbow-cake instrumentation test:
   <<: *instrumentationTest
   variables:
     MODULE_NAME: rainbow-cake
+  dependencies:
+    - rainbow-cake debug build
 
 ### Deployment ###
 
@@ -106,8 +139,12 @@ rainbow-cake deploy to artifactory:
   <<: *deployArtifactory
   variables:
     MODULE_NAME: rainbow-cake
+  dependencies:
+    - rainbow-cake release build
 
 rainbow-cake-timber deploy to artifactory:
   <<: *deployArtifactory
   variables:
     MODULE_NAME: rainbow-cake-timber
+  dependencies:
+    - rainbow-cake-timber release build
