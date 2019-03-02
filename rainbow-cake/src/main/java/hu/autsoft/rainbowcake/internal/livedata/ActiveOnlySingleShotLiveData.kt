@@ -1,4 +1,4 @@
-package hu.autsoft.rainbowcake.internal
+package hu.autsoft.rainbowcake.internal.livedata
 
 /**
  *

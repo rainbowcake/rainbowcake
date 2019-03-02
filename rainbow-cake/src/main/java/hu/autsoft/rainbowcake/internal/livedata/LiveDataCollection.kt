@@ -1,4 +1,4 @@
-package hu.autsoft.rainbowcake.internal
+package hu.autsoft.rainbowcake.internal.livedata
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData

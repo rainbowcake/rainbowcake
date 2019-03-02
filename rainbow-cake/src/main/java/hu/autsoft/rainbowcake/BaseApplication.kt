@@ -7,7 +7,6 @@ import android.support.multidex.MultiDex
 import hu.autsoft.rainbowcake.base.InjectedActivity
 import hu.autsoft.rainbowcake.base.InjectedFragment
 import hu.autsoft.rainbowcake.di.BaseComponent
-import timber.log.Timber
 
 /**
  * Base class for applications built on this architecture, primarily
@@ -30,7 +29,6 @@ abstract class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         setupInjector()
-        Timber.plant(Timber.DebugTree())
     }
 
     /**

@@ -43,9 +43,6 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    // Logging
-    api 'com.jakewharton.timber:timber:4.7.1'
-
     // Testing
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -71,35 +68,8 @@ apply plugin: 'maven-publish'
 ext {
     PUBLISH_GROUP_ID = 'hu.autsoft'
     PUBLISH_ARTIFACT_ID = 'rainbow-cake'
-    PUBLISH_VERSION = rainbowcake_version + '-SNAPSHOT'
+    PUBLISH_VERSION = rainbowcake_version
 }
 
-task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
-    from android.sourceSets.main.java.srcDirs
-}
-
-apply from: '../publish-artifactory.gradle'
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId PUBLISH_GROUP_ID
-            artifactId PUBLISH_ARTIFACT_ID
-            version PUBLISH_VERSION
-            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
-            artifact androidSourcesJar
-
-            pom.withXml {
-                def dependenciesNode = asNode().appendNode('dependencies')
-
-                project.configurations.implementation.allDependencies.each {
-                    def dependencyNode = dependenciesNode.appendNode('dependency')
-                    dependencyNode.appendNode('groupId', it.group)
-                    dependencyNode.appendNode('artifactId', it.name)
-                    dependencyNode.appendNode('version', it.version)
-                }
-            }
-        }
-    }
-}
+apply from: "${rootProject.projectDir}/scripts/publish-common.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish-artifactory.gradle"

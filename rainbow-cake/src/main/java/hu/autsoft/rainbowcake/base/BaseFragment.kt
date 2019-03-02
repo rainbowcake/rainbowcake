@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils
 import hu.autsoft.rainbowcake.base.ViewModelScope.Activity
 import hu.autsoft.rainbowcake.base.ViewModelScope.Default
 import hu.autsoft.rainbowcake.base.ViewModelScope.ParentFragment
+import hu.autsoft.rainbowcake.internal.logging.log
 import hu.autsoft.rainbowcake.navigation.NavigatorImpl
 import hu.autsoft.rainbowcake.navigation.NoAnimation
 
@@ -52,7 +53,6 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
         return inflater.inflate(getViewResource(), container, false)
     }
 
-
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,6 +60,8 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
         viewModel.state.observe(viewLifecycleOwner, Observer { viewState ->
             viewState?.let { render(it) }
         })
+
+        log("view created")
     }
 
     /**
