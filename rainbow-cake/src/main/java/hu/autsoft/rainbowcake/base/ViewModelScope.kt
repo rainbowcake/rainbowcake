@@ -29,7 +29,15 @@ sealed class ViewModelScope {
      * need to share data amongst themselves through a ViewModel, e.g. those
      * in a ViewPager.
      */
-    data class ParentFragment(val key: String? = null) : ViewModelScope()
+    sealed class ParentFragment(val key: String? = null) : ViewModelScope() {
+        internal class KeyedParentFragment(key: String) : ParentFragment(key)
+
+        companion object : ParentFragment() {
+            operator fun invoke(key: String): ViewModelScope {
+                return KeyedParentFragment(key)
+            }
+        }
+    }
 
     /**
      * A ViewModel with this scope is scoped to the current Activity.
@@ -44,6 +52,14 @@ sealed class ViewModelScope {
      *
      * @property key The key for this ViewModel, used as described above.
      */
-    data class Activity(val key: String? = null) : ViewModelScope()
+    sealed class Activity(val key: String? = null) : ViewModelScope() {
+        internal class KeyedActivity(key: String) : Activity(key)
+
+        companion object : Activity() {
+            operator fun invoke(key: String): ViewModelScope {
+                return KeyedActivity(key)
+            }
+        }
+    }
 
 }
