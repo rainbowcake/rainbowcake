@@ -19,7 +19,7 @@ internal class ActiveOnlySingleShotLiveData<T : Any> : SingleShotLiveData<T>() {
     }
 
     override fun setValue(t: T?) {
-        if (hasObservers()) {
+        if (hasActiveObservers()) {
             super.setValue(t)
         }
     }
