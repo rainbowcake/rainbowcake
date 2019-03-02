@@ -3,10 +3,10 @@ package hu.autsoft.rainbowcake.channels
 import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.base.BaseViewModel
 import hu.autsoft.rainbowcake.base.JobViewModel
+import hu.autsoft.rainbowcake.internal.config.log
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
-import timber.log.Timber
 
 /**
  * A ViewModel base class that in addition to providing state handling via [BaseViewModel]
@@ -112,7 +112,7 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
     ) {
         if (observations.contains(key)) {
             if (!replaceExisting) {
-                Timber.d("Key $key already in use")
+                log("Key $key already in use")
                 this.cancel()
                 return
             } else {
@@ -121,13 +121,13 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
         }
 
         observations.put(key, this)
-        Timber.d("Key $key taken")
+        log("Key $key taken")
 
         try {
             observe(onClosed, onCancelled, onElement)
         } finally {
             observations.remove(key)
-            Timber.d("Key $key freed up")
+            log("Key $key freed up")
         }
     }
 
@@ -158,16 +158,16 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
                 onElement(element)
             }
         } catch (e: CancellationException) {
-            Timber.d("Observer coroutine cancelled")
-            Timber.d(e)
+            log("Observer coroutine cancelled")
+            log(e)
             this.cancel()
-            Timber.d("Channel killed")
+            log("Channel killed")
         } catch (e: Exception) {
-            Timber.d("Channel cancelled from down below")
-            Timber.d(e)
+            log("Channel cancelled from down below")
+            log(e)
             onCancelled(e)
         } finally {
-            Timber.d("Channel under observation was closed")
+            log("Channel under observation was closed")
             onClosed()
         }
     }

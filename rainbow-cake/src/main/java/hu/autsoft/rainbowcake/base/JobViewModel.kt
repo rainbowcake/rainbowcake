@@ -2,12 +2,12 @@ package hu.autsoft.rainbowcake.base
 
 import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.Contexts
+import hu.autsoft.rainbowcake.internal.config.log
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 /**
@@ -34,7 +34,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
     override fun onCleared() {
         super.onCleared()
         rootJob.cancel()
-        Timber.d("ViewModel cleared, rootJob cancelled")
+        log("ViewModel cleared, rootJob cancelled")
     }
 
     /**
@@ -90,7 +90,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
         return launch {
             if (blocking) {
                 if (busy) {
-                    Timber.d("Denying job launch, busy")
+                    log("Denying job launch, busy")
                     return@launch
                 }
                 busy = true
@@ -99,11 +99,11 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
             try {
                 task()
             } catch (e: CancellationException) {
-                Timber.d("Job cancelled exception:")
-                Timber.d(e)
+                log("Job cancelled exception:")
+                log(e)
             } catch (e: Exception) {
-                Timber.d("Unhandled exception in ViewModel:")
-                Timber.d(e)
+                log("Unhandled exception in ViewModel:")
+                log(e)
             } finally {
                 if (blocking) {
                     busy = false

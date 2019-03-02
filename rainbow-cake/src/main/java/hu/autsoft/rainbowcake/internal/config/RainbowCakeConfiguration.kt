@@ -8,6 +8,6 @@ internal object RainbowCakeConfiguration : RainbowCakeConfigurator {
 
     override var isDebug: Boolean = false
 
-    override var logger: LoggingOption = LoggingOptions.None
+    override var logger: LoggingOption = LoggingOptions.NONE
 
 }

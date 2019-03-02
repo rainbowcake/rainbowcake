@@ -13,11 +13,11 @@ interface Logger {
 
 object LoggingOptions {
 
-    object None : LoggingOption {
+    object NONE : LoggingOption {
         override val logger: Logger = BlankLogger
     }
 
-    object Android : LoggingOption {
+    object ANDROID : LoggingOption {
         override val logger: Logger = AndroidLogger
     }
 
