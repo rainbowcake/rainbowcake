@@ -18,7 +18,7 @@ internal class MutableLiveDataCollectionImpl<T : Any>(
     /**
      *
      */
-    private val activeLiveData: MutableSet<MutableLiveData<T>> = mutableSetOf()
+    internal val activeLiveData: MutableSet<MutableLiveData<T>> = mutableSetOf()
 
     override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
         val liveData = factory()
