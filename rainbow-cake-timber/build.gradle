@@ -19,3 +19,16 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'com.jakewharton.timber:timber:4.7.1'
 }
+
+/////////////////  Publishing  /////////////////
+
+apply plugin: 'maven-publish'
+
+ext {
+    PUBLISH_GROUP_ID = 'hu.autsoft'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-timber'
+    PUBLISH_VERSION = rainbowcake_version
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-common.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish-artifactory.gradle"

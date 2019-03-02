@@ -21,6 +21,11 @@ allprojects {
     }
 }
 
+subprojects { project ->
+    group = 'hu.autsoft'
+    version = rainbowcake_version
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
