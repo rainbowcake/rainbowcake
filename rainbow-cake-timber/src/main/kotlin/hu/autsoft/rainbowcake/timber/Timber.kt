@@ -12,7 +12,7 @@ private object Timber : LoggingOption {
 val LoggingOptions.TIMBER: LoggingOption
     get() = hu.autsoft.rainbowcake.timber.Timber
 
-internal object TimberLogger : Logger {
+private object TimberLogger : Logger {
     override fun log(tag: String, message: String) {
         Timber.tag(tag).d(message)
         Timber.d(Exception())

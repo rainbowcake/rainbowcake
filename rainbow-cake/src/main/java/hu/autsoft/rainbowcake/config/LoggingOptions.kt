@@ -1,7 +1,7 @@
 package hu.autsoft.rainbowcake.config
 
-import hu.autsoft.rainbowcake.internal.config.AndroidLogger
-import hu.autsoft.rainbowcake.internal.config.BlankLogger
+import hu.autsoft.rainbowcake.internal.logging.AndroidLogger
+import hu.autsoft.rainbowcake.internal.logging.BlankLogger
 
 interface LoggingOption {
     val logger: Logger

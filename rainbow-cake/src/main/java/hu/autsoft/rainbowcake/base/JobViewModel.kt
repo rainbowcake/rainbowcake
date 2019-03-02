@@ -2,7 +2,7 @@ package hu.autsoft.rainbowcake.base
 
 import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.Contexts
-import hu.autsoft.rainbowcake.internal.config.log
+import hu.autsoft.rainbowcake.internal.logging.log
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job

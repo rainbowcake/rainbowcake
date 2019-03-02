@@ -3,7 +3,7 @@ package hu.autsoft.rainbowcake.channels
 import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.base.BaseViewModel
 import hu.autsoft.rainbowcake.base.JobViewModel
-import hu.autsoft.rainbowcake.internal.config.log
+import hu.autsoft.rainbowcake.internal.logging.log
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel

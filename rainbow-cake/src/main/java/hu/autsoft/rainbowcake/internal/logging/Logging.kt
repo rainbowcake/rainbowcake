@@ -1,10 +1,10 @@
-package hu.autsoft.rainbowcake.internal.config
+package hu.autsoft.rainbowcake.internal.logging
 
-import android.util.Log
-import hu.autsoft.rainbowcake.config.Logger
+import hu.autsoft.rainbowcake.internal.config.RainbowCakeConfiguration
 import java.io.PrintWriter
 import java.io.StringWriter
 
+@Suppress("unused")
 internal inline fun <reified T> T.log(message: String) {
     if (RainbowCakeConfiguration.isDebug.not()) {
         return
@@ -27,15 +27,4 @@ private fun getStacktraceString(e: Throwable): String {
     e.printStackTrace(pw)
     pw.flush()
     return sw.toString()
-}
-
-internal object BlankLogger : Logger {
-    override fun log(tag: String, message: String) {
-    }
-}
-
-internal object AndroidLogger : Logger {
-    override fun log(tag: String, message: String) {
-        Log.d(tag, message)
-    }
 }
