@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -41,7 +40,6 @@ dependencies {
     // Dagger
     def dagger_version = '2.16'
     implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     // Testing
     androidTestImplementation 'junit:junit:4.12'
@@ -49,7 +47,6 @@ dependencies {
     androidTestImplementation "android.arch.core:core-testing:$android_arch_version"
     androidTestImplementation "android.arch.lifecycle:runtime:$android_arch_version"
     androidTestImplementation "com.google.dagger:dagger:$dagger_version"
-    kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

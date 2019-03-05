@@ -1,13 +1,16 @@
 image: "gitlab.autsoft.hu:4567/devops/androidciimage:latest"
 
+########## Global settings ##########
+
 cache:
   paths:
-  - .gradle/wrapper
-  - .gradle/caches
-  - .android/build-cache/
+    - .gradle
+    - .android/build-cache/
 
 stages:
-  - build
+  - build base library
+  - build modules
+  - demo app build
   - test
   - deploy
 
@@ -17,26 +20,15 @@ before_script:
   - mkdir .gradle && echo "org.gradle.jvmargs=-Xmx4096m -XX\:+HeapDumpOnOutOfMemoryError -Dfile.encoding\=UTF-8" > .gradle/gradle.properties
   - chmod +x ./gradlew
 
-.build: &build
-  stage: build
+########## Job templates ##########
+
+.debugBuild: &debugBuild
   tags:
     - docker
   script:
-    - ./gradlew assembleRelease androidSourcesJar
-  artifacts:
-    name: "$CI_COMMIT_REF_NAME"
-    paths:
-      - "*/build"
-    expire_in: 2 hours
-
-.instrumentationTest: &instrumentationTest
-  stage: test
-  tags:
-    - android
-  before_script:
-    - echo UI teszt
-  script:
-    - ./gradlew rainbow-cake:connectedAndroidTest
+    - >
+      ./gradlew
+      ${MODULE_NAME}:assembleDebug
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -45,27 +37,114 @@ before_script:
   except:
     - tags
 
-.deploy: &deploy
-  stage: deploy
+.releaseBuild: &releaseBuild
   tags:
     - docker
+  script:
+    - >
+      ./gradlew
+      ${MODULE_NAME}:assembleRelease
+      ${MODULE_NAME}:androidSourcesJar
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
       - "*/build"
     expire_in: 2 hours
-
-########## Developer customised part ##########
-
-build:
-  <<: *build
-
-instrumentationTest:
-  <<: *instrumentationTest
-
-deploy to artifactory:
-  <<: *deploy
-  script:
-    - ./gradlew uploadArchives
   only:
-    - /^.*-SNAPSHOT$/
+    - /^.*-RELEASE$/
+
+.instrumentationTest: &instrumentationTest
+  stage: test
+  tags:
+    - android
+  before_script:
+    - echo UI teszt
+  script:
+    - ./gradlew ${MODULE_NAME}:connectedAndroidTest
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - "*/build"
+    expire_in: 2 hours
+  except:
+    - tags
+
+.deployArtifactory: &deployArtifactory
+  stage: deploy
+  tags:
+    - docker
+  script:
+    - ./gradlew ${MODULE_NAME}:uploadArchives
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - "*/build"
+    expire_in: 2 hours
+  only:
+    - /^.*-RELEASE$/
+
+########## Concrete jobs ##########
+
+### Base library build ###
+
+rainbow-cake debug build:
+  <<: *debugBuild
+  stage: build base library
+  variables:
+    MODULE_NAME: rainbow-cake
+
+rainbow-cake release build:
+  <<: *releaseBuild
+  stage: build base library
+  variables:
+    MODULE_NAME: rainbow-cake
+
+### Module library builds ###
+
+rainbow-cake-timber debug build:
+  <<: *debugBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-timber
+
+rainbow-cake-timber release build:
+  <<: *releaseBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-timber
+
+### Demo app build ###
+
+demo app debug build:
+  <<: *debugBuild
+  stage: demo app build
+  variables:
+    MODULE_NAME: demo
+  dependencies:
+    - rainbow-cake debug build
+    - rainbow-cake-timber debug build
+
+### Tests ###
+
+rainbow-cake instrumentation test:
+  <<: *instrumentationTest
+  variables:
+    MODULE_NAME: rainbow-cake
+  dependencies:
+    - rainbow-cake debug build
+
+### Deployment ###
+
+rainbow-cake deploy to artifactory:
+  <<: *deployArtifactory
+  variables:
+    MODULE_NAME: rainbow-cake
+  dependencies:
+    - rainbow-cake release build
+
+rainbow-cake-timber deploy to artifactory:
+  <<: *deployArtifactory
+  variables:
+    MODULE_NAME: rainbow-cake-timber
+  dependencies:
+    - rainbow-cake-timber release build
