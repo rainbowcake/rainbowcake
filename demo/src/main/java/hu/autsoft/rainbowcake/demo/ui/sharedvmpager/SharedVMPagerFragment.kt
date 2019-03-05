@@ -2,12 +2,12 @@ package hu.autsoft.rainbowcake.demo.ui.sharedvmpager
 
 import android.os.Bundle
 import android.view.View
-import hu.autsoft.rainbowcake.base.BaseFragment
+import hu.autsoft.rainbowcake.base.RainbowCakeFragment
 import hu.autsoft.rainbowcake.base.getViewModelFromFactory
 import hu.autsoft.rainbowcake.demo.R
 import kotlinx.android.synthetic.main.fragment_shared_vmpager.*
 
-class SharedVMPagerFragment : BaseFragment<SharedVMPagerViewState, SharedVMPagerViewModel>() {
+class SharedVMPagerFragment : RainbowCakeFragment<SharedVMPagerViewState, SharedVMPagerViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_shared_vmpager

@@ -6,18 +6,16 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import hu.autsoft.rainbowcake.channels.ChannelViewModel
-import hu.autsoft.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
-import hu.autsoft.rainbowcake.internal.livedata.LiveDataCollection
-import hu.autsoft.rainbowcake.internal.livedata.MutableLiveDataCollection
-import hu.autsoft.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
-import hu.autsoft.rainbowcake.internal.livedata.QueuedSingleShotLiveData
-import hu.autsoft.rainbowcake.internal.livedata.SingleShotLiveData
-import hu.autsoft.rainbowcake.internal.livedata.distinct
+import hu.autsoft.rainbowcake.internal.livedata.*
 
 /**
  * A ViewModel base class that provides safe view state handling via [LiveData]
  * and one-time event support via [SingleShotLiveData].
  */
+@Deprecated(
+        message = "Use RainbowCakeViewModel instead",
+        level = DeprecationLevel.WARNING
+)
 abstract class BaseViewModel<VS : Any>(initialState: VS) : ViewModel() {
 
     /**
