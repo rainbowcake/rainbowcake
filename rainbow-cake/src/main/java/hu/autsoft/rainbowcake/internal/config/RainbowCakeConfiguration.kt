@@ -10,4 +10,6 @@ internal object RainbowCakeConfiguration : RainbowCakeConfigurator {
 
     override var logger: LoggingOption = LoggingOptions.NONE
 
+    override var consumeExecuteExceptions: Boolean = true
+
 }

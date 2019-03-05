@@ -2,12 +2,9 @@ package hu.autsoft.rainbowcake.base
 
 import android.support.annotation.CallSuper
 import hu.autsoft.rainbowcake.Contexts
+import hu.autsoft.rainbowcake.internal.config.RainbowCakeConfiguration
 import hu.autsoft.rainbowcake.internal.logging.log
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 /**
@@ -97,18 +94,30 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : BaseViewModel<VS>(init
             }
 
             try {
-                task()
-            } catch (e: CancellationException) {
-                log("Job cancelled exception:")
-                log(e)
-            } catch (e: Exception) {
-                log("Unhandled exception in ViewModel:")
-                log(e)
+                if (RainbowCakeConfiguration.consumeExecuteExceptions) {
+                    consumeExceptions {
+                        task()
+                    }
+                } else {
+                    task()
+                }
             } finally {
                 if (blocking) {
                     busy = false
                 }
             }
+        }
+    }
+
+    private suspend fun consumeExceptions(task: suspend () -> Unit) {
+        try {
+            task()
+        } catch (e: CancellationException) {
+            log("Job cancelled exception:")
+            log(e)
+        } catch (e: Exception) {
+            log("Unhandled exception in ViewModel:")
+            log(e)
         }
     }
 

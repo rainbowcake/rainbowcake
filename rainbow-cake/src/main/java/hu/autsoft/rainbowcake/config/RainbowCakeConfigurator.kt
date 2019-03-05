@@ -6,4 +6,6 @@ interface RainbowCakeConfigurator {
 
     var logger: LoggingOption
 
+    var consumeExecuteExceptions: Boolean
+
 }

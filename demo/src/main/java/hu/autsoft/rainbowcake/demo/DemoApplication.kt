@@ -22,6 +22,8 @@ open class DemoApplication : BaseApplication() {
         rainbowCake {
             isDebug = BuildConfig.DEBUG
             logger = LoggingOptions.TIMBER
+
+            consumeExecuteExceptions = false
         }
 
         Timber.plant(Timber.DebugTree())
