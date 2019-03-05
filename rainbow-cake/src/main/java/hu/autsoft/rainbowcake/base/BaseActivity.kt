@@ -8,6 +8,10 @@ import android.support.annotation.CallSuper
 /**
  * Base class for Activities that connects them to the appropriate ViewModel instances.
  */
+@Deprecated(
+        message = "Use RainbowCakeActivity instead",
+        level = DeprecationLevel.WARNING
+)
 abstract class BaseActivity<VS : Any, VM : BaseViewModel<VS>> : InjectedActivity() {
 
     /**

@@ -12,9 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import hu.autsoft.rainbowcake.base.ViewModelScope.Activity
-import hu.autsoft.rainbowcake.base.ViewModelScope.Default
-import hu.autsoft.rainbowcake.base.ViewModelScope.ParentFragment
+import hu.autsoft.rainbowcake.base.ViewModelScope.*
 import hu.autsoft.rainbowcake.internal.logging.log
 import hu.autsoft.rainbowcake.navigation.NavigatorImpl
 import hu.autsoft.rainbowcake.navigation.NoAnimation
@@ -22,6 +20,10 @@ import hu.autsoft.rainbowcake.navigation.NoAnimation
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
  */
+@Deprecated(
+        message = "Use RainbowCakeFragment instead",
+        level = DeprecationLevel.WARNING
+)
 abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment() {
 
     /**

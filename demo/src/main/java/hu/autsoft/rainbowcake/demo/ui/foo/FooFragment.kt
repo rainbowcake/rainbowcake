@@ -2,14 +2,14 @@ package hu.autsoft.rainbowcake.demo.ui.foo
 
 import android.os.Bundle
 import android.view.View
-import hu.autsoft.rainbowcake.base.BaseFragment
+import hu.autsoft.rainbowcake.base.RainbowCakeFragment
 import hu.autsoft.rainbowcake.base.getViewModelFromFactory
 import hu.autsoft.rainbowcake.demo.R
 import hu.autsoft.rainbowcake.demo.ui.bar.BarFragment
 import hu.autsoft.rainbowcake.navigation.navigator
 import kotlinx.android.synthetic.main.fragment_foo.*
 
-class FooFragment : BaseFragment<FooViewState, FooViewModel>() {
+class FooFragment : RainbowCakeFragment<FooViewState, FooViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_foo
