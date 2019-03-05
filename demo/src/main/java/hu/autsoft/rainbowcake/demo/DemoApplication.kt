@@ -20,7 +20,7 @@ open class DemoApplication : BaseApplication() {
         super.onCreate()
 
         rainbowCake {
-            isDebug = false
+            isDebug = BuildConfig.DEBUG
             logger = LoggingOptions.TIMBER
         }
 
