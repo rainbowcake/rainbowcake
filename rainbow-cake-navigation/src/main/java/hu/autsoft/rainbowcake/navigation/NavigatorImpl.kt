@@ -61,7 +61,9 @@ internal class NavigatorImpl(
             return
         }
 
-        (getTopFragment() as? BaseFragment<*, *>)?.overrideAnimation = exitAnim
+        (getTopFragment() as? BaseFragment<*, *>)?.let { rcFragment ->
+            AccessibilityHack.setOverrideAnimation(rcFragment, exitAnim)
+        }
         supportFragmentManager.popBackStackImmediate()
 
         supportFragmentManager

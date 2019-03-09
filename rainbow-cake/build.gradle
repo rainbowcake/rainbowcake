@@ -21,7 +21,6 @@ android {
 
 dependencies {
     // Google libraries
-    def support_lib_version = '28.0.0'
     implementation "com.android.support:appcompat-v7:$support_lib_version"
     implementation "com.android.support:design:$support_lib_version"
     implementation 'com.android.support:multidex:1.0.3'
@@ -38,7 +37,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Dagger
-    def dagger_version = '2.16'
+    def dagger_version = '2.17'
     implementation "com.google.dagger:dagger:$dagger_version"
 
     // Testing
