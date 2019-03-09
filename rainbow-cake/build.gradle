@@ -37,7 +37,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Dagger
-    def dagger_version = '2.16'
+    def dagger_version = '2.17'
     implementation "com.google.dagger:dagger:$dagger_version"
 
     // Testing
