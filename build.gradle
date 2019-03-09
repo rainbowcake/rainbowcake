@@ -23,7 +23,7 @@ allprojects {
 }
 
 subprojects { project ->
-    group = 'hu.autsoft'
+    group = 'co.zsmb'
     version = rainbowcake_version
 }
 
