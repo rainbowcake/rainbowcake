@@ -15,6 +15,5 @@ val LoggingOptions.TIMBER: LoggingOption
 private object TimberLogger : Logger {
     override fun log(tag: String, message: String) {
         Timber.tag(tag).d(message)
-        Timber.d(Exception())
     }
 }

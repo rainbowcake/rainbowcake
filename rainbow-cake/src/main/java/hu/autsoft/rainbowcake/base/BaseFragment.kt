@@ -61,8 +61,6 @@ abstract class BaseFragment<VS : Any, VM : BaseViewModel<VS>> : InjectedFragment
         viewModel.state.observe(viewLifecycleOwner, Observer { viewState ->
             viewState?.let { render(it) }
         })
-
-        log("view created")
     }
 
     /**
