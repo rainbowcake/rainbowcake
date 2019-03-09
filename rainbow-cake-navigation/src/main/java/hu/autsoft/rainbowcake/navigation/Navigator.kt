@@ -105,6 +105,13 @@ interface Navigator {
 }
 
 /**
+ * Convenience function for [Navigator.popUntil].
+ */
+inline fun <reified T : Fragment> Navigator.popUntil() {
+    popUntil(T::class)
+}
+
+/**
  * Fetches the [Navigator] instance from the Activity containing the Fragment.
  *
  * @throws IllegalStateException if the Fragment is in an Activity that doesn't have a [Navigator]
