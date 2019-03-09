@@ -13,7 +13,7 @@ import android.support.v4.app.Fragment
 @Deprecated(
         message = "Use applyArgs instead.",
         replaceWith = ReplaceWith("applyArgs(argSetup)"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
 )
 inline fun <T : Fragment> T.withArgs(argSetup: Bundle.() -> Unit): T = apply {
     val bundle = Bundle()
