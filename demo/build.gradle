@@ -23,7 +23,7 @@ android {
 
 dependencies {
     // Architecture
-    implementation project(':rainbow-cake')
+    implementation project(':rainbow-cake-core')
     implementation project(':rainbow-cake-navigation')
     implementation project(':rainbow-cake-timber')
 

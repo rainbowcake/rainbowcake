@@ -10,10 +10,10 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
  * capable of injecting the [RainbowCakeFragment] and [RainbowCakeActivity] classes via
  * their non-generic parents.
  */
-interface BaseComponent {
+interface RainbowCakeComponent {
 
-    fun inject(baseActivity: InjectedActivity)
+    fun inject(injectedActivity: InjectedActivity)
 
-    fun inject(baseFragment: InjectedFragment)
+    fun inject(injectedFragment: InjectedFragment)
 
 }

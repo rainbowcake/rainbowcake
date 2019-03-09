@@ -4,18 +4,18 @@ import android.app.Application
 import android.support.annotation.CallSuper
 import co.zsmb.rainbowcake.base.InjectedActivity
 import co.zsmb.rainbowcake.base.InjectedFragment
-import co.zsmb.rainbowcake.di.BaseComponent
+import co.zsmb.rainbowcake.di.RainbowCakeComponent
 
 /**
  * Base class for applications built on this architecture, primarily
  * used for DI integration
  */
-abstract class BaseApplication : Application() {
+abstract class RainbowCakeApplication : Application() {
 
     /**
      * The injector used by [InjectedFragment] and [InjectedActivity]
      */
-    abstract val injector: BaseComponent
+    abstract val injector: RainbowCakeComponent
 
     @CallSuper
     override fun onCreate() {

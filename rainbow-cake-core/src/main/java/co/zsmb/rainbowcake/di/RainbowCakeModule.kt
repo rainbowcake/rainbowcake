@@ -9,7 +9,7 @@ import dagger.Module
  */
 @Suppress("unused")
 @Module
-abstract class BaseModule {
+abstract class RainbowCakeModule {
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

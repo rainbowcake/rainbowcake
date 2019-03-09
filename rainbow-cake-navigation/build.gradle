@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    implementation project(':rainbow-cake')
+    implementation project(':rainbow-cake-core')
 
     implementation "com.android.support:appcompat-v7:$support_lib_version"
 
