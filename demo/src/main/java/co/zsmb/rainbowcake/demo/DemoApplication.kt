@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.demo
 
 import co.zsmb.rainbowcake.BaseApplication
-import co.zsmb.rainbowcake.config.LoggingOptions
+import co.zsmb.rainbowcake.config.Loggers
 import co.zsmb.rainbowcake.config.rainbowCake
 import co.zsmb.rainbowcake.demo.di.AppComponent
 import co.zsmb.rainbowcake.demo.di.DaggerAppComponent
@@ -21,7 +21,7 @@ open class DemoApplication : BaseApplication() {
 
         rainbowCake {
             isDebug = BuildConfig.DEBUG
-            logger = LoggingOptions.TIMBER
+            logger = Loggers.TIMBER
 
             consumeExecuteExceptions = false
         }

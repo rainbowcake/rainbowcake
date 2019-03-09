@@ -1,19 +1,14 @@
 package co.zsmb.rainbowcake.timber
 
 import co.zsmb.rainbowcake.config.Logger
-import co.zsmb.rainbowcake.config.LoggingOption
-import co.zsmb.rainbowcake.config.LoggingOptions
+import co.zsmb.rainbowcake.config.Loggers
 import timber.log.Timber
 
-private object Timber : LoggingOption {
-    override val logger: Logger = TimberLogger
-}
-
-val LoggingOptions.TIMBER: LoggingOption
-    get() = co.zsmb.rainbowcake.timber.Timber
-
-private object TimberLogger : Logger {
+private object Timber : Logger {
     override fun log(tag: String, message: String) {
         Timber.tag(tag).d(message)
     }
 }
+
+val Loggers.TIMBER: Logger
+    get() = co.zsmb.rainbowcake.timber.Timber

@@ -9,7 +9,7 @@ internal inline fun <reified T> T.log(message: String) {
     if (RainbowCakeConfiguration.isDebug.not()) {
         return
     }
-    RainbowCakeConfiguration.logger.logger.log(T::class.java.simpleName, message)
+    RainbowCakeConfiguration.logger.log(T::class.java.simpleName, message)
 }
 
 internal inline fun <reified T> T.log(e: Throwable) {
