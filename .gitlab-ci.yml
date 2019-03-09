@@ -113,6 +113,18 @@ rainbow-cake-timber release build:
   variables:
     MODULE_NAME: rainbow-cake-timber
 
+rainbow-cake-navigation debug build:
+  <<: *debugBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-navigation
+
+rainbow-cake-navigation release build:
+  <<: *releaseBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-navigation
+
 ### Demo app build ###
 
 demo app debug build:
@@ -123,6 +135,7 @@ demo app debug build:
   dependencies:
     - rainbow-cake debug build
     - rainbow-cake-timber debug build
+    - rainbow-cake-navigation debug build
 
 ### Tests ###
 
@@ -148,3 +161,10 @@ rainbow-cake-timber deploy to artifactory:
     MODULE_NAME: rainbow-cake-timber
   dependencies:
     - rainbow-cake-timber release build
+
+rainbow-cake-navigation deploy to artifactory:
+  <<: *deployArtifactory
+  variables:
+    MODULE_NAME: rainbow-cake-navigation
+  dependencies:
+    - rainbow-cake-navigation release build
