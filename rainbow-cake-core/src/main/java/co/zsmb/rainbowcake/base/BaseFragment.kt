@@ -98,6 +98,7 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : In
      */
     @AnimRes
     @AnimatorRes
+    @set:JvmName("overrideAnimation")
     internal var overrideAnimation: Int? = null
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {

@@ -11,11 +11,11 @@ class AccessibilityHack {
         // Non-instantiable class
     }
 
-    @SuppressWarnings({"KotlinInternalInJava", "deprecation"})
+    @SuppressWarnings({"KotlinInternalInJava"})
     static void setOverrideAnimation(
             @NonNull final RainbowCakeFragment fragment,
             @AnimRes @Nullable final Integer overrideAnimation) {
-        fragment.setOverrideAnimation$rainbow_cake_core_debug(overrideAnimation);
+        fragment.overrideAnimation(overrideAnimation);
     }
 
 }
