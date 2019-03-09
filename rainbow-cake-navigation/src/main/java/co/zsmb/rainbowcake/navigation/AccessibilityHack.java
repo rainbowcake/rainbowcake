@@ -15,7 +15,7 @@ class AccessibilityHack {
     static void setOverrideAnimation(
             @NonNull final RainbowCakeFragment fragment,
             @AnimRes @Nullable final Integer overrideAnimation) {
-        fragment.setOverrideAnimation$rainbow_cake_debug(overrideAnimation);
+        fragment.setOverrideAnimation$rainbow_cake_core_debug(overrideAnimation);
     }
 
 }
