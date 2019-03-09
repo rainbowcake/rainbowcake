@@ -23,7 +23,6 @@ dependencies {
     // Google libraries
     implementation "com.android.support:appcompat-v7:$support_lib_version"
     implementation "com.android.support:design:$support_lib_version"
-    implementation 'com.android.support:multidex:1.0.3'
 
     def android_arch_version = '1.1.1'
     implementation "android.arch.lifecycle:extensions:$android_arch_version"

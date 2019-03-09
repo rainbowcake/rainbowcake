@@ -1,9 +1,7 @@
 package hu.autsoft.rainbowcake
 
 import android.app.Application
-import android.content.Context
 import android.support.annotation.CallSuper
-import android.support.multidex.MultiDex
 import hu.autsoft.rainbowcake.base.InjectedActivity
 import hu.autsoft.rainbowcake.base.InjectedFragment
 import hu.autsoft.rainbowcake.di.BaseComponent
@@ -18,12 +16,6 @@ abstract class BaseApplication : Application() {
      * The injector used by [InjectedFragment] and [InjectedActivity]
      */
     abstract val injector: BaseComponent
-
-    @CallSuper
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
-    }
 
     @CallSuper
     override fun onCreate() {
