@@ -42,7 +42,6 @@ internal class NavigatorImpl(
                 .replace(R.id.contentFrame, fragment, fragment.navTag)
                 .addToBackStack(fragment.navTag)
                 .commit()
-
     }
 
     override fun replace(fragment: Fragment) {
