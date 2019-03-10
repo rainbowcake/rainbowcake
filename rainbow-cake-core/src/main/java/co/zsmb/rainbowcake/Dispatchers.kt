@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-object Contexts {
+object Dispatchers {
 
     /**
      * Android main thread
@@ -25,4 +25,4 @@ object Contexts {
  *
  * For more details, see the [withContext] function that this function delegates to.
  */
-suspend fun <T> withIOContext(block: suspend CoroutineScope.() -> T): T = withContext(Contexts.IO, block = block)
+suspend fun <T> withIOContext(block: suspend CoroutineScope.() -> T): T = withContext(Dispatchers.IO, block = block)

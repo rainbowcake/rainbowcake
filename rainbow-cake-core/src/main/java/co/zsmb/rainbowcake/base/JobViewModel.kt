@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.base
 
 import android.support.annotation.CallSuper
-import co.zsmb.rainbowcake.Contexts
+import co.zsmb.rainbowcake.Dispatchers
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 import co.zsmb.rainbowcake.internal.logging.log
 import kotlinx.coroutines.CancellationException
@@ -29,7 +29,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : RainbowCakeViewModel<V
      * in this scope will get their dispatcher from the UI context (i.e. run
      * on the main thread) and have [rootJob] as their parent.
      */
-    final override val coroutineContext = Contexts.UI + rootJob
+    final override val coroutineContext = Dispatchers.UI + rootJob
 
     @CallSuper
     override fun onCleared() {
