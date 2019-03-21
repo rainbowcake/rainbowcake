@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.channels
 
-import co.zsmb.rainbowcake.Dispatchers
+import co.zsmb.rainbowcake.RCDispatchers
 import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -22,7 +22,7 @@ fun <T> produceInIOContext(
         block: suspend ProducerScope<T>.() -> Unit
 ): ReceiveChannel<T> {
     return GlobalScope.produce(
-            context = Dispatchers.IO,
+            context = RCDispatchers.IO,
             capacity = capacity,
             onCompletion = onCompletion,
             block = block

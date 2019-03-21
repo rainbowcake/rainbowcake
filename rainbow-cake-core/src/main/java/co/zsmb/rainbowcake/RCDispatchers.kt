@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-object Dispatchers {
+object RCDispatchers {
 
     /**
      * Android main thread
