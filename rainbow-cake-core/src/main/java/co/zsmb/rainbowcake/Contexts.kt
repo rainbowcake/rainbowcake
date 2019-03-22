@@ -4,21 +4,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
-object RCDispatchers {
-
-    /**
-     * Android main thread
-     */
-    val UI = Dispatchers.Main
-
-    /**
-     * Threadpool for I/O operations
-     */
-    val IO = Dispatchers.IO
-
-}
-
 /**
  * Calls the specified suspending block in the IO coroutine context, suspends until it completes,
  * and returns the result.
