@@ -148,12 +148,12 @@ rainbow-cake instrumentation test:
 
 ### Deployment ###
 
-rainbow-cake deploy to artifactory:
+rainbow-cake-core deploy to artifactory:
   <<: *deployArtifactory
   variables:
-    MODULE_NAME: rainbow-cake
+    MODULE_NAME: rainbow-cake-core
   dependencies:
-    - rainbow-cake release build
+    - rainbow-cake-core release build
 
 rainbow-cake-timber deploy to artifactory:
   <<: *deployArtifactory
