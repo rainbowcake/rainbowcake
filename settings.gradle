@@ -1,1 +1,4 @@
-include ':demo', ':rainbow-cake'
+include ':rainbow-cake-core',
+        ':rainbow-cake-navigation',
+        ':rainbow-cake-timber',
+        ':demo'
