@@ -16,7 +16,7 @@ echo "✓ Migrating repository at path $repo to RainbowCake 0.2.0"
 
 ### Change directory ###
 
-cd $repo
+cd "$repo"
 
 if [[ $? -eq 0 ]]; then
     echo '✓ Found directory at the given path'
@@ -66,10 +66,7 @@ git ls-files *.kt | xargs sed -b -i \
     -e 's/BaseActivity/RainbowCakeActivity/g' \
     -e 's/BaseApplication/RainbowCakeApplication/g' \
     -e 's/BaseModule/RainbowCakeModule/g' \
-    -e 's/BaseComponent/RainbowCakeComponent/g'\
-    -e 's/rainbowcake\.Contexts/rainbowcake\.RCDispatchers/g'\
-    -e 's/Contexts\.UI/RCDispatchers\.UI/g' \
-    -e 's/Contexts\.IO/RCDispatchers\.IO/g'
+    -e 's/BaseComponent/RainbowCakeComponent/g'
 
 
 ### Epilogue ###
