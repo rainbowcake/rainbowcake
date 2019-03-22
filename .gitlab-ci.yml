@@ -87,17 +87,17 @@ before_script:
 
 ### Base library build ###
 
-rainbow-cake debug build:
+rainbow-cake-core debug build:
   <<: *debugBuild
   stage: build base library
   variables:
-    MODULE_NAME: rainbow-cake
+    MODULE_NAME: rainbow-cake-core
 
-rainbow-cake release build:
+rainbow-cake-core release build:
   <<: *releaseBuild
   stage: build base library
   variables:
-    MODULE_NAME: rainbow-cake
+    MODULE_NAME: rainbow-cake-core
 
 ### Module library builds ###
 
@@ -133,18 +133,18 @@ demo app debug build:
   variables:
     MODULE_NAME: demo
   dependencies:
-    - rainbow-cake debug build
+    - rainbow-cake-core debug build
     - rainbow-cake-timber debug build
     - rainbow-cake-navigation debug build
 
 ### Tests ###
 
-rainbow-cake instrumentation test:
+rainbow-cake-core instrumentation test:
   <<: *instrumentationTest
   variables:
-    MODULE_NAME: rainbow-cake
+    MODULE_NAME: rainbow-cake-core
   dependencies:
-    - rainbow-cake debug build
+    - rainbow-cake-core debug build
 
 ### Deployment ###
 
