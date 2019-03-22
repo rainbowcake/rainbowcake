@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "hu.autsoft.rainbowcake.demo"
+        applicationId "co.zsmb.rainbowcake.demo"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -23,7 +23,7 @@ android {
 
 dependencies {
     // Architecture
-    implementation project(':rainbow-cake')
+    implementation project(':rainbow-cake-core')
     implementation project(':rainbow-cake-navigation')
     implementation project(':rainbow-cake-timber')
 

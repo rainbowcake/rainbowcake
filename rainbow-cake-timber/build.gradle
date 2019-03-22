@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    implementation project(':rainbow-cake')
+    implementation project(':rainbow-cake-core')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'com.jakewharton.timber:timber:4.7.1'
 }
@@ -21,7 +21,7 @@ dependencies {
 apply plugin: 'maven-publish'
 
 ext {
-    PUBLISH_GROUP_ID = 'hu.autsoft'
+    PUBLISH_GROUP_ID = 'co.zsmb'
     PUBLISH_ARTIFACT_ID = 'rainbow-cake-timber'
     PUBLISH_VERSION = rainbowcake_version
 }

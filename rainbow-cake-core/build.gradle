@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // Google libraries
+    implementation "com.android.support:appcompat-v7:$support_lib_version"
+    implementation "com.android.support:design:$support_lib_version"
+
+    def android_arch_version = '1.1.1'
+    implementation "android.arch.lifecycle:extensions:$android_arch_version"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Dagger
+    def dagger_version = '2.17'
+    implementation "com.google.dagger:dagger:$dagger_version"
+
+    // Testing
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "android.arch.core:core-testing:$android_arch_version"
+    androidTestImplementation "android.arch.lifecycle:runtime:$android_arch_version"
+    androidTestImplementation "com.google.dagger:dagger:$dagger_version"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xuse-experimental=kotlin.Experimental'
+        ]
+    }
+}
+
+/////////////////  Publishing  /////////////////
+
+apply plugin: 'maven-publish'
+
+ext {
+    PUBLISH_GROUP_ID = 'co.zsmb'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-core'
+    PUBLISH_VERSION = rainbowcake_version
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-common.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish-artifactory.gradle"
