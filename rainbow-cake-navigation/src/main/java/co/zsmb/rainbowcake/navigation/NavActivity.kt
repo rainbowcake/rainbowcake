@@ -34,7 +34,7 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById(R.id.contentFrame)as? FrameLayout
+        findViewById(R.id.contentFrame) as? FrameLayout
                 ?: throw IllegalStateException("NavActivity should contain a FrameLayout with the ID R.id.contentFrame - perhaps you've overridden the activity_main resource accidentally?")
 
         navigatorImpl = NavigatorImpl(
