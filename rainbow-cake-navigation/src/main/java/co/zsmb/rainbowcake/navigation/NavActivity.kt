@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.annotation.AnimRes
 import android.support.annotation.AnimatorRes
 import android.support.annotation.CallSuper
+import android.widget.FrameLayout
 import co.zsmb.rainbowcake.R
 import co.zsmb.rainbowcake.base.RainbowCakeActivity
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
@@ -32,6 +33,9 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById(R.id.contentFrame)as? FrameLayout
+                ?: throw IllegalStateException("NavActivity should contain a FrameLayout with the ID R.id.contentFrame - perhaps you've overridden the activity_main resource accidentally?")
 
         navigatorImpl = NavigatorImpl(
                 this,
