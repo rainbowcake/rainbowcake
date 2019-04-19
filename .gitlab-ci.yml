@@ -125,6 +125,18 @@ rainbow-cake-navigation release build:
   variables:
     MODULE_NAME: rainbow-cake-navigation
 
+rainbow-cake-channels debug build:
+  <<: *debugBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-channels
+
+rainbow-cake-channels release build:
+  <<: *releaseBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-channels
+
 ### Demo app build ###
 
 demo app debug build:
@@ -168,3 +180,10 @@ rainbow-cake-navigation deploy to artifactory:
     MODULE_NAME: rainbow-cake-navigation
   dependencies:
     - rainbow-cake-navigation release build
+
+rainbow-cake-channels deploy to artifactory:
+  <<: *deployArtifactory
+  variables:
+    MODULE_NAME: rainbow-cake-channels
+  dependencies:
+    - rainbow-cake-channels release build

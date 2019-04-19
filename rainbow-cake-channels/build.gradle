@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+    }
+
+    android {
+        packagingOptions {
+            exclude 'META-INF/atomicfu.kotlin_module'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':rainbow-cake-core')
+
+    implementation "android.arch.lifecycle:extensions:$android_arch_version"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+}
+
+/////////////////  Publishing  /////////////////
+
+apply plugin: 'maven-publish'
+
+ext {
+    PUBLISH_GROUP_ID = 'co.zsmb'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-channels'
+    PUBLISH_VERSION = rainbowcake_version
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-common.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish-artifactory.gradle"
