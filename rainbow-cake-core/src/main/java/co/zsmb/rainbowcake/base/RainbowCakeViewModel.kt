@@ -5,14 +5,7 @@ package co.zsmb.rainbowcake.base
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import co.zsmb.rainbowcake.channels.ChannelViewModel
-import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
-import co.zsmb.rainbowcake.internal.livedata.LiveDataCollection
-import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollection
-import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
-import co.zsmb.rainbowcake.internal.livedata.QueuedSingleShotLiveData
-import co.zsmb.rainbowcake.internal.livedata.SingleShotLiveData
-import co.zsmb.rainbowcake.internal.livedata.distinct
+import co.zsmb.rainbowcake.internal.livedata.*
 
 /**
  * A ViewModel base class that provides safe view state handling via [LiveData]

@@ -2,15 +2,15 @@ package co.zsmb.rainbowcake.channels
 
 import android.support.annotation.CallSuper
 import co.zsmb.rainbowcake.base.JobViewModel
-import co.zsmb.rainbowcake.internal.logging.log
+import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 
 /**
- * A ViewModel base class that in addition to providing state handling via [BaseViewModel]
- * and coroutine Job execution via [JobViewModel] also provides the ability to observe
- * updates from channels in a safe and concise way.
+ * A ViewModel base class that in addition to providing state handling via
+ * [RainbowCakeViewModel] and coroutine Job execution via [JobViewModel] also provides
+ * the ability to observe updates from channels in a safe and concise way.
  *
  * ### Glossary
  *
@@ -111,7 +111,7 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
     ) {
         if (observations.contains(key)) {
             if (!replaceExisting) {
-                log("Key $key already in use")
+                // Key already in use
                 this.cancel()
                 return
             } else {
@@ -119,14 +119,14 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
             }
         }
 
+        // Key taken
         observations.put(key, this)
-        log("Key $key taken")
 
         try {
             observe(onClosed, onCancelled, onElement)
         } finally {
+            // Key freed up
             observations.remove(key)
-            log("Key $key freed up")
         }
     }
 
@@ -157,16 +157,14 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
                 onElement(element)
             }
         } catch (e: CancellationException) {
-            log("Observer coroutine cancelled")
-            log(e)
+            // Observer coroutine cancelled
+            // Channel killed
             this.cancel()
-            log("Channel killed")
         } catch (e: Exception) {
-            log("Channel cancelled from down below")
-            log(e)
+            // Channel cancelled from down below
             onCancelled(e)
         } finally {
-            log("Channel under observation was closed")
+            // Channel under observation was closed
             onClosed()
         }
     }

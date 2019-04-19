@@ -30,6 +30,7 @@ dependencies {
     // Architecture
     implementation project(':rainbow-cake-core')
     implementation project(':rainbow-cake-navigation')
+    implementation project(':rainbow-cake-channels')
     implementation project(':rainbow-cake-timber')
 
     // Google libraries
