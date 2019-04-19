@@ -7,6 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 28
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     android {
@@ -23,6 +25,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    // Testing
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation "android.arch.core:core-testing:$android_arch_version"
+    androidTestImplementation "android.arch.lifecycle:runtime:$android_arch_version"
 }
 
 /////////////////  Publishing  /////////////////

@@ -158,6 +158,13 @@ rainbow-cake-core instrumentation test:
   dependencies:
     - rainbow-cake-core debug build
 
+rainbow-cake-navigation instrumentation test:
+  <<: *instrumentationTest
+  variables:
+    MODULE_NAME: rainbow-cake-navigation
+  dependencies:
+    - rainbow-cake-navigation debug build
+
 ### Deployment ###
 
 rainbow-cake-core deploy to artifactory:

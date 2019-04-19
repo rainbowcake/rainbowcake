@@ -8,8 +8,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.Calendar
-import java.util.UUID
+import java.util.*
 
 @RunWith(AndroidJUnit4::class)
 class BundleTest {
