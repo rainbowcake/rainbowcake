@@ -1,4 +1,4 @@
-package co.zsmb.rainbowcake.extensions
+package co.zsmb.rainbowcake.navigation.extensions
 
 import android.location.Location
 import android.net.Uri

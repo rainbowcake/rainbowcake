@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package co.zsmb.rainbowcake.extensions
+package co.zsmb.rainbowcake.navigation.extensions
 
 import android.os.Bundle
 import android.os.Parcelable

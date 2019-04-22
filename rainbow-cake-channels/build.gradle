@@ -18,8 +18,11 @@ android {
 
 dependencies {
     implementation project(':rainbow-cake-core')
+
+    implementation "android.arch.lifecycle:extensions:$android_arch_version"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'com.jakewharton.timber:timber:4.7.1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 }
 
 /////////////////  Publishing  /////////////////
@@ -28,7 +31,7 @@ apply plugin: 'maven-publish'
 
 ext {
     PUBLISH_GROUP_ID = 'co.zsmb'
-    PUBLISH_ARTIFACT_ID = 'rainbow-cake-timber'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-channels'
     PUBLISH_VERSION = rainbowcake_version
 }
 
