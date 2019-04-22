@@ -30,7 +30,7 @@ import kotlinx.coroutines.channels.ReceiveChannel
  *
  * In the context of this class, an *observation* is a collective name for a channel
  * and the callbacks connected to it via the [observe] methods. There's always a
- * one-to-one relation between *observations* in channels when using this class.
+ * one-to-one relation between *observations* and channels when using this class.
  *
  * When an *observation* is cancelled, the ViewModel stops receiving updates from
  * its channel **and** the channel itself is cancelled as well.
@@ -139,7 +139,7 @@ abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(i
      * @param onClosed A callback for when the channel is closed. This may be because
      *                 the data that was being supplied has ran out, because an exception
      *                 happened somewhere along the way, or because the ViewModel was
-     *                 cleared and therefore cancelled the underlying channel.
+     *                 cleared and therefore cancelled the observation.
      * @param onCancelled Similar to [onClosed], but will only be called if the channel
      *                    has terminated exceptionally due to an Exception being thrown
      *                    in the lower layers. When this happens, [onClosed] will still
