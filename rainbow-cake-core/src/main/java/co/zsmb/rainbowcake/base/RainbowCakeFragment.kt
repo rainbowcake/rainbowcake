@@ -137,7 +137,8 @@ inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewMod
             ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
         }
         is ParentFragment -> {
-            val parentFragment = getParentFragment() ?: throw IllegalStateException("No parent Fragment")
+            val parentFragment = getParentFragment()
+                    ?: throw IllegalStateException("No parent Fragment")
             if (scope.key != null) {
                 ViewModelProviders.of(parentFragment, viewModelFactory).get(scope.key, VM::class.java)
             } else {
