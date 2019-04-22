@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package co.zsmb.rainbowcake.extensions
+package co.zsmb.rainbowcake.navigation.extensions
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -26,10 +26,6 @@ inline fun <T : Fragment> T.withArgs(argSetup: Bundle.() -> Unit): T = apply {
  *
  * @return the Fragment instance
  */
-@Deprecated(
-        message = "Use the extension in the navigation package instead.",
-        level = DeprecationLevel.WARNING
-)
 inline fun <T : Fragment> T.applyArgs(argSetup: Bundle.() -> Unit): T = apply {
     val bundle = Bundle()
     bundle.argSetup()
@@ -41,10 +37,6 @@ inline fun <T : Fragment> T.applyArgs(argSetup: Bundle.() -> Unit): T = apply {
  *
  * @throws IllegalStateException if the Fragment doesn't have an associated arguments Bundle.
  */
-@Deprecated(
-        message = "Use the extension in the navigation package instead.",
-        level = DeprecationLevel.WARNING
-)
 inline fun Fragment.requireArguments(): Bundle {
     return arguments ?: throw IllegalStateException("Fragment has no arguments Bundle.")
 }

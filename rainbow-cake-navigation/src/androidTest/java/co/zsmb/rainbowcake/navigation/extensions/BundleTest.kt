@@ -1,4 +1,4 @@
-package co.zsmb.rainbowcake.extensions
+package co.zsmb.rainbowcake.navigation.extensions
 
 import android.location.Location
 import android.net.Uri
@@ -8,7 +8,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.*
+import java.util.Calendar
+import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
 class BundleTest {
