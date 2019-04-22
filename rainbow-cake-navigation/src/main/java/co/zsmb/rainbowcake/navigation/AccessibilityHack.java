@@ -3,6 +3,7 @@ package co.zsmb.rainbowcake.navigation;
 import android.support.annotation.AnimRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
 import co.zsmb.rainbowcake.base.RainbowCakeFragment;
 
 class AccessibilityHack {

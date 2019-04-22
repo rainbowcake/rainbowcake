@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion compile_sdk
     defaultConfig {
         applicationId "co.zsmb.rainbowcake.demo"
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,12 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    android {
+        packagingOptions {
+            exclude 'META-INF/atomicfu.kotlin_module'
+        }
+    }
 }
 
 dependencies {
     // Architecture
     implementation project(':rainbow-cake-core')
     implementation project(':rainbow-cake-navigation')
+    implementation project(':rainbow-cake-channels')
     implementation project(':rainbow-cake-timber')
 
     // Google libraries
