@@ -1,4 +1,3 @@
-
 ### Argument check ###
 
 if [[ $# -eq 0 ]] ; then
@@ -48,7 +47,7 @@ test -z "$(git status --porcelain)"
 if [[ $? -eq 0 ]]; then
   echo "✓ No untracked files in repository directory"
 else
-  echo '✗ You have untracked or uncommitted files your repository directory!'
+  echo '✗ You have untracked or uncommitted files in your repository directory!'
   echo '✗ Here they are:'
   git status --porcelain
   exit 1
