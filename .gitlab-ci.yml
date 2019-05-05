@@ -74,7 +74,7 @@ before_script:
   tags:
     - docker
   before_script:
-    - echo $GPG_KEY_CONTENTS | base64 -d > secret.gpg
+    - echo $GPG_KEY_CONTENTS | base64 -d > /secret.gpg
   script:
     - ./gradlew ${MODULE_NAME}:uploadArchives
   artifacts:
