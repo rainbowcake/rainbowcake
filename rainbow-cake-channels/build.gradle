@@ -27,13 +27,10 @@ dependencies {
 
 /////////////////  Publishing  /////////////////
 
-apply plugin: 'maven-publish'
-
 ext {
     PUBLISH_GROUP_ID = 'co.zsmb'
     PUBLISH_ARTIFACT_ID = 'rainbow-cake-channels'
     PUBLISH_VERSION = rainbowcake_version
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-common.gradle"
-apply from: "${rootProject.projectDir}/scripts/publish-artifactory.gradle"
+apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
