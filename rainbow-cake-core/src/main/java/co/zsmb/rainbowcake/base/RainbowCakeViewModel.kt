@@ -48,7 +48,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
     protected var viewState: VS
         get() = _state.value!!
         set(value) {
-            _state.value = value
+            _state.postValue(value)
         }
 
     /**
