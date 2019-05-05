@@ -1,4 +1,4 @@
-image: "gitlab.autsoft.hu:4567/devops/androidciimage:latest"
+image: registry.gitlab.com/hardysim/android-ci:latest
 
 ########## Global settings ##########
 
@@ -69,7 +69,7 @@ before_script:
   except:
     - tags
 
-.deployArtifactory: &deployArtifactory
+.deployMavenCentral: &deployMavenCentral
   stage: deploy
   tags:
     - docker
@@ -167,29 +167,29 @@ rainbow-cake-navigation instrumentation test:
 
 ### Deployment ###
 
-rainbow-cake-core deploy to artifactory:
-  <<: *deployArtifactory
+rainbow-cake-core deploy to mavencentral:
+  <<: *deployMavenCentral
   variables:
     MODULE_NAME: rainbow-cake-core
   dependencies:
     - rainbow-cake-core release build
 
-rainbow-cake-timber deploy to artifactory:
-  <<: *deployArtifactory
+rainbow-cake-timber deploy to mavencentral:
+  <<: *deployMavenCentral
   variables:
     MODULE_NAME: rainbow-cake-timber
   dependencies:
     - rainbow-cake-timber release build
 
-rainbow-cake-navigation deploy to artifactory:
-  <<: *deployArtifactory
+rainbow-cake-navigation deploy to mavencentral:
+  <<: *deployMavenCentral
   variables:
     MODULE_NAME: rainbow-cake-navigation
   dependencies:
     - rainbow-cake-navigation release build
 
-rainbow-cake-channels deploy to artifactory:
-  <<: *deployArtifactory
+rainbow-cake-channels deploy to mavencentral:
+  <<: *deployMavenCentral
   variables:
     MODULE_NAME: rainbow-cake-channels
   dependencies:

@@ -1,8 +1,4 @@
-apply plugin: 'com.github.dcendents.android-maven'
-
-artifacts {
-    archives androidSourcesJar
-}
+apply plugin: 'maven'
 
 uploadArchives {
     repositories {
