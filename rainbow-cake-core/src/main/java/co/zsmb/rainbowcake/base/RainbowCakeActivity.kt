@@ -1,14 +1,14 @@
 package co.zsmb.rainbowcake.base
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.annotation.CallSuper
+import android.support.v7.app.AppCompatActivity
 
 /**
  * Base class for Activities that connects them to the appropriate ViewModel instances.
  */
-abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : InjectedActivity() {
+abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : AppCompatActivity() {
 
     /**
      * The ViewModel of this Activity.
@@ -54,10 +54,3 @@ abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : In
 
 }
 
-/**
- * Uses the ViewModelFactory in the receiver [RainbowCakeActivity] to fetch the appropriate
- * ViewModel instance for the Activity.
- */
-inline fun <A : RainbowCakeActivity<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> A.getViewModelFromFactory(): VM {
-    return ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
-}
