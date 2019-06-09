@@ -29,6 +29,8 @@ android {
 dependencies {
     // Architecture
     implementation project(':rainbow-cake-core')
+    implementation project(':rainbow-cake-dagger')
+    implementation project(':rainbow-cake-koin')
     implementation project(':rainbow-cake-navigation')
     implementation project(':rainbow-cake-channels')
     implementation project(':rainbow-cake-timber')
@@ -47,7 +49,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Dagger
-    def dagger_version = '2.16'
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }

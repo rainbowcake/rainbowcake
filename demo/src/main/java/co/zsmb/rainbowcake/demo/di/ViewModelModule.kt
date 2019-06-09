@@ -1,12 +1,12 @@
 package co.zsmb.rainbowcake.demo.di
 
 import android.arch.lifecycle.ViewModel
+import co.zsmb.rainbowcake.dagger.ViewModelKey
 import co.zsmb.rainbowcake.demo.ui.bar.BarViewModel
 import co.zsmb.rainbowcake.demo.ui.example.ExampleViewModel
 import co.zsmb.rainbowcake.demo.ui.foo.FooViewModel
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.SharedVMPagerViewModel
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenViewModel
-import co.zsmb.rainbowcake.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

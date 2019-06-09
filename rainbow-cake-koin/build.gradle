@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion min_sdk
         targetSdkVersion target_sdk
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     android {
@@ -22,22 +20,21 @@ dependencies {
     implementation project(':rainbow-cake-core')
 
     implementation "com.android.support:appcompat-v7:$support_lib_version"
+    implementation "android.arch.lifecycle:extensions:$android_arch_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    // Testing
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation "android.arch.core:core-testing:$android_arch_version"
-    androidTestImplementation "android.arch.lifecycle:runtime:$android_arch_version"
+    // Koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }
 
 /////////////////  Publishing  /////////////////
 
 ext {
     PUBLISH_GROUP_ID = 'co.zsmb'
-    PUBLISH_ARTIFACT_ID = 'rainbow-cake-navigation'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-koin'
     PUBLISH_VERSION = rainbowcake_version
 }
 

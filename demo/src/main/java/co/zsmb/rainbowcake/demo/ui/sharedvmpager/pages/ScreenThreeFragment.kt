@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
-import co.zsmb.rainbowcake.base.getViewModelFromFactory
+import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
 import kotlinx.android.synthetic.main.fragment_screen_three.*
 
