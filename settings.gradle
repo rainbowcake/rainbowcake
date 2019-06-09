@@ -1,4 +1,6 @@
 include ':rainbow-cake-core',
+        ':rainbow-cake-dagger',
+        ':rainbow-cake-koin',
         ':rainbow-cake-navigation',
         ':rainbow-cake-channels',
         ':rainbow-cake-timber',

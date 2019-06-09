@@ -1,25 +1,22 @@
 package co.zsmb.rainbowcake.base
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.annotation.AnimRes
 import android.support.annotation.AnimatorRes
 import android.support.annotation.CallSuper
 import android.support.annotation.LayoutRes
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import co.zsmb.rainbowcake.base.ViewModelScope.Activity
-import co.zsmb.rainbowcake.base.ViewModelScope.Default
-import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
 
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
  */
-abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : InjectedFragment() {
+abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
 
     /**
      * The ViewModel of this Fragment.
@@ -120,37 +117,4 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : In
         return null
     }
 
-}
-
-/**
- * Uses the ViewModelFactory in the receiver [RainbowCakeFragment] to fetch the appropriate
- * ViewModel instance for the Fragment.
- *
- * @param scope The scope that the ViewModel should be fetched from and exist in.
- *              See [ViewModelScope] for details.
- */
-inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
-): VM {
-    return when (scope) {
-        Default -> {
-            ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
-        }
-        is ParentFragment -> {
-            val parentFragment = getParentFragment()
-                    ?: throw IllegalStateException("No parent Fragment")
-            if (scope.key != null) {
-                ViewModelProviders.of(parentFragment, viewModelFactory).get(scope.key, VM::class.java)
-            } else {
-                ViewModelProviders.of(parentFragment, viewModelFactory).get(VM::class.java)
-            }
-        }
-        is Activity -> {
-            if (scope.key != null) {
-                ViewModelProviders.of(requireActivity(), viewModelFactory).get(scope.key, VM::class.java)
-            } else {
-                ViewModelProviders.of(requireActivity(), viewModelFactory).get(VM::class.java)
-            }
-        }
-    }
 }

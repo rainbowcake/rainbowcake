@@ -3,7 +3,7 @@ package co.zsmb.rainbowcake.demo.ui.foo
 import android.os.Bundle
 import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
-import co.zsmb.rainbowcake.base.getViewModelFromFactory
+import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
 import co.zsmb.rainbowcake.demo.ui.bar.BarFragment
 import co.zsmb.rainbowcake.navigation.navigator
