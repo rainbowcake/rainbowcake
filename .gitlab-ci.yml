@@ -140,6 +140,30 @@ rainbow-cake-channels release build:
   variables:
     MODULE_NAME: rainbow-cake-channels
 
+rainbow-cake-dagger debug build:
+  <<: *debugBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-dagger
+
+rainbow-cake-dagger release build:
+  <<: *releaseBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-dagger
+
+rainbow-cake-koin debug build:
+  <<: *debugBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-koin
+
+rainbow-cake-koin release build:
+  <<: *releaseBuild
+  stage: build modules
+  variables:
+    MODULE_NAME: rainbow-cake-koin
+
 ### Demo app build ###
 
 demo app debug build:
@@ -149,6 +173,7 @@ demo app debug build:
     MODULE_NAME: demo
   dependencies:
     - rainbow-cake-core debug build
+    - rainbow-cake-dagger debug build
     - rainbow-cake-timber debug build
     - rainbow-cake-navigation debug build
 
@@ -197,3 +222,17 @@ rainbow-cake-channels deploy to mavencentral:
     MODULE_NAME: rainbow-cake-channels
   dependencies:
     - rainbow-cake-channels release build
+
+rainbow-cake-dagger deploy to mavencentral:
+  <<: *deployMavenCentral
+  variables:
+    MODULE_NAME: rainbow-cake-dagger
+  dependencies:
+    - rainbow-cake-dagger release build
+
+rainbow-cake-koin deploy to mavencentral:
+  <<: *deployMavenCentral
+  variables:
+    MODULE_NAME: rainbow-cake-koin
+  dependencies:
+    - rainbow-cake-koin release build

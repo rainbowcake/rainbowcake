@@ -1,10 +1,7 @@
-package co.zsmb.rainbowcake
+package co.zsmb.rainbowcake.dagger
 
 import android.app.Application
 import android.support.annotation.CallSuper
-import co.zsmb.rainbowcake.base.InjectedActivity
-import co.zsmb.rainbowcake.base.InjectedFragment
-import co.zsmb.rainbowcake.di.RainbowCakeComponent
 
 /**
  * Base class for applications built on this architecture, primarily
@@ -13,7 +10,7 @@ import co.zsmb.rainbowcake.di.RainbowCakeComponent
 abstract class RainbowCakeApplication : Application() {
 
     /**
-     * The injector used by [InjectedFragment] and [InjectedActivity]
+     * The injector used by the [getViewModelFromFactory] methods.
      */
     abstract val injector: RainbowCakeComponent
 
