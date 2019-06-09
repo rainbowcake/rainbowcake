@@ -3,7 +3,7 @@ package co.zsmb.rainbowcake.demo.ui.sharedvmpager
 import android.os.Bundle
 import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
-import co.zsmb.rainbowcake.base.getViewModelFromFactory
+import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
 import kotlinx.android.synthetic.main.fragment_shared_vmpager.*
 

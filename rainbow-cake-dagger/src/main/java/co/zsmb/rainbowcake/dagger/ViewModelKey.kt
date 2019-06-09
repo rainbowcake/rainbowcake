@@ -1,4 +1,4 @@
-package co.zsmb.rainbowcake.di
+package co.zsmb.rainbowcake.dagger
 
 import android.arch.lifecycle.ViewModel
 import dagger.MapKey

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
-import co.zsmb.rainbowcake.base.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
+import co.zsmb.rainbowcake.koin.getViewModelFromFactory
 import kotlinx.android.synthetic.main.fragment_screen_three.*
 
 class ScreenThreeFragment : RainbowCakeFragment<ScreenViewState, ScreenViewModel>() {

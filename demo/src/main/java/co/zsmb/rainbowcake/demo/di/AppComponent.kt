@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.demo.di
 
-import co.zsmb.rainbowcake.di.RainbowCakeComponent
-import co.zsmb.rainbowcake.di.RainbowCakeModule
+import co.zsmb.rainbowcake.dagger.RainbowCakeComponent
+import co.zsmb.rainbowcake.dagger.RainbowCakeModule
 import dagger.Component
 import javax.inject.Singleton
 

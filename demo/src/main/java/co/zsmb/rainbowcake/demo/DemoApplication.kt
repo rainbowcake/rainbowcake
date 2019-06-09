@@ -1,11 +1,13 @@
 package co.zsmb.rainbowcake.demo
 
-import co.zsmb.rainbowcake.RainbowCakeApplication
 import co.zsmb.rainbowcake.config.Loggers
 import co.zsmb.rainbowcake.config.rainbowCake
+import co.zsmb.rainbowcake.dagger.RainbowCakeApplication
 import co.zsmb.rainbowcake.demo.di.AppComponent
 import co.zsmb.rainbowcake.demo.di.DaggerAppComponent
+import co.zsmb.rainbowcake.demo.ui.UIModule
 import co.zsmb.rainbowcake.timber.TIMBER
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
 open class DemoApplication : RainbowCakeApplication() {
@@ -27,6 +29,10 @@ open class DemoApplication : RainbowCakeApplication() {
         }
 
         Timber.plant(Timber.DebugTree())
+
+        startKoin {
+            modules(UIModule)
+        }
     }
 
 }
