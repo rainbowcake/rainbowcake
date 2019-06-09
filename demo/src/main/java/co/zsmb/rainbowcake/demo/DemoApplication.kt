@@ -5,11 +5,9 @@ import co.zsmb.rainbowcake.config.rainbowCake
 import co.zsmb.rainbowcake.dagger.RainbowCakeApplication
 import co.zsmb.rainbowcake.demo.di.AppComponent
 import co.zsmb.rainbowcake.demo.di.DaggerAppComponent
-import co.zsmb.rainbowcake.demo.ui.koin.KoinPresenter
-import co.zsmb.rainbowcake.demo.ui.koin.KoinViewModel
+import co.zsmb.rainbowcake.demo.ui.UIModule
 import co.zsmb.rainbowcake.timber.TIMBER
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import timber.log.Timber
 
 open class DemoApplication : RainbowCakeApplication() {
@@ -32,13 +30,8 @@ open class DemoApplication : RainbowCakeApplication() {
 
         Timber.plant(Timber.DebugTree())
 
-        val viewModelModule = module {
-            factory { KoinPresenter() }
-            factory { KoinViewModel(get()) }
-        }
-
         startKoin {
-            modules(viewModelModule)
+            modules(UIModule)
         }
     }
 
