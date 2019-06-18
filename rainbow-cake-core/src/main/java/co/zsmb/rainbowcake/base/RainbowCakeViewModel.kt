@@ -61,7 +61,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      */
     @Deprecated(
             message = "You should not need to use this. To issue updates from lower layers, see ChannelViewModel.",
-            level = DeprecationLevel.WARNING
+            level = DeprecationLevel.ERROR
     )
     protected fun postState(viewState: VS) {
         _state.postValue(viewState)
