@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
+import co.zsmb.rainbowcake.internal.livedata.ClairvoyantLiveData
 import co.zsmb.rainbowcake.internal.livedata.LiveDataCollection
 import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollection
 import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
@@ -22,7 +23,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
     /**
      * The [MutableLiveData] instance actually containing the current view state.
      */
-    private val _state: MutableLiveData<VS> = MutableLiveData()
+    private val _state: ClairvoyantLiveData<VS> = ClairvoyantLiveData()
 
     init {
         // This initialization ensures that _state never holds a null value
@@ -48,7 +49,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
     protected var viewState: VS
         get() = _state.value!!
         set(value) {
-            _state.postValue(value)
+            _state.placeValue(value)
         }
 
     /**
@@ -60,7 +61,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      */
     @Deprecated(
             message = "You should not need to use this. To issue updates from lower layers, see ChannelViewModel.",
-            level = DeprecationLevel.WARNING
+            level = DeprecationLevel.ERROR
     )
     protected fun postState(viewState: VS) {
         _state.postValue(viewState)
