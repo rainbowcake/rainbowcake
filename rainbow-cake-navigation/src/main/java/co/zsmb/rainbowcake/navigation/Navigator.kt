@@ -71,12 +71,16 @@ interface Navigator {
 
     /**
      * Removes the top Fragment from the stack.
+     *
+     * @return true if something was popped.
      */
     fun pop(): Boolean
 
     /**
      * Removes Fragments from the top of the stack until the type of Fragment specified,
      * not including said Fragment. If the Fragment is not found, no changes are made.
+     *
+     * @return true if something was popped.
      */
     fun popUntil(fragmentKClass: KClass<out Fragment>): Boolean
 
