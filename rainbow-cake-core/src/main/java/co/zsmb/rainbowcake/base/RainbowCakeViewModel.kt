@@ -5,6 +5,7 @@ package co.zsmb.rainbowcake.base
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.support.annotation.VisibleForTesting
 import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
 import co.zsmb.rainbowcake.internal.livedata.ClairvoyantLiveData
 import co.zsmb.rainbowcake.internal.livedata.LiveDataCollection
@@ -81,7 +82,8 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * This is a read-only view of the contained [ActiveOnlySingleShotLiveData]
      * collection.
      */
-    internal val events: LiveDataCollection<OneShotEvent> = viewEvents
+    @get:VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+    val events: LiveDataCollection<OneShotEvent> = viewEvents
 
     /**
      * Posts a new event to the connected Fragment or Activity. Unlike

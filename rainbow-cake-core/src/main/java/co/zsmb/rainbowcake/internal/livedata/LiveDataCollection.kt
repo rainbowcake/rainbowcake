@@ -8,7 +8,7 @@ import android.arch.lifecycle.Observer
  * A dynamic collection of [LiveData] instances. Each observer registered
  * will observe its own unique [LiveData] instance.
  */
-internal interface LiveDataCollection<T : Any> {
+interface LiveDataCollection<T : Any> {
 
     /**
      * Adds the given observer to the observers list within the lifespan of the given
