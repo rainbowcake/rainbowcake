@@ -29,7 +29,8 @@ dependencies {
     // Google libraries
     implementation "com.android.support:appcompat-v7:$support_lib_version"
     implementation "com.android.support:design:$support_lib_version"
-    implementation "android.arch.lifecycle:extensions:$android_arch_version"
+    implementation "android.arch.lifecycle:livedata-core:$android_arch_version"
+    implementation "android.arch.lifecycle:viewmodel:$android_arch_version"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
