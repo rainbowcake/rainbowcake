@@ -21,17 +21,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
-    implementation "android.arch.lifecycle:extensions:$android_arch_version"
-    implementation 'junit:junit:4.12'
-}
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        freeCompilerArgs += [
-                '-progressive',
-                '-Xuse-experimental=kotlin.Experimental'
-        ]
-    }
+    implementation "android.arch.lifecycle:extensions:$android_arch_version"
+    implementation 'android.arch.core:core-testing:1.1.1'
+
+    implementation 'junit:junit:4.12'
 }
 
 /////////////////  Publishing  /////////////////
