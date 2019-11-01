@@ -1,16 +1,12 @@
 image: registry.gitlab.com/hardysim/android-ci:latest
 
-########## Global settings ##########
-
 cache:
   paths:
     - .gradle
     - .android/build-cache/
 
 stages:
-  - build base library
-  - build modules
-  - demo app build
+  - build
   - test
   - deploy
 
@@ -20,15 +16,12 @@ before_script:
   - mkdir .gradle && echo "org.gradle.jvmargs=-Xmx4096m -XX\:+HeapDumpOnOutOfMemoryError -Dfile.encoding\=UTF-8" > .gradle/gradle.properties
   - chmod +x ./gradlew
 
-########## Job templates ##########
-
-.debugBuild: &debugBuild
+debug build:
+  stage: build
   tags:
     - docker
   script:
-    - >
-      ./gradlew
-      ${MODULE_NAME}:assembleDebug
+    - ./gradlew assembleDebug
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -37,14 +30,30 @@ before_script:
   except:
     - tags
 
-.releaseBuild: &releaseBuild
+instrumentation test:
+  stage: test
+  tags:
+    - android
+  before_script:
+    - echo UI teszt
+  script:
+    - ./gradlew connectedAndroidTest
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - "*/build"
+    expire_in: 2 hours
+  except:
+    - tags
+  dependencies:
+    - debug build
+
+release build:
+  stage: build
   tags:
     - docker
   script:
-    - >
-      ./gradlew
-      ${MODULE_NAME}:assembleRelease
-      ${MODULE_NAME}:androidSourcesJar
+    - ./gradlew assembleRelease androidSourcesJar
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -53,23 +62,7 @@ before_script:
   only:
     - /^.*-RELEASE$/
 
-.instrumentationTest: &instrumentationTest
-  stage: test
-  tags:
-    - android
-  before_script:
-    - echo UI teszt
-  script:
-    - ./gradlew ${MODULE_NAME}:connectedAndroidTest
-  artifacts:
-    name: "$CI_COMMIT_REF_NAME"
-    paths:
-      - "*/build"
-    expire_in: 2 hours
-  except:
-    - tags
-
-.deployMavenCentral: &deployMavenCentral
+deploy to mavencentral:
   stage: deploy
   tags:
     - docker
@@ -77,7 +70,7 @@ before_script:
     - echo $GPG_KEY_CONTENTS | base64 -d > /secret.gpg
     - ls -al /
   script:
-    - ./gradlew ${MODULE_NAME}:uploadArchives
+    - ./gradlew uploadArchives
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -85,154 +78,5 @@ before_script:
     expire_in: 2 hours
   only:
     - /^.*-RELEASE$/
-
-########## Concrete jobs ##########
-
-### Base library build ###
-
-rainbow-cake-core debug build:
-  <<: *debugBuild
-  stage: build base library
-  variables:
-    MODULE_NAME: rainbow-cake-core
-
-rainbow-cake-core release build:
-  <<: *releaseBuild
-  stage: build base library
-  variables:
-    MODULE_NAME: rainbow-cake-core
-
-### Module library builds ###
-
-rainbow-cake-timber debug build:
-  <<: *debugBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-timber
-
-rainbow-cake-timber release build:
-  <<: *releaseBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-timber
-
-rainbow-cake-navigation debug build:
-  <<: *debugBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-navigation
-
-rainbow-cake-navigation release build:
-  <<: *releaseBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-navigation
-
-rainbow-cake-channels debug build:
-  <<: *debugBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-channels
-
-rainbow-cake-channels release build:
-  <<: *releaseBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-channels
-
-rainbow-cake-dagger debug build:
-  <<: *debugBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-dagger
-
-rainbow-cake-dagger release build:
-  <<: *releaseBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-dagger
-
-rainbow-cake-koin debug build:
-  <<: *debugBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-koin
-
-rainbow-cake-koin release build:
-  <<: *releaseBuild
-  stage: build modules
-  variables:
-    MODULE_NAME: rainbow-cake-koin
-
-### Demo app build ###
-
-demo app debug build:
-  <<: *debugBuild
-  stage: demo app build
-  variables:
-    MODULE_NAME: demo
   dependencies:
-    - rainbow-cake-core debug build
-    - rainbow-cake-dagger debug build
-    - rainbow-cake-timber debug build
-    - rainbow-cake-navigation debug build
-
-### Tests ###
-
-rainbow-cake-core instrumentation test:
-  <<: *instrumentationTest
-  variables:
-    MODULE_NAME: rainbow-cake-core
-  dependencies:
-    - rainbow-cake-core debug build
-
-rainbow-cake-navigation instrumentation test:
-  <<: *instrumentationTest
-  variables:
-    MODULE_NAME: rainbow-cake-navigation
-  dependencies:
-    - rainbow-cake-navigation debug build
-
-### Deployment ###
-
-rainbow-cake-core deploy to mavencentral:
-  <<: *deployMavenCentral
-  variables:
-    MODULE_NAME: rainbow-cake-core
-  dependencies:
-    - rainbow-cake-core release build
-
-rainbow-cake-timber deploy to mavencentral:
-  <<: *deployMavenCentral
-  variables:
-    MODULE_NAME: rainbow-cake-timber
-  dependencies:
-    - rainbow-cake-timber release build
-
-rainbow-cake-navigation deploy to mavencentral:
-  <<: *deployMavenCentral
-  variables:
-    MODULE_NAME: rainbow-cake-navigation
-  dependencies:
-    - rainbow-cake-navigation release build
-
-rainbow-cake-channels deploy to mavencentral:
-  <<: *deployMavenCentral
-  variables:
-    MODULE_NAME: rainbow-cake-channels
-  dependencies:
-    - rainbow-cake-channels release build
-
-rainbow-cake-dagger deploy to mavencentral:
-  <<: *deployMavenCentral
-  variables:
-    MODULE_NAME: rainbow-cake-dagger
-  dependencies:
-    - rainbow-cake-dagger release build
-
-rainbow-cake-koin deploy to mavencentral:
-  <<: *deployMavenCentral
-  variables:
-    MODULE_NAME: rainbow-cake-koin
-  dependencies:
-    - rainbow-cake-koin release build
+    - release build
