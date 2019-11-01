@@ -1,4 +1,5 @@
 include ':rainbow-cake-core',
+        ':rainbow-cake-test',
         ':rainbow-cake-dagger',
         ':rainbow-cake-koin',
         ':rainbow-cake-navigation',
