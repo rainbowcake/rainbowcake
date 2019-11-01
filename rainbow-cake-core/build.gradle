@@ -1,35 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
-android {
-    compileSdkVersion compile_sdk
-
-    defaultConfig {
-        minSdkVersion min_sdk
-        targetSdkVersion target_sdk
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    android {
-        packagingOptions {
-            exclude 'META-INF/atomicfu.kotlin_module'
-        }
-    }
-}
-
 dependencies {
     // Google libraries
     implementation "com.android.support:appcompat-v7:$support_lib_version"
     implementation "com.android.support:design:$support_lib_version"
-    implementation "android.arch.lifecycle:extensions:$android_arch_version"
+    implementation "android.arch.lifecycle:livedata-core:$android_arch_version"
+    implementation "android.arch.lifecycle:viewmodel:$android_arch_version"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
