@@ -3,21 +3,23 @@ apply plugin: 'kotlin-android'
 
 dependencies {
     implementation project(':rainbow-cake-core')
-
-    implementation "android.arch.lifecycle:viewmodel:$android_arch_version"
-    implementation "android.arch.lifecycle:livedata-core:$android_arch_version"
-    implementation "android.arch.lifecycle:common:$android_arch_version"
-    implementation "android.arch.lifecycle:runtime:$android_arch_version"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+
+    implementation "android.arch.lifecycle:livedata-core:$android_arch_version"
+    implementation "android.arch.lifecycle:viewmodel:$android_arch_version"
+    implementation "android.arch.lifecycle:runtime:$android_arch_version"
+    implementation 'android.arch.core:core-testing:1.1.1'
+
+    implementation 'junit:junit:4.12'
 }
 
 /////////////////  Publishing  /////////////////
 
 ext {
     PUBLISH_GROUP_ID = 'co.zsmb'
-    PUBLISH_ARTIFACT_ID = 'rainbow-cake-channels'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-test'
     PUBLISH_VERSION = rainbowcake_version
 }
 

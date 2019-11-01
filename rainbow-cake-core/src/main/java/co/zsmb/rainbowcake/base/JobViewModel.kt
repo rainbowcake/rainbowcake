@@ -8,33 +8,30 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 /**
  * A ViewModel base class that in addition to providing state handling via [RainbowCakeViewModel]
  * also provides the ability to easily start coroutines in the UI context.
  */
-abstract class JobViewModel<VS : Any>(initialState: VS) : RainbowCakeViewModel<VS>(initialState), CoroutineScope {
+abstract class JobViewModel<VS : Any>(initialState: VS) : RainbowCakeViewModel<VS>(initialState) {
 
     /**
-     * The empty parent [Job] of all coroutines launched from this ViewModel.
-     * This Job is cancelled when the ViewModel is cleared, which also
-     * cancels all its children coroutines.
+     * An implementation of the [CoroutineScope] interface.
+     *
+     * Coroutines launched in this scope will get use the Main dispatcher (i.e.
+     * start on the UI thread) and have a SupervisorJob as their parent. This job
+     * is cancelled when the ViewModel is cleared, which also cancels all its
+     * children coroutines.
      */
-    private val rootJob: Job = SupervisorJob()
-
-    /**
-     * Implementation of the [CoroutineScope] interface. Coroutines launched
-     * in this scope will get their dispatcher from the UI context (i.e. run
-     * on the main thread) and have [rootJob] as their parent.
-     */
-    final override val coroutineContext = Dispatchers.Main + rootJob
+    private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     @CallSuper
     override fun onCleared() {
         super.onCleared()
-        rootJob.cancel()
-        log("ViewModel cleared, rootJob cancelled")
+        coroutineScope.cancel()
+        log("ViewModel cleared, job cancelled")
     }
 
     /**
@@ -87,7 +84,7 @@ abstract class JobViewModel<VS : Any>(initialState: VS) : RainbowCakeViewModel<V
      * see [execute], which is the usual entry point to this method.
      */
     private fun executeImpl(blocking: Boolean = true, task: suspend () -> Unit): Job {
-        return launch {
+        return coroutineScope.launch {
             if (blocking) {
                 if (busy) {
                     log("Denying job launch, busy")
