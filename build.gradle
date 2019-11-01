@@ -10,9 +10,9 @@ buildscript {
     ext.dagger_version = '2.24'
     ext.koin_version = '2.0.1'
 
-    ext.target_sdk = 28
+    ext.target_sdk = 29
     ext.min_sdk = 19
-    ext.compile_sdk = 28
+    ext.compile_sdk = 29
 
     repositories {
         google()
