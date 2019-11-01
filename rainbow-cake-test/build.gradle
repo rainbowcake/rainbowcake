@@ -1,21 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
-android {
-    compileSdkVersion compile_sdk
-
-    defaultConfig {
-        minSdkVersion min_sdk
-        targetSdkVersion target_sdk
-    }
-
-    android {
-        packagingOptions {
-            exclude 'META-INF/atomicfu.kotlin_module'
-        }
-    }
-}
-
 dependencies {
     implementation project(':rainbow-cake-core')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

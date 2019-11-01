@@ -36,6 +36,37 @@ allprojects {
 subprojects { project ->
     group = 'co.zsmb'
     version = rainbowcake_version
+    afterEvaluate { p ->
+        if (p.hasProperty("android")) {
+            setAndroidProps(p)
+        }
+    }
+}
+
+void setAndroidProps(Project p) {
+    p.android {
+        compileSdkVersion compile_sdk
+
+        defaultConfig {
+            minSdkVersion min_sdk
+            targetSdkVersion target_sdk
+
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+
+        packagingOptions {
+            exclude 'META-INF/atomicfu.kotlin_module'
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+            }
+            debug {
+                multiDexEnabled true
+            }
+        }
+    }
 }
 
 task clean(type: Delete) {
