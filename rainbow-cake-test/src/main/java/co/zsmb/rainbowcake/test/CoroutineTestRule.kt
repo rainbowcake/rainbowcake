@@ -16,7 +16,7 @@ import org.junit.runners.model.Statement
  * Forces coroutine code that otherwise uses the Main or IO dispatchers
  * to run on the single test thread.
  */
-@UseExperimental(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 class CoroutineTestRule : TestRule {
 
     private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
