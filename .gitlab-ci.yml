@@ -1,10 +1,5 @@
 image: registry.gitlab.com/hardysim/android-ci:latest
 
-cache:
-  paths:
-    - .gradle
-    - .android/build-cache/
-
 stages:
   - build
   - test
