@@ -16,7 +16,16 @@ debug build:
   tags:
     - docker
   script:
-    - ./gradlew assembleDebug
+    >
+    - ./gradlew
+      rainbow-cake-core:assembleDebug
+      rainbow-cake-test:assembleDebug
+      rainbow-cake-dagger:assembleDebug
+      rainbow-cake-koin:assembleDebug
+      rainbow-cake-navigation:assembleDebug
+      rainbow-cake-channels:assembleDebug
+      rainbow-cake-timber:assembleDebug
+      demo:assembleDebug
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -48,7 +57,22 @@ release build:
   tags:
     - docker
   script:
-    - ./gradlew assembleRelease androidSourcesJar
+    >
+    - ./gradlew
+      rainbow-cake-core:assembleRelease
+      rainbow-cake-test:assembleRelease
+      rainbow-cake-dagger:assembleRelease
+      rainbow-cake-koin:assembleRelease
+      rainbow-cake-navigation:assembleRelease
+      rainbow-cake-channels:assembleRelease
+      rainbow-cake-timber:assembleRelease
+      rainbow-cake-core:androidSourcesJar
+      rainbow-cake-test:androidSourcesJar
+      rainbow-cake-dagger:androidSourcesJar
+      rainbow-cake-koin:androidSourcesJar
+      rainbow-cake-navigation:androidSourcesJar
+      rainbow-cake-channels:androidSourcesJar
+      rainbow-cake-timber:androidSourcesJar
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
