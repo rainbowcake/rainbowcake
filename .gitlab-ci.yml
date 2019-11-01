@@ -16,8 +16,8 @@ debug build:
   tags:
     - docker
   script:
-    >
-    ./gradlew
+    - >
+      ./gradlew
       rainbow-cake-core:assembleDebug
       rainbow-cake-test:assembleDebug
       rainbow-cake-dagger:assembleDebug
@@ -57,8 +57,8 @@ release build:
   tags:
     - docker
   script:
-    >
-    ./gradlew
+    - >
+      ./gradlew
       rainbow-cake-core:assembleRelease
       rainbow-cake-test:assembleRelease
       rainbow-cake-dagger:assembleRelease
