@@ -19,7 +19,7 @@ inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewMod
     val viewModelFactory = (getContext()?.applicationContext as? RainbowCakeApplication)
             ?.injector
             ?.viewModelFactory()
-            ?: throw IllegalStateException("InjectedFragment should not be used without an Application that inherits from RainbowCakeApplication")
+            ?: throw IllegalStateException("RainbowCakeFragment should not be used without an Application that inherits from RainbowCakeApplication")
 
     return when (scope) {
         ViewModelScope.Default -> {
