@@ -1,6 +1,7 @@
 package co.zsmb.rainbowcake.base
 
 import android.arch.lifecycle.Observer
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.AnimRes
 import android.support.annotation.AnimatorRes
@@ -24,9 +25,8 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     protected lateinit var viewModel: VM
 
     @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         viewModel = provideViewModel()
 
         viewModel.events.observe(this, Observer { event ->
