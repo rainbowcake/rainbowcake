@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.dagger
 
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.ViewModelProvider
 import co.zsmb.rainbowcake.base.RainbowCakeActivity
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 
@@ -12,7 +12,7 @@ inline fun <A : RainbowCakeActivity<VS, VM>, VS, reified VM : RainbowCakeViewMod
     val viewModelFactory = (this.getApplicationContext() as? RainbowCakeApplication)
             ?.injector
             ?.viewModelFactory()
-            ?: throw IllegalStateException("InjectedFragment should not be used without an Application that inherits from RainbowCakeApplication")
+            ?: throw IllegalStateException("RainbowCakeActivity should not be used without an Application that inherits from RainbowCakeApplication")
 
-    return ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
+    return ViewModelProvider(this, viewModelFactory).get(VM::class.java)
 }

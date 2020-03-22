@@ -111,8 +111,8 @@ interface Navigator {
 /**
  * Convenience function for [Navigator.popUntil].
  */
-inline fun <reified T : Fragment> Navigator.popUntil() {
-    popUntil(T::class)
+inline fun <reified T : Fragment> Navigator.popUntil(): Boolean {
+    return popUntil(T::class)
 }
 
 /**
