@@ -12,6 +12,7 @@ import kotlin.coroutines.CoroutineContext
  *
  * For more details, see the [withContext] function that this function delegates to.
  */
+@Suppress("DEPRECATION")
 suspend fun <T> withIOContext(block: suspend CoroutineScope.() -> T): T {
     return withContext(ioContext, block = block)
 }
