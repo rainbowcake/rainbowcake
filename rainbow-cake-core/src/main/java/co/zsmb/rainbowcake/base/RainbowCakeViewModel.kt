@@ -69,9 +69,9 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
     /**
      * Sets the view state. This method may be called from a background thread.
      *
-     * You should not need to use this, as [JobViewModel] provides an easy way to
+     * You should not need to use this, as [execute] provides an easy way to
      * launch background tasks and get back to the UI via coroutines. To issue
-     * updates originating from lower layers, see [ChannelViewModel].
+     * updates originating from lower layers, use coroutine Flows.
      */
     @Deprecated(
             message = "You should not need to use this. To issue updates from lower layers, see ChannelViewModel.",
