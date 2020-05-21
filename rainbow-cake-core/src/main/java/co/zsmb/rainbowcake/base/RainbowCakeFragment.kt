@@ -63,7 +63,7 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
      * This is a requirement because the base class can't refer to the concrete ViewModel
      * type with a reified parameter.
      */
-    abstract fun provideViewModel(): VM
+    protected abstract fun provideViewModel(): VM
 
     /**
      * Renders the view state. Called when the view state changes and the UI should be
@@ -75,20 +75,20 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
      *
      * @param viewState The new state of the ViewModel.
      */
-    abstract fun render(viewState: VS)
+    protected abstract fun render(viewState: VS)
 
     /**
      * Handles one-time events emitted by the ViewModel.
      *
      * @param event An event emitted by the ViewModel.
      */
-    open fun onEvent(event: OneShotEvent) {}
+    protected open fun onEvent(event: OneShotEvent) {}
 
     /**
      * Returns the ID of the Fragment's layout resource
      */
     @LayoutRes
-    abstract fun getViewResource(): Int
+    protected abstract fun getViewResource(): Int
 
     /**
      * Extension point for navigation addon library. Do not use this yourself.
