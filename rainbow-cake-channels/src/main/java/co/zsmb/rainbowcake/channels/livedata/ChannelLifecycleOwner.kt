@@ -6,7 +6,10 @@ import android.arch.lifecycle.LifecycleRegistry
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 
-
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 @UseExperimental(ExperimentalCoroutinesApi::class)
 internal class ChannelLifecycleOwner(
         channel: Channel<*>

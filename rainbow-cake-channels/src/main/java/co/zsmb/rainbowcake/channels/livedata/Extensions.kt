@@ -5,7 +5,10 @@ import android.arch.lifecycle.Observer
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 
-
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 fun <T> LiveData<T>.toChannel(): ReceiveChannel<T> {
     val channel = Channel<T>(capacity = Channel.CONFLATED)
     val lifecycleOwner = ChannelLifecycleOwner(channel)

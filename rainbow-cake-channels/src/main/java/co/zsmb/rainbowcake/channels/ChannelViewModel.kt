@@ -45,6 +45,10 @@ import kotlinx.coroutines.channels.ReceiveChannel
  * the appropriate callbacks of [observe]).
  */
 @Suppress("MemberVisibilityCanBePrivate")
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(initialState) {
 
     private val observations = hashMapOf<String, ReceiveChannel<*>>()

@@ -9,6 +9,10 @@ import kotlinx.coroutines.channels.Channel
  *
  * See [SynchronizedChannelCollection] for a ready-to-use, threadsafe implementation.
  */
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 interface ChannelCollection<T> {
 
     /**
