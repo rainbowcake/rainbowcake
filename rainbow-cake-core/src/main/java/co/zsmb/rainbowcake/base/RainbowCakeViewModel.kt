@@ -2,11 +2,11 @@
 
 package co.zsmb.rainbowcake.base
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.support.annotation.CallSuper
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.CallSuper
+import androidx.annotation.VisibleForTesting
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
 import co.zsmb.rainbowcake.internal.livedata.ClairvoyantLiveData

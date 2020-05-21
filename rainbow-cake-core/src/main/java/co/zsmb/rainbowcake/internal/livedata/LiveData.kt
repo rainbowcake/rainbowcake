@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 
 /**
  * Filters the events of a [LiveData] instance and returns a new one that

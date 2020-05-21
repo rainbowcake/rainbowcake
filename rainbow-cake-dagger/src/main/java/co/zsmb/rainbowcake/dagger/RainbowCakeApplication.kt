@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.dagger
 
 import android.app.Application
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 
 /**
  * Base class for applications built on this architecture, primarily

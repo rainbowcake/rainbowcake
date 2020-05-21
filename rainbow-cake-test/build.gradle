@@ -7,12 +7,12 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
-    implementation "android.arch.lifecycle:livedata-core:$android_arch_version"
-    implementation "android.arch.lifecycle:viewmodel:$android_arch_version"
-    implementation "android.arch.lifecycle:runtime:$android_arch_version"
-    implementation 'android.arch.core:core-testing:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-core:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
+    implementation 'androidx.arch.core:core-testing:2.1.0'
 
-    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.13'
 }
 
 /////////////////  Publishing  /////////////////

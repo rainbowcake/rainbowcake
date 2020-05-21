@@ -1,9 +1,9 @@
 package co.zsmb.rainbowcake.internal
 
-import android.arch.lifecycle.Lifecycle.Event.ON_START
-import android.arch.lifecycle.Lifecycle.Event.ON_STOP
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Lifecycle.Event.ON_START
+import androidx.lifecycle.Lifecycle.Event.ON_STOP
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
 import co.zsmb.rainbowcake.util.LifecycleTest
 import co.zsmb.rainbowcake.util.MockObserver

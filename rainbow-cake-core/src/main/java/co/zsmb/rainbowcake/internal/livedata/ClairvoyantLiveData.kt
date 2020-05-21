@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.MutableLiveData
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
+import androidx.lifecycle.MutableLiveData
 
 /**
  * A customized LiveData implementation that can be assigned a value in a decoupled,

@@ -3,7 +3,7 @@ package co.zsmb.rainbowcake.navigation.extensions
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

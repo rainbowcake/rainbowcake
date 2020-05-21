@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.dagger
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope

@@ -2,9 +2,9 @@
 
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import co.zsmb.rainbowcake.util.LifecycleTest
 import co.zsmb.rainbowcake.util.MockObserver
 import org.junit.Before

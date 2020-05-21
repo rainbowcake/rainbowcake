@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.util
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import org.junit.Assert
 import java.util.ArrayList
 

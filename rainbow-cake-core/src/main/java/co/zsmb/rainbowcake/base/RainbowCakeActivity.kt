@@ -1,9 +1,9 @@
 package co.zsmb.rainbowcake.base
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.CallSuper
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 
 /**
  * Base class for Activities that connects them to the appropriate ViewModel instances.

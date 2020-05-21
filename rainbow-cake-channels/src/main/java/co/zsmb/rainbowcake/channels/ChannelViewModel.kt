@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.channels
 
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 import co.zsmb.rainbowcake.base.JobViewModel
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import kotlinx.coroutines.CancellationException

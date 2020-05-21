@@ -1,9 +1,9 @@
 package co.zsmb.rainbowcake.internal
 
-import android.arch.lifecycle.Lifecycle.Event.ON_CREATE
-import android.arch.lifecycle.Lifecycle.Event.ON_DESTROY
-import android.arch.lifecycle.Lifecycle.Event.ON_START
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.Lifecycle.Event.ON_CREATE
+import androidx.lifecycle.Lifecycle.Event.ON_DESTROY
+import androidx.lifecycle.Lifecycle.Event.ON_START
+import androidx.lifecycle.MutableLiveData
 import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
 import co.zsmb.rainbowcake.util.LifecycleTest
 import co.zsmb.rainbowcake.util.MockObserver
