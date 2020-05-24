@@ -1,8 +1,8 @@
 package co.zsmb.rainbowcake.navigation
 
-import android.support.annotation.AnimRes
-import android.support.annotation.AnimatorRes
-import android.support.v4.app.Fragment
+import androidx.annotation.AnimRes
+import androidx.annotation.AnimatorRes
+import androidx.fragment.app.Fragment
 import kotlin.reflect.KClass
 
 

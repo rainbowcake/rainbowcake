@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.dagger
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope
@@ -23,24 +23,24 @@ inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewMod
 
     return when (scope) {
         ViewModelScope.Default -> {
-            ViewModelProviders.of(this, viewModelFactory).get(VM::class.java)
+            ViewModelProvider(this, viewModelFactory).get(VM::class.java)
         }
         is ViewModelScope.ParentFragment -> {
             val parentFragment = getParentFragment()
                     ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
-                ViewModelProviders.of(parentFragment, viewModelFactory).get(key, VM::class.java)
+                ViewModelProvider(parentFragment, viewModelFactory).get(key, VM::class.java)
             } else {
-                ViewModelProviders.of(parentFragment, viewModelFactory).get(VM::class.java)
+                ViewModelProvider(parentFragment, viewModelFactory).get(VM::class.java)
             }
         }
         is ViewModelScope.Activity -> {
             val key = scope.key
             if (key != null) {
-                ViewModelProviders.of(requireActivity(), viewModelFactory).get(key, VM::class.java)
+                ViewModelProvider(requireActivity(), viewModelFactory).get(key, VM::class.java)
             } else {
-                ViewModelProviders.of(requireActivity(), viewModelFactory).get(VM::class.java)
+                ViewModelProvider(requireActivity(), viewModelFactory).get(VM::class.java)
             }
         }
     }

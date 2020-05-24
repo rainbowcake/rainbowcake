@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.dagger
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 
 /**
  * A base interface for the application's actual Dagger component that's

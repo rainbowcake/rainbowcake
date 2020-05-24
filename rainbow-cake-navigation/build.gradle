@@ -4,16 +4,17 @@ apply plugin: 'kotlin-android'
 dependencies {
     implementation project(':rainbow-cake-core')
 
-    implementation "com.android.support:appcompat-v7:$support_lib_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     // Testing
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation "android.arch.core:core-testing:$android_arch_version"
-    androidTestImplementation "android.arch.lifecycle:runtime:$android_arch_version"
+    androidTestImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+    androidTestImplementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
 }
 
 /////////////////  Publishing  /////////////////

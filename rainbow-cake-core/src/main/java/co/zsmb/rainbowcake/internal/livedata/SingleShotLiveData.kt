@@ -1,9 +1,9 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -14,11 +14,11 @@ internal open class SingleShotLiveData<T : Any> : MutableLiveData<T>() {
 
     private val pending = AtomicBoolean(false)
 
-    private var currentObserver: Observer<T>? = null
-    private var observerWrapper: Observer<T>? = null
+    private var currentObserver: Observer<in T>? = null
+    private var observerWrapper: Observer<in T>? = null
 
     @MainThread
-    override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
+    override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         if (currentObserver != null) {
             throw IllegalStateException("SingleShotLiveData may only have a single observer")
         }
@@ -35,7 +35,7 @@ internal open class SingleShotLiveData<T : Any> : MutableLiveData<T>() {
         super.observe(owner, wrapper)
     }
 
-    override fun removeObserver(observer: Observer<T>) {
+    override fun removeObserver(observer: Observer<in T>) {
         val isCurrentObserver = observer === currentObserver
         val isObserverWrapper = observer === observerWrapper
 

@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.config
 
 import android.util.Log
-import co.zsmb.rainbowcake.base.JobViewModel
+import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 
 /**
  * List of configurable framework features.
@@ -31,7 +31,7 @@ interface RainbowCakeConfigurator {
     var logger: Logger
 
     /**
-     * Whether [JobViewModel.execute] should consume and log any uncaught
+     * Whether [RainbowCakeViewModel.execute] should consume and log any uncaught
      * exceptions from coroutines, or let them crash the application.
      *
      * Default value: true.

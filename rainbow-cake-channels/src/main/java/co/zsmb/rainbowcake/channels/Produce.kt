@@ -16,6 +16,10 @@ import kotlinx.coroutines.channels.produce
  */
 @Suppress("EXPERIMENTAL_API_USAGE")
 @UseExperimental(InternalCoroutinesApi::class)
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 fun <T> produceInIOContext(
         capacity: Int = 0,
         onCompletion: CompletionHandler? = null,

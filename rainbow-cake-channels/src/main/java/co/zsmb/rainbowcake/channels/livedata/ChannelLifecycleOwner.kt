@@ -1,12 +1,15 @@
 package co.zsmb.rainbowcake.channels.livedata
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LifecycleRegistry
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 
-
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 @UseExperimental(ExperimentalCoroutinesApi::class)
 internal class ChannelLifecycleOwner(
         channel: Channel<*>

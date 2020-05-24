@@ -1,8 +1,8 @@
 package co.zsmb.rainbowcake.demo.ui.sharedvmpager
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenOneFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenThreeFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenTwoFragment

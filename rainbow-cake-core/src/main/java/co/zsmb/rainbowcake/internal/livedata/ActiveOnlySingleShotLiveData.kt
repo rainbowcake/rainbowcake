@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 
 /**
  * A [MutableLiveData] implementation that may only be used from the main thread,

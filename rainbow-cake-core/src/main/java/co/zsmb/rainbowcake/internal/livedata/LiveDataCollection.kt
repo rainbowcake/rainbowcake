@@ -1,8 +1,8 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 /**
  * A dynamic collection of [LiveData] instances. Each observer registered

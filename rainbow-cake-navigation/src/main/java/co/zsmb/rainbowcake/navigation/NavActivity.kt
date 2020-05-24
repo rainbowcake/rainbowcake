@@ -1,10 +1,10 @@
 package co.zsmb.rainbowcake.navigation
 
 import android.os.Bundle
-import android.support.annotation.AnimRes
-import android.support.annotation.AnimatorRes
-import android.support.annotation.CallSuper
 import android.widget.FrameLayout
+import androidx.annotation.AnimRes
+import androidx.annotation.AnimatorRes
+import androidx.annotation.CallSuper
 import co.zsmb.rainbowcake.R
 import co.zsmb.rainbowcake.base.RainbowCakeActivity
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel

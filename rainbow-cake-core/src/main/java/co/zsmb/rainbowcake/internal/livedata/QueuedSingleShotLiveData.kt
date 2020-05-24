@@ -1,9 +1,9 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.MutableLiveData
 import android.os.Handler
 import android.os.Looper
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
+import androidx.lifecycle.MutableLiveData
 import java.util.LinkedList
 import java.util.Queue
 

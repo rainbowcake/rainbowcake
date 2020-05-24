@@ -1,16 +1,15 @@
 package co.zsmb.rainbowcake.channels
 
-import android.support.annotation.CallSuper
-import co.zsmb.rainbowcake.base.JobViewModel
+import androidx.annotation.CallSuper
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 
 /**
- * A ViewModel base class that in addition to providing state handling via
- * [RainbowCakeViewModel] and coroutine Job execution via [JobViewModel] also provides
- * the ability to observe updates from channels in a safe and concise way.
+ * A ViewModel base class that in addition to providing state handling and
+ * coroutine Job execution via [RainbowCakeViewModel] also provides the
+ * ability to observe updates from channels in a safe and concise way.
  *
  * ### Glossary
  *
@@ -45,7 +44,11 @@ import kotlinx.coroutines.channels.ReceiveChannel
  * the appropriate callbacks of [observe]).
  */
 @Suppress("MemberVisibilityCanBePrivate")
-abstract class ChannelViewModel<VS : Any>(initialState: VS) : JobViewModel<VS>(initialState) {
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
+abstract class ChannelViewModel<VS : Any>(initialState: VS) : RainbowCakeViewModel<VS>(initialState) {
 
     private val observations = hashMapOf<String, ReceiveChannel<*>>()
 

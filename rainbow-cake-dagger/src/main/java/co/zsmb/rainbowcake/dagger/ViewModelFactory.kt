@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.dagger
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import co.zsmb.rainbowcake.base.RainbowCakeActivity
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import javax.inject.Inject

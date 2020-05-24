@@ -10,6 +10,10 @@ import kotlinx.coroutines.channels.Channel
  * channels, this helper class may be subclassed by the data source,
  * its callback, or be delegated to by either of them.
  */
+@Deprecated(
+        "Channel support is being removed",
+        level = DeprecationLevel.WARNING
+)
 class SynchronizedChannelCollection<T> : ChannelCollection<T> {
 
     private val channels = mutableListOf<Channel<T>>()

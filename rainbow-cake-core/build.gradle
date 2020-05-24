@@ -3,10 +3,10 @@ apply plugin: 'kotlin-android'
 
 dependencies {
     // Google libraries
-    implementation "com.android.support:appcompat-v7:$support_lib_version"
-    implementation "com.android.support:design:$support_lib_version"
-    implementation "android.arch.lifecycle:livedata-core:$android_arch_version"
-    implementation "android.arch.lifecycle:viewmodel:$android_arch_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-core:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.2.0'
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -17,10 +17,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Testing
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation "android.arch.core:core-testing:$android_arch_version"
-    androidTestImplementation "android.arch.lifecycle:runtime:$android_arch_version"
+    androidTestImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+    androidTestImplementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

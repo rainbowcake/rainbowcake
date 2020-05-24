@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 
 /**
  * A dynamic, mutable collection of [LiveData] instances. Each observer

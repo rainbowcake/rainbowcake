@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.demo.di
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.dagger.ViewModelKey
 import co.zsmb.rainbowcake.demo.ui.bar.BarViewModel
 import co.zsmb.rainbowcake.demo.ui.example.ExampleViewModel
