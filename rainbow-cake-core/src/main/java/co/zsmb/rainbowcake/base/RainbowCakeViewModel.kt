@@ -8,22 +8,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
-import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
-import co.zsmb.rainbowcake.internal.livedata.ClairvoyantLiveData
-import co.zsmb.rainbowcake.internal.livedata.LiveDataCollection
-import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollection
-import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
-import co.zsmb.rainbowcake.internal.livedata.QueuedSingleShotLiveData
-import co.zsmb.rainbowcake.internal.livedata.SingleShotLiveData
-import co.zsmb.rainbowcake.internal.livedata.distinct
+import co.zsmb.rainbowcake.internal.livedata.*
 import co.zsmb.rainbowcake.internal.logging.log
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * A ViewModel base class that provides:
@@ -130,7 +117,8 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * queued events. This is a read-only view of the contained
      * [QueuedSingleShotLiveData] collection.
      */
-    internal val queuedEvents: LiveDataCollection<QueuedOneShotEvent> = queuedViewEvents
+    @get:VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+    val queuedEvents: LiveDataCollection<QueuedOneShotEvent> = queuedViewEvents
 
     /**
      * Posts a new event to the connected Fragment or Activity. Unlike
