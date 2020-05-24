@@ -37,6 +37,10 @@ inline fun <T : Fragment> T.applyArgs(argSetup: Bundle.() -> Unit): T = apply {
  *
  * @throws IllegalStateException if the Fragment doesn't have an associated arguments Bundle.
  */
+@Deprecated(
+        message = "This extension should no longer be needed, as Fragment now has this method.",
+        level = DeprecationLevel.WARNING
+)
 inline fun Fragment.requireArguments(): Bundle {
     return arguments ?: throw IllegalStateException("Fragment has no arguments Bundle.")
 }
