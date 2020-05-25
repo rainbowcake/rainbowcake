@@ -1,7 +1,5 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.os.Handler
-import android.os.Looper
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import java.util.LinkedList
@@ -17,11 +15,10 @@ import java.util.Queue
  */
 internal class QueuedSingleShotLiveData<T : Any> : SingleShotLiveData<T>() {
 
-    private val queue: Queue<T> = LinkedList<T>()
-    private val handler: Handler = Handler(Looper.getMainLooper())
+    private val queue: Queue<T> = LinkedList()
 
     override fun postValue(value: T?) {
-        handler.post { setValue(value) }
+        MainThreadWrapper.executor.execute { setValue(value) }
     }
 
     @MainThread

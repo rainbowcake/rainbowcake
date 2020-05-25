@@ -3,6 +3,7 @@ package co.zsmb.rainbowcake.test.base
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import co.zsmb.rainbowcake.test.CoroutineTestRule
+import co.zsmb.rainbowcake.test.LiveDataTestRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 
@@ -17,7 +18,11 @@ abstract class ViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @get:Rule
     val coroutineTestRule = CoroutineTestRule()
+
+    @get:Rule
+    val liveDataTestRule = LiveDataTestRule()
 
 }

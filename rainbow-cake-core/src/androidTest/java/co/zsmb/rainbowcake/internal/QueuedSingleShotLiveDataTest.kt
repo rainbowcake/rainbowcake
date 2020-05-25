@@ -24,19 +24,19 @@ class QueuedSingleShotLiveDataTest : LifecycleTest() {
 
     @Test
     fun startStopStart() {
-        queuedLiveData.setValue("a")
+        queuedLiveData.postValue("a")
         observer.assertObserved()
 
         lifecycle.handleLifecycleEvent(ON_START)
         observer.assertObserved("a")
 
-        queuedLiveData.setValue("b")
+        queuedLiveData.postValue("b")
         observer.assertObserved("b")
 
-        queuedLiveData.setValue("c")
+        queuedLiveData.postValue("c")
         lifecycle.handleLifecycleEvent(ON_STOP)
-        queuedLiveData.setValue("d")
-        queuedLiveData.setValue("e")
+        queuedLiveData.postValue("d")
+        queuedLiveData.postValue("e")
         observer.assertObserved("c")
 
         lifecycle.handleLifecycleEvent(ON_START)
@@ -46,9 +46,9 @@ class QueuedSingleShotLiveDataTest : LifecycleTest() {
     @Test
     fun nullValue() {
         lifecycle.handleLifecycleEvent(ON_START)
-        queuedLiveData.setValue("a")
-        queuedLiveData.setValue(null)
-        queuedLiveData.setValue("b")
+        queuedLiveData.postValue("a")
+        queuedLiveData.postValue(null)
+        queuedLiveData.postValue("b")
         observer.assertObserved("a", null, "b")
     }
 
@@ -60,12 +60,12 @@ class QueuedSingleShotLiveDataTest : LifecycleTest() {
     @Test
     fun observeRemoveObserve() {
         lifecycle.handleLifecycleEvent(ON_START)
-        queuedLiveData.setValue("a")
+        queuedLiveData.postValue("a")
         observer.assertObserved("a")
 
         queuedLiveData.removeObserver(observer)
-        queuedLiveData.setValue("c")
-        queuedLiveData.setValue("d")
+        queuedLiveData.postValue("c")
+        queuedLiveData.postValue("d")
         observer.assertObserved()
 
         queuedLiveData.observe(this, observer)

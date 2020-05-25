@@ -8,9 +8,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
-import co.zsmb.rainbowcake.internal.livedata.*
+import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
+import co.zsmb.rainbowcake.internal.livedata.ClairvoyantLiveData
+import co.zsmb.rainbowcake.internal.livedata.LiveDataCollection
+import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollection
+import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
+import co.zsmb.rainbowcake.internal.livedata.QueuedSingleShotLiveData
+import co.zsmb.rainbowcake.internal.livedata.SingleShotLiveData
+import co.zsmb.rainbowcake.internal.livedata.distinct
 import co.zsmb.rainbowcake.internal.logging.log
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 /**
  * A ViewModel base class that provides:
@@ -100,7 +113,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      */
     @Suppress("UsePropertyAccessSyntax")
     protected fun postEvent(event: OneShotEvent) {
-        viewEvents.setValue(event)
+        viewEvents.postValue(event)
     }
 
 
@@ -137,7 +150,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      */
     @Suppress("UsePropertyAccessSyntax")
     protected fun postQueuedEvent(event: QueuedOneShotEvent) {
-        queuedViewEvents.setValue(event)
+        queuedViewEvents.postValue(event)
     }
     //endregion
 
