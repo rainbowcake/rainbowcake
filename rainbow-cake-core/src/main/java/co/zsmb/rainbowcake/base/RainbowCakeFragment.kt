@@ -85,7 +85,9 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     protected open fun onEvent(event: OneShotEvent) {}
 
     /**
-     * Returns the ID of the Fragment's layout resource
+     * Returns the ID of the Fragment's layout resource. If you need custom inflation logic
+     * for your Fragment, besides choosing a layout resource to inflate, override the
+     * [onViewCreated] method.
      */
     @LayoutRes
     protected abstract fun getViewResource(): Int
