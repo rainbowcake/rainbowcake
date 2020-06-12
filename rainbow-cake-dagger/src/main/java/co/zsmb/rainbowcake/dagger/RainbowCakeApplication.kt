@@ -21,7 +21,7 @@ abstract class RainbowCakeApplication : Application() {
     }
 
     /**
-     * Creates a Dagger injector and sets the [injector] property
+     * This method should create a Dagger injector set the [injector] property.
      */
     protected abstract fun setupInjector()
 
