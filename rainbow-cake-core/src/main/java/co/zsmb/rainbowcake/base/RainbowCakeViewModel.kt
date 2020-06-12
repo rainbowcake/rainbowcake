@@ -56,7 +56,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * and is filtered so that it only emits distinct values (i.e. subsequent
      * duplicates don't trigger updates on it).
      */
-    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
+    @get:VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public val state: LiveData<VS> = _state.distinct()
 
     /**
