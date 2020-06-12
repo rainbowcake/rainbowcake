@@ -69,21 +69,6 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
         set(value) {
             _state.placeValue(value)
         }
-
-    /**
-     * Sets the view state. This method may be called from a background thread.
-     *
-     * You should not need to use this, as [execute] provides an easy way to
-     * launch background tasks and get back to the UI via coroutines. To issue
-     * updates originating from lower layers, use coroutine Flows.
-     */
-    @Deprecated(
-            message = "You should not need to use this. To issue updates from lower layers, see ChannelViewModel.",
-            level = DeprecationLevel.ERROR
-    )
-    protected fun postState(viewState: VS) {
-        _state.postValue(viewState)
-    }
     // endregion
 
     //region Events
