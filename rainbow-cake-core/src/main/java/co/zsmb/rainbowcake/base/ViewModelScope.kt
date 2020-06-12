@@ -12,7 +12,8 @@ sealed class ViewModelScope {
      * A ViewModel with this scope is scoped to its Fragment.
      *
      * A new ViewModel will be created each time a Fragment using this scope
-     * is instantiated, and it will be cleared when the Fragment is destroyed.
+     * is instantiated, and it will be cleared when the Fragment is destroyed
+     * (ignoring the Fragment being recreated on configuration changes).
      *
      * This is the default behaviour of ViewModels.
      */
@@ -28,6 +29,13 @@ sealed class ViewModelScope {
      * The typical use case for this scope is multiple nested Fragments that
      * need to share data amongst themselves through a ViewModel, e.g. those
      * in a ViewPager.
+     *
+     * A [key] may be provided to scope multiple separate instances of the
+     * same ViewModel class within the same parent Fragment. If no [key] is
+     * provided, there will only be a single instance of the ViewModel within
+     * the scope of the parent.
+     *
+     * @param key The key for this ViewModel, used as described above.
      */
     sealed class ParentFragment(val key: String? = null) : ViewModelScope() {
         internal class KeyedParentFragment(key: String) : ParentFragment(key)
@@ -50,7 +58,7 @@ sealed class ViewModelScope {
      * same ViewModel class within the same Activity. If no [key] is provided,
      * the ViewModel will essentially exist as a Singleton within the Activity.
      *
-     * @property key The key for this ViewModel, used as described above.
+     * @param key The key for this ViewModel, used as described above.
      */
     sealed class Activity(val key: String? = null) : ViewModelScope() {
         internal class KeyedActivity(key: String) : Activity(key)

@@ -4,6 +4,7 @@ package co.zsmb.rainbowcake.base
 
 import androidx.annotation.CallSuper
 import androidx.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting.PACKAGE_PRIVATE
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,8 +29,8 @@ import kotlinx.coroutines.launch
 /**
  * A ViewModel base class that provides:
  * - safe view state handling via [LiveData],
- * - one-time event support via [SingleShotLiveData],
- * - the ability to easily start coroutines in a UI context.
+ * - one-time event support via [SingleShotLiveData] implementations,
+ * - the ability to easily start coroutines in a UI context via [execute].
  */
 abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
 
@@ -39,7 +40,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
 
     //region State
     /**
-     * The [MutableLiveData] instance actually containing the current view state.
+     * Custom [MutableLiveData] instance actually containing the current view state.
      */
     private val _state: ClairvoyantLiveData<VS> = ClairvoyantLiveData()
 
@@ -55,6 +56,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * and is filtered so that it only emits distinct values (i.e. subsequent
      * duplicates don't trigger updates on it).
      */
+    @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
     public val state: LiveData<VS> = _state.distinct()
 
     /**
@@ -85,8 +87,8 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * This is a read-only view of the contained [ActiveOnlySingleShotLiveData]
      * collection.
      */
-    @get:VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
-    val events: LiveDataCollection<OneShotEvent> = viewEvents
+    @get:VisibleForTesting(otherwise = PACKAGE_PRIVATE)
+    public val events: LiveDataCollection<OneShotEvent> = viewEvents
 
     /**
      * Posts a new event to the connected Fragment or Activity. Unlike
@@ -96,11 +98,10 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * Events posted with this method are dispatched immediately.
      *
      * If the Fragment or Activity is not currently in the foreground (in
-     * a started state), the event will not be delivered at all.
+     * a started state), the event is dropped, and is never delivered.
      *
      * See also: [postQueuedEvent].
      */
-    @Suppress("UsePropertyAccessSyntax")
     protected fun postEvent(event: OneShotEvent) {
         viewEvents.postValue(event)
     }
@@ -119,25 +120,25 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * queued events. This is a read-only view of the contained
      * [QueuedSingleShotLiveData] collection.
      */
-    @get:VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
-    val queuedEvents: LiveDataCollection<QueuedOneShotEvent> = queuedViewEvents
+    @get:VisibleForTesting(otherwise = PACKAGE_PRIVATE)
+    public val queuedEvents: LiveDataCollection<QueuedOneShotEvent> = queuedViewEvents
 
     /**
      * Posts a new event to the connected Fragment or Activity. Unlike
      * screen state changes, events are only delivered once, i.e.
      * they won't be re-delivered after a configuration change.
      *
-     * Fragment or Activity isn't currently in the foreground (in a
-     * started state), the event will be queued and dispatched later.
+     * If the Fragment or Activity isn't currently in the foreground
+     * (in a started state), the event will be queued and delivered
+     * later.
      *
      * Queueing is a best effort mechanism. Fragment and Activity
      * instances that are in the background but still in memory will
      * receive queued events when they become active again. Instances
-     * that are completely destroyed will have their queues emptied.
+     * that are completely destroyed will have their queues dropped.
      *
      * See also: [postEvent].
      */
-    @Suppress("UsePropertyAccessSyntax")
     protected fun postQueuedEvent(event: QueuedOneShotEvent) {
         queuedViewEvents.postValue(event)
     }
@@ -177,9 +178,11 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
      * another thread), any other [execute] calls will silently terminate
      * as no-ops. This behaviour, for example, prevents launching duplicate
      * actions on quick repeated button presses, which is a common issue.
+     * See the [blocking] parameter and the [executeNonBlocking] method
+     * to opt-out of this behaviour.
      *
      * Any exceptions not caught by the [task] will be caught and consumed
-     * by this method.
+     * by this method by default (see [RainbowCakeConfiguration.consumeExecuteExceptions]).
      *
      * @param blocking Whether this [execute] call should block other job
      *                 launches via [execute] until it completes.

@@ -23,5 +23,5 @@ suspend inline fun <T> withIOContext(noinline block: suspend CoroutineScope.() -
  * Can be modified for testing purposes.
  */
 @VisibleForTesting
-@Deprecated(message = "Should only be used in tests", level = DeprecationLevel.WARNING)
+@Deprecated(message = "ioContext should only be used in tests", level = DeprecationLevel.WARNING)
 var ioContext: CoroutineContext = Dispatchers.IO
