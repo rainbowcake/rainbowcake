@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import co.zsmb.rainbowcake.internal.logging.log
 
 /**
  * Base class for Activities that connects them to the appropriate ViewModel instances.
  */
 abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : AppCompatActivity() {
+
+    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeActivity ($this)" }
 
     /**
      * The ViewModel of this Activity.
@@ -50,7 +53,9 @@ abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : Ap
     /**
      * Handles one-time events emitted by the ViewModel.
      */
-    open fun onEvent(event: OneShotEvent) {}
+    open fun onEvent(event: OneShotEvent) {
+        log(logTag, "Unhandled event: $event")
+    }
 
 }
 

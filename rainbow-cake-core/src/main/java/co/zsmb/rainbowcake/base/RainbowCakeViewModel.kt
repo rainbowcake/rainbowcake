@@ -33,6 +33,10 @@ import kotlinx.coroutines.launch
  */
 abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
 
+    //region Logging
+    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeViewModel ($this)" }
+    //endregion
+
     //region State
     /**
      * The [MutableLiveData] instance actually containing the current view state.
@@ -169,7 +173,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         coroutineScope.cancel()
-        log("ViewModel cleared, job cancelled")
+        log(logTag, "ViewModel cleared, job cancelled")
     }
 
     /**
@@ -225,7 +229,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
         return coroutineScope.launch {
             if (blocking) {
                 if (busy) {
-                    log("Denying job launch, busy")
+                    log(logTag, "Denying job launch, busy")
                     return@launch
                 }
                 busy = true
@@ -251,11 +255,11 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
         try {
             task()
         } catch (e: CancellationException) {
-            log("Job cancelled exception:")
-            log(e)
+            log(logTag, "Job cancelled exception:")
+            log(logTag, e)
         } catch (e: Exception) {
-            log("Unhandled exception in ViewModel:")
-            log(e)
+            log(logTag, "Unhandled exception in ViewModel:")
+            log(logTag, e)
         }
     }
     //endregion

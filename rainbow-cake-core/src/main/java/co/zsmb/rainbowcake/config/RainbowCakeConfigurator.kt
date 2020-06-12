@@ -39,3 +39,9 @@ interface RainbowCakeConfigurator {
     var consumeExecuteExceptions: Boolean
 
 }
+
+/**
+ * Whether the application is running in production.
+ */
+internal val RainbowCakeConfigurator.isProd
+    get() = !isDebug

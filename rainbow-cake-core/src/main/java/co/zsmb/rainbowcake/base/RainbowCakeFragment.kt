@@ -1,6 +1,5 @@
 package co.zsmb.rainbowcake.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,14 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import co.zsmb.rainbowcake.internal.logging.log
 
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
  */
 abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
+
+    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeFragment ($this)" }
 
     /**
      * The ViewModel of this Fragment.
@@ -82,7 +84,9 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
      *
      * @param event An event emitted by the ViewModel.
      */
-    protected open fun onEvent(event: OneShotEvent) {}
+    protected open fun onEvent(event: OneShotEvent) {
+        log(logTag, "Unhandled event: $event")
+    }
 
     /**
      * Returns the ID of the Fragment's layout resource. If you need custom inflation logic
