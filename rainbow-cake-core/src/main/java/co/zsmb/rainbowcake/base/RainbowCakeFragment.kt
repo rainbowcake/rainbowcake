@@ -27,8 +27,8 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     protected lateinit var viewModel: VM
 
     @CallSuper
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel = provideViewModel()
 
         viewModel.events.observe(this, Observer { event ->
