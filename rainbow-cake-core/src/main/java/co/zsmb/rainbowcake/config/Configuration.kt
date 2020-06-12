@@ -6,6 +6,6 @@ import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 /**
  * The entry point of the Rainbow Cake configuration DSL.
  */
-fun Application.rainbowCake(actions: RainbowCakeConfigurator.() -> Unit) {
+inline fun Application.rainbowCake(actions: RainbowCakeConfigurator.() -> Unit) {
     RainbowCakeConfiguration.actions()
 }

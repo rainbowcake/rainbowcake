@@ -251,7 +251,7 @@ abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
         }
     }
 
-    private suspend fun consumeExceptions(task: suspend () -> Unit) {
+    private inline fun consumeExceptions(task: () -> Unit) {
         try {
             task()
         } catch (e: CancellationException) {
