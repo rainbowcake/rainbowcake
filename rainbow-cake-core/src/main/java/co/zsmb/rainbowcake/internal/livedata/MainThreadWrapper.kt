@@ -1,3 +1,5 @@
+@file:Suppress("RedundantVisibilityModifier")
+
 package co.zsmb.rainbowcake.internal.livedata
 
 import android.os.Handler
@@ -20,7 +22,7 @@ object MainThreadWrapper {
     /**
      * The executor used for running code on the main thread.
      */
-    var executor: Executor
+    public var executor: Executor
         get() {
             if (_executor == null) {
                 _executor = MainThreadExecutor()
@@ -34,7 +36,7 @@ object MainThreadWrapper {
     /**
      * Reset the internal executor to the real Android main thread.
      */
-    fun resetExecutor() {
+    public fun resetExecutor() {
         _executor = null
     }
 
