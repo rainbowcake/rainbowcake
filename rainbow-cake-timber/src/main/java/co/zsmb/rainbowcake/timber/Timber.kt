@@ -11,4 +11,4 @@ private object Timber : Logger {
 }
 
 val Loggers.TIMBER: Logger
-    get() = co.zsmb.rainbowcake.timber.Timber
+    get() = Timber
