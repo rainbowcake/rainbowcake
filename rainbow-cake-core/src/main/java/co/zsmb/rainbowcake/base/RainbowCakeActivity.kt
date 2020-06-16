@@ -29,6 +29,9 @@ abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : Ap
         viewModel.events.observe(this, Observer { event ->
             event?.let { onEvent(it) }
         })
+        viewModel.queuedEvents.observe(this, Observer { event ->
+            event?.let { onEvent(it) }
+        })
     }
 
     /**
