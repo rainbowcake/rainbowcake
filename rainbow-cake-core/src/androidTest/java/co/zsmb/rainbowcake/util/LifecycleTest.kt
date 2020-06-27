@@ -13,6 +13,10 @@ abstract class LifecycleTest : LifecycleOwner {
     @Rule
     var instantExecutorRule: TestRule = InstantTaskExecutorRule()
 
+    @JvmField
+    @Rule
+    var liveDataTestRule: TestRule = LiveDataTestRule()
+
     @Suppress("LeakingThis")
     protected val lifecycle = LifecycleRegistry(this)
 

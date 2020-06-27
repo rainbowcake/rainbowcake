@@ -1,7 +1,5 @@
 package co.zsmb.rainbowcake.internal.livedata
 
-import android.os.Handler
-import android.os.Looper
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import java.util.LinkedList
@@ -10,18 +8,17 @@ import java.util.Queue
 /**
  * A [MutableLiveData] implementation that queues all values that are set or posted
  * to it while its observer is inactive. When its observer becomes active,
- * it is notified about any queued values immediately.
+ * it is notified about any queued values. The order of the events is preserved.
  *
  * Subclass of [SingleShotLiveData], therefore it may only have a single
- * observer and delivers the value set in it only - at most - once.
+ * observer and delivers any values set in it only - at most - once.
  */
 internal class QueuedSingleShotLiveData<T : Any> : SingleShotLiveData<T>() {
 
-    private val queue: Queue<T> = LinkedList<T>()
-    private val handler: Handler = Handler(Looper.getMainLooper())
+    private val queue: Queue<T> = LinkedList()
 
     override fun postValue(value: T?) {
-        handler.post { setValue(value) }
+        MainThreadWrapper.executor.execute { setValue(value) }
     }
 
     @MainThread

@@ -1,6 +1,5 @@
 package co.zsmb.rainbowcake.test
 
-import co.zsmb.rainbowcake.ioContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -11,13 +10,13 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 /**
- * A JUnit 4 test rule to be used in ViewModel and Presenter tests.
+ * A JUnit 4 test rule to be used in ViewModel tests.
  *
- * Forces coroutine code that otherwise uses the Main or IO dispatchers
- * to run on the single test thread.
+ * Forces coroutine code that otherwise uses the Main dispatcher to
+ * run on the single test thread.
  */
 @ExperimentalCoroutinesApi
-class CoroutineTestRule : TestRule {
+class CoroutineMainDispatcherTestRule : TestRule {
 
     private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
@@ -25,16 +24,12 @@ class CoroutineTestRule : TestRule {
         return object : Statement() {
             override fun evaluate() {
                 // setup
-                @Suppress("DEPRECATION")
-                ioContext = testDispatcher
                 Dispatchers.setMain(testDispatcher)
 
                 // run test
                 base.evaluate()
 
                 // teardown
-                @Suppress("DEPRECATION")
-                ioContext = Dispatchers.IO
                 Dispatchers.resetMain()
                 testDispatcher.cleanupTestCoroutines()
             }

@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * A [MutableLiveData] implementation that may only have a single observer
- * at a time, and delivers each value set in it only once at most.
+ * at a time, and delivers each value set in it - at most - once.
  */
 internal open class SingleShotLiveData<T : Any> : MutableLiveData<T>() {
 

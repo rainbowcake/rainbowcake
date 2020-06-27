@@ -1,27 +1,25 @@
 package co.zsmb.rainbowcake.internal.logging
 
+import co.zsmb.rainbowcake.config.isProd
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 import java.io.PrintWriter
 import java.io.StringWriter
 
 @Suppress("unused")
-internal inline fun <reified T> T.log(message: String) {
-    if (RainbowCakeConfiguration.isDebug.not()) {
-        return
+internal fun log(tag: String, message: String) {
+    if (RainbowCakeConfiguration.isProd) {
+        RainbowCakeConfiguration.logger.log(tag, message)
     }
-    RainbowCakeConfiguration.logger.log(T::class.java.simpleName, message)
 }
 
-internal inline fun <reified T> T.log(e: Throwable) {
-    if (RainbowCakeConfiguration.isDebug.not()) {
-        return
+internal inline fun <reified T> T.log(tag: String, e: Throwable) {
+    if (RainbowCakeConfiguration.isProd) {
+        log(tag, getStacktraceString(e))
     }
-
-    log(getStacktraceString(e))
 }
 
 private fun getStacktraceString(e: Throwable): String {
-    // Implementation taken from Timber
+    // Implementation from Timber
     val sw = StringWriter(256)
     val pw = PrintWriter(sw, false)
     e.printStackTrace(pw)

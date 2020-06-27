@@ -27,7 +27,6 @@ dependencies {
     implementation project(':rainbow-cake-dagger')
     implementation project(':rainbow-cake-koin')
     implementation project(':rainbow-cake-navigation')
-    implementation project(':rainbow-cake-channels')
     implementation project(':rainbow-cake-timber')
 
     // Google libraries

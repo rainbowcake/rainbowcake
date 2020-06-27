@@ -1,5 +1,8 @@
+@file:SuppressLint("VisibleForTests")
+
 package co.zsmb.rainbowcake.test
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
@@ -30,8 +33,8 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
         observers: (stateObserver: MockObserver<VS>, eventsObserver: MockObserver<OneShotEvent>) -> Unit
 ) {
-    val stateObserver = MockObserver<VS>()
-    val eventsObserver = MockObserver<OneShotEvent>()
+    val stateObserver = MockLiveDataObserver<VS>()
+    val eventsObserver = MockLiveDataObserver<OneShotEvent>()
 
     val lifecycleOwner = object : LifecycleOwner {
         val lifecycle = LifecycleRegistry(this)
@@ -76,9 +79,9 @@ fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
                     eventsObserver: MockObserver<OneShotEvent>,
                     queuedEventsObserver: MockObserver<QueuedOneShotEvent>) -> Unit
 ) {
-    val stateObserver = MockObserver<VS>()
-    val eventsObserver = MockObserver<OneShotEvent>()
-    val queuedEventsObserver = MockObserver<QueuedOneShotEvent>()
+    val stateObserver = MockLiveDataObserver<VS>()
+    val eventsObserver = MockLiveDataObserver<OneShotEvent>()
+    val queuedEventsObserver = MockLiveDataObserver<QueuedOneShotEvent>()
 
     val lifecycleOwner = object : LifecycleOwner {
         val lifecycle = LifecycleRegistry(this)

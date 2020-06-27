@@ -13,7 +13,7 @@ import kotlin.coroutines.CoroutineContext
  * For more details, see the [withContext] function that this function delegates to.
  */
 @Suppress("DEPRECATION")
-suspend fun <T> withIOContext(block: suspend CoroutineScope.() -> T): T {
+suspend inline fun <T> withIOContext(noinline block: suspend CoroutineScope.() -> T): T {
     return withContext(ioContext, block = block)
 }
 
@@ -23,5 +23,5 @@ suspend fun <T> withIOContext(block: suspend CoroutineScope.() -> T): T {
  * Can be modified for testing purposes.
  */
 @VisibleForTesting
-@Deprecated(message = "Should only be used in tests", level = DeprecationLevel.WARNING)
+@Deprecated(message = "ioContext should only be used in tests", level = DeprecationLevel.WARNING)
 var ioContext: CoroutineContext = Dispatchers.IO

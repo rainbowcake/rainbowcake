@@ -75,7 +75,7 @@ afterEvaluate {
                     scm {
                         connection = 'scm:git:git://github.com/rainbowcake/rainbowcake.git'
                         developerConnection = 'scm:git:ssh://github.com:rainbowcake/rainbowcake.git'
-                        url = 'https://github.com/rainbowcake/rainbowcake/tree/master'
+                        url = 'https://github.com/rainbowcake/rainbowcake/tree/main'
                     }
                 }
             }

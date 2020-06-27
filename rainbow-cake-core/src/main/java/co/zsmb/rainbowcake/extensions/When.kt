@@ -7,12 +7,12 @@ package co.zsmb.rainbowcake.extensions
  * Usage example:
  *
  * ```kotlin
- * when (viewState: ViewState) {
+ * when (viewState) {
  *     is Loading -> { /* Show loading */ }
  *     is Errored -> { /* Show error */ }
  *     is Ready -> { /* Show ready */ }
  * }.exhaustive
  * ```
  */
-val <T> T.exhaustive: T
+inline val <T> T.exhaustive: T
     get() = this

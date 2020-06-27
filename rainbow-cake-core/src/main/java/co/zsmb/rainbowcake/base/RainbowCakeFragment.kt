@@ -1,6 +1,5 @@
 package co.zsmb.rainbowcake.base
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,14 @@ import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import co.zsmb.rainbowcake.internal.logging.log
 
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
  */
 abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
+
+    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeFragment ($this)" }
 
     /**
      * The ViewModel of this Fragment.
@@ -25,8 +27,8 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     protected lateinit var viewModel: VM
 
     @CallSuper
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel = provideViewModel()
 
         viewModel.events.observe(this, Observer { event ->
@@ -57,11 +59,10 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     }
 
     /**
-     * This method MUST (as in RFC 2119 MUST) always return the result of the
-     * [getViewModelFromFactory] call.
+     * This method should return a ViewModel instance for the current Fragment.
      *
-     * This is a requirement because the base class can't refer to the concrete ViewModel
-     * type with a reified parameter.
+     * If one of RainbowCake's own DI libraries are being used, this method should
+     * return the result of a [getViewModelFromFactory] call.
      */
     protected abstract fun provideViewModel(): VM
 
@@ -82,10 +83,14 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
      *
      * @param event An event emitted by the ViewModel.
      */
-    protected open fun onEvent(event: OneShotEvent) {}
+    protected open fun onEvent(event: OneShotEvent) {
+        log(logTag, "Unhandled event: $event")
+    }
 
     /**
-     * Returns the ID of the Fragment's layout resource
+     * Returns the ID of the Fragment's layout resource. If you need custom inflation logic
+     * for your Fragment, besides choosing a layout resource to inflate, override the
+     * [onViewCreated] method.
      */
     @LayoutRes
     protected abstract fun getViewResource(): Int
@@ -98,6 +103,7 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     @set:JvmName("overrideAnimation")
     internal var overrideAnimation: Int? = null
 
+    @CallSuper
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         overrideAnimation?.let { override ->
             val animation = if (override != 0) {
