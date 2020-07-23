@@ -26,10 +26,13 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
      */
     protected lateinit var viewModel: VM
 
-    @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = provideViewModel()
+    /**
+     * @param viewModel a [RainbowCakeViewModel] instance for the current Fragment.
+     * If one of RainbowCake's own DI libraries are being used, this should
+     * be the result of a [getViewModelFromFactory] call.
+     */
+    fun provideViewModel(viewModel: VM) {
+        this.viewModel = viewModel
 
         viewModel.events.observe(this, Observer { event ->
             event?.let { onEvent(it) }
@@ -57,14 +60,6 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
             viewState?.let { render(it) }
         })
     }
-
-    /**
-     * This method should return a ViewModel instance for the current Fragment.
-     *
-     * If one of RainbowCake's own DI libraries are being used, this method should
-     * return the result of a [getViewModelFromFactory] call.
-     */
-    protected abstract fun provideViewModel(): VM
 
     /**
      * Renders the view state. Called when the view state changes and the UI should be

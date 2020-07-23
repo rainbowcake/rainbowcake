@@ -9,8 +9,12 @@ import kotlinx.android.synthetic.main.fragment_shared_vmpager.*
 
 class SharedVMPagerFragment : RainbowCakeFragment<SharedVMPagerViewState, SharedVMPagerViewModel>() {
 
-    override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_shared_vmpager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        provideViewModel(getViewModelFromFactory())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

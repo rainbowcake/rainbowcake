@@ -13,8 +13,12 @@ import kotlinx.android.synthetic.main.fragment_example.*
 
 class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>() {
 
-    override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_example
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        provideViewModel(getViewModelFromFactory())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

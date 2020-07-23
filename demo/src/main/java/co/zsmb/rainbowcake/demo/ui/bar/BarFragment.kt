@@ -8,8 +8,12 @@ import co.zsmb.rainbowcake.demo.R
 
 class BarFragment : RainbowCakeFragment<BarViewState, BarViewModel>() {
 
-    override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_bar
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        provideViewModel(getViewModelFromFactory())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

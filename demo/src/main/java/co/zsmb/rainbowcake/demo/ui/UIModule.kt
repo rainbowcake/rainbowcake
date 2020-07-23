@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val UIModule = module {
     factory { KoinPresenter() }
-    factory { KoinViewModel(get()) }
+    factory { (initialCount: Int) -> KoinViewModel(initialCount, get()) }
 
     factory { ScreenPresenter() }
     factory { ScreenViewModel(get()) }

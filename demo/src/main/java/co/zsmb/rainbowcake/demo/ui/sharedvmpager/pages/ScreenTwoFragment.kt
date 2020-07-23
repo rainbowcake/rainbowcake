@@ -10,8 +10,12 @@ import kotlinx.android.synthetic.main.fragment_screen_two.*
 
 class ScreenTwoFragment : RainbowCakeFragment<ScreenViewState, ScreenViewModel>() {
 
-    override fun provideViewModel() = getViewModelFromFactory(scope = ViewModelScope.Activity)
     override fun getViewResource() = R.layout.fragment_screen_two
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        provideViewModel(getViewModelFromFactory(scope = ViewModelScope.Activity))
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

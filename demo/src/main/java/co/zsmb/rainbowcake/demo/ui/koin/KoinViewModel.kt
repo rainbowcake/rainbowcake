@@ -3,11 +3,17 @@ package co.zsmb.rainbowcake.demo.ui.koin
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 
 class KoinViewModel(
+        initialCount: Int,
         private val koinPresenter: KoinPresenter
 ) : RainbowCakeViewModel<KoinViewState>(KoinViewState()) {
 
-    fun load() = execute {
-        viewState = KoinViewState(koinPresenter.getData())
+    init {
+        koinPresenter.counter = initialCount
+    }
+
+    fun incrementCounter() = execute {
+        koinPresenter.incrementCounter()
+        viewState = KoinViewState(koinPresenter.counter)
     }
 
 }

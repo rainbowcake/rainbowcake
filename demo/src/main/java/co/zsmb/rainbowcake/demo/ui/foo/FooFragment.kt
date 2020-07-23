@@ -11,8 +11,12 @@ import kotlinx.android.synthetic.main.fragment_foo.*
 
 class FooFragment : RainbowCakeFragment<FooViewState, FooViewModel>() {
 
-    override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_foo
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        provideViewModel(getViewModelFromFactory())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
