@@ -8,14 +8,16 @@ import java.io.StringWriter
 @Suppress("unused")
 internal fun log(tag: String, message: String) {
     if (RainbowCakeConfiguration.isProd) {
-        RainbowCakeConfiguration.logger.log(tag, message)
+        return
     }
+    RainbowCakeConfiguration.logger.log(tag, message)
 }
 
 internal inline fun <reified T> T.log(tag: String, e: Throwable) {
     if (RainbowCakeConfiguration.isProd) {
-        log(tag, getStacktraceString(e))
+        return
     }
+    log(tag, getStacktraceString(e))
 }
 
 private fun getStacktraceString(e: Throwable): String {
