@@ -3,7 +3,6 @@ package co.zsmb.rainbowcake.base
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import co.zsmb.rainbowcake.internal.logging.log
 
 /**
@@ -23,15 +22,15 @@ abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : Ap
         super.onCreate(savedInstanceState)
 
         viewModel = provideViewModel()
-        viewModel.state.observe(this, Observer { viewState ->
+        viewModel.state.observe(this) { viewState ->
             viewState?.let { render(it) }
-        })
-        viewModel.events.observe(this, Observer { event ->
+        }
+        viewModel.events.observe(this) { event ->
             event?.let { onEvent(it) }
-        })
-        viewModel.queuedEvents.observe(this, Observer { event ->
+        }
+        viewModel.queuedEvents.observe(this) { event ->
             event?.let { onEvent(it) }
-        })
+        }
     }
 
     /**

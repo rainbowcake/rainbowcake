@@ -3,7 +3,6 @@ package co.zsmb.rainbowcake.internal
 import androidx.lifecycle.Lifecycle.Event.ON_START
 import androidx.lifecycle.Lifecycle.Event.ON_STOP
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import co.zsmb.rainbowcake.internal.livedata.QueuedSingleShotLiveData
 import co.zsmb.rainbowcake.util.LifecycleTest
 import co.zsmb.rainbowcake.util.MockObserver
@@ -54,7 +53,7 @@ class QueuedSingleShotLiveDataTest : LifecycleTest() {
 
     @Test(expected = IllegalStateException::class)
     fun multipleObservers() {
-        queuedLiveData.observe(this, Observer { })
+        queuedLiveData.observe(this) {}
     }
 
     @Test
