@@ -16,18 +16,18 @@ import org.junit.Rule
  * instances, respectively.
  */
 @ExperimentalCoroutinesApi
-abstract class ViewModelTest {
+public abstract class ViewModelTest {
 
     @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
+    public val instantTaskExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
-    val ioDispatcherTestRule = CoroutineIODispatcherTestRule()
+    public val ioDispatcherTestRule: CoroutineIODispatcherTestRule = CoroutineIODispatcherTestRule()
 
     @get:Rule
-    val mainDispatcherTestRule = CoroutineMainDispatcherTestRule()
+    public val mainDispatcherTestRule: CoroutineMainDispatcherTestRule = CoroutineMainDispatcherTestRule()
 
     @get:Rule
-    val liveDataTestRule = LiveDataTestRule()
+    public val liveDataTestRule: LiveDataTestRule = LiveDataTestRule()
 
 }

@@ -17,6 +17,15 @@ dependencies {
     androidTestImplementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
+}
+
 /////////////////  Publishing  /////////////////
 
 ext {

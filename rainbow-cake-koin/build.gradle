@@ -15,6 +15,15 @@ dependencies {
     implementation "org.koin:koin-android-viewmodel:$koin_version"
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
+}
+
 /////////////////  Publishing  /////////////////
 
 ext {

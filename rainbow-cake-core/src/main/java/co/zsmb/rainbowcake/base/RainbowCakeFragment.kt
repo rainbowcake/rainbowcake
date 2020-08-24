@@ -16,7 +16,7 @@ import co.zsmb.rainbowcake.internal.logging.log
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
  */
-abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
+public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
 
     private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeFragment ($this)" }
 

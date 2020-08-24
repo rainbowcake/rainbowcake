@@ -13,6 +13,15 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
+}
+
 /////////////////  Publishing  /////////////////
 
 ext {

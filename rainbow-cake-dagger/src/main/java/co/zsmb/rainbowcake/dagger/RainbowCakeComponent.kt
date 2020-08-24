@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
  * A base interface for the application's actual Dagger component that's
  * capable of providing a [ViewModelProvider.Factory] instance.
  */
-interface RainbowCakeComponent {
+public interface RainbowCakeComponent {
 
-    fun viewModelFactory(): ViewModelProvider.Factory
+    public fun viewModelFactory(): ViewModelProvider.Factory
 
 }

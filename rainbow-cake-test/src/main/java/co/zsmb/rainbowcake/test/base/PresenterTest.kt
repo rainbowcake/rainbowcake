@@ -9,9 +9,9 @@ import org.junit.Rule
  * has to be enabled to mock the IO dispatcher.
  */
 @ExperimentalCoroutinesApi
-abstract class PresenterTest {
+public abstract class PresenterTest {
 
     @get:Rule
-    var ioDispatcherTestRule = CoroutineIODispatcherTestRule()
+    public var ioDispatcherTestRule: CoroutineIODispatcherTestRule = CoroutineIODispatcherTestRule()
 
 }

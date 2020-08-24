@@ -13,7 +13,7 @@ import javax.inject.Singleton
  * keys in the ViewModelModule to the [RainbowCakeFragment] and [RainbowCakeActivity] classes.
  */
 @Singleton
-class ViewModelFactory @Inject constructor(
+public class ViewModelFactory @Inject constructor(
         private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
 

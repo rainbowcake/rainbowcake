@@ -12,13 +12,13 @@ import java.io.Serializable
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
-inline fun Bundle.requireBoolean(key: String): Boolean = requireImpl(key)
+public inline fun Bundle.requireBoolean(key: String): Boolean = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
-inline fun Bundle.getBooleanOrNull(key: String): Boolean? = getOrNullImpl(key)
+public inline fun Bundle.getBooleanOrNull(key: String): Boolean? = getOrNullImpl(key)
 
 /**
  * Returns the value associated with the given key.
@@ -26,13 +26,13 @@ inline fun Bundle.getBooleanOrNull(key: String): Boolean? = getOrNullImpl(key)
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
-inline fun Bundle.requireInt(key: String): Int = requireImpl(key)
+public inline fun Bundle.requireInt(key: String): Int = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
-inline fun Bundle.getIntOrNull(key: String): Int? = getOrNullImpl(key)
+public inline fun Bundle.getIntOrNull(key: String): Int? = getOrNullImpl(key)
 
 /**
  * Returns the value associated with the given key.
@@ -40,13 +40,13 @@ inline fun Bundle.getIntOrNull(key: String): Int? = getOrNullImpl(key)
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
-inline fun Bundle.requireLong(key: String): Long = requireImpl(key)
+public inline fun Bundle.requireLong(key: String): Long = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
-inline fun Bundle.getLongOrNull(key: String): Long? = getOrNullImpl(key)
+public inline fun Bundle.getLongOrNull(key: String): Long? = getOrNullImpl(key)
 
 /**
  * Returns the value associated with the given key.
@@ -54,13 +54,13 @@ inline fun Bundle.getLongOrNull(key: String): Long? = getOrNullImpl(key)
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
-inline fun Bundle.requireString(key: String): String = requireImpl(key)
+public inline fun Bundle.requireString(key: String): String = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
-inline fun Bundle.getStringOrNull(key: String): String? = getOrNullImpl(key)
+public inline fun Bundle.getStringOrNull(key: String): String? = getOrNullImpl(key)
 
 /**
  * Returns the value associated with the given key.
@@ -68,13 +68,13 @@ inline fun Bundle.getStringOrNull(key: String): String? = getOrNullImpl(key)
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
-inline fun <reified T : Parcelable> Bundle.requireParcelable(key: String): T = requireImpl(key)
+public inline fun <reified T : Parcelable> Bundle.requireParcelable(key: String): T = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
-inline fun <reified T : Parcelable> Bundle.getParcelableOrNull(key: String): T? = getOrNullImpl(key)
+public inline fun <reified T : Parcelable> Bundle.getParcelableOrNull(key: String): T? = getOrNullImpl(key)
 
 /**
  * Returns the value associated with the given key.
@@ -82,13 +82,13 @@ inline fun <reified T : Parcelable> Bundle.getParcelableOrNull(key: String): T? 
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
-inline fun <reified T : Serializable> Bundle.requireSerializable(key: String): T = requireImpl(key)
+public inline fun <reified T : Serializable> Bundle.requireSerializable(key: String): T = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
-inline fun <reified T : Serializable> Bundle.getSerializableOrNull(key: String): T? = getOrNullImpl(key)
+public inline fun <reified T : Serializable> Bundle.getSerializableOrNull(key: String): T? = getOrNullImpl(key)
 
 
 //region Impl

@@ -14,5 +14,5 @@ package co.zsmb.rainbowcake.extensions
  * }.exhaustive
  * ```
  */
-inline val <T> T.exhaustive: T
+public inline val <T> T.exhaustive: T
     get() = this

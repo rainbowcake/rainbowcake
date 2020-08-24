@@ -9,12 +9,12 @@ import kotlin.reflect.KClass
 /**
  * A basic set of Fragment-based navigation actions.
  */
-interface Navigator {
+public interface Navigator {
 
     /**
      * Adds [fragment] to the top of the current Fragment stack.
      */
-    fun add(fragment: Fragment)
+    public fun add(fragment: Fragment)
 
     /**
      * Adds [fragment] to the top of the current Fragment stack. All four
@@ -32,7 +32,8 @@ interface Navigator {
      * @param popExitAnim The exit animation for the view of [fragment] when
      *                    it's eventually popped from the stack.
      */
-    fun add(fragment: Fragment,
+    public fun add(
+            fragment: Fragment,
             @AnimatorRes @AnimRes enterAnim: Int,
             @AnimatorRes @AnimRes exitAnim: Int,
             @AnimatorRes @AnimRes popEnterAnim: Int,
@@ -42,7 +43,7 @@ interface Navigator {
     /**
      * Replaces the top Fragment on the stack with [fragment].
      */
-    fun replace(
+    public fun replace(
             fragment: Fragment
     )
 
@@ -61,7 +62,7 @@ interface Navigator {
      * @param popExitAnim The exit animation for the view of [fragment] when
      *                    it's eventually popped from the stack.
      */
-    fun replace(
+    public fun replace(
             fragment: Fragment,
             @AnimatorRes @AnimRes enterAnim: Int,
             @AnimatorRes @AnimRes exitAnim: Int,
@@ -74,7 +75,7 @@ interface Navigator {
      *
      * @return true if something was popped.
      */
-    fun pop(): Boolean
+    public fun pop(): Boolean
 
     /**
      * Removes Fragments from the top of the stack until the type of Fragment specified,
@@ -82,36 +83,36 @@ interface Navigator {
      *
      * @return true if something was popped.
      */
-    fun popUntil(fragmentKClass: KClass<out Fragment>): Boolean
+    public fun popUntil(fragmentKClass: KClass<out Fragment>): Boolean
 
     /**
      * Clears the entire Fragment stack, and adds [fragments] to it, in the order they're
      * passed to this function (i.e. the last one will be placed on top of the stack).
      */
-    fun setStack(vararg fragments: Fragment)
+    public fun setStack(vararg fragments: Fragment)
 
     /**
      * Clears the entire Fragment stack, and adds [fragments] to it, in the order they're
      * passed to this function (i.e. the last one will be placed on top of the stack).
      */
-    fun setStack(fragments: Iterable<Fragment>)
+    public fun setStack(fragments: Iterable<Fragment>)
 
     /**
      * Finishes the current Activity.
      */
-    fun closeApplication()
+    public fun closeApplication()
 
     /**
      * Execute all currently pending navigation actions together.
      */
-    fun executePending()
+    public fun executePending()
 
 }
 
 /**
  * Convenience function for [Navigator.popUntil].
  */
-inline fun <reified T : Fragment> Navigator.popUntil(): Boolean {
+public inline fun <reified T : Fragment> Navigator.popUntil(): Boolean {
     return popUntil(T::class)
 }
 
@@ -120,7 +121,7 @@ inline fun <reified T : Fragment> Navigator.popUntil(): Boolean {
  *
  * @throws IllegalStateException if the Fragment is in an Activity that doesn't have a [Navigator]
  */
-val Fragment.navigator: Navigator?
+public val Fragment.navigator: Navigator?
     get() {
         val activity = activity ?: return null
         return (activity as? NavActivity<*, *>)
