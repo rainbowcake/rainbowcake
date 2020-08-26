@@ -9,9 +9,9 @@ import dagger.Module
  */
 @Suppress("unused")
 @Module
-abstract class RainbowCakeModule {
+public abstract class RainbowCakeModule {
 
     @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    public abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
 }

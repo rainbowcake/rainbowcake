@@ -6,7 +6,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 /**
  * List of configurable framework features.
  */
-interface RainbowCakeConfigurator {
+public interface RainbowCakeConfigurator {
 
     /**
      * Whether the application is currently in a Debug build.
@@ -17,7 +17,7 @@ interface RainbowCakeConfigurator {
      *
      * Default value: false.
      */
-    var isDebug: Boolean
+    public var isDebug: Boolean
 
     /**
      * The logging method to use for the library's internals.
@@ -28,7 +28,7 @@ interface RainbowCakeConfigurator {
      *
      * Default value: [Loggers.NONE].
      */
-    var logger: Logger
+    public var logger: Logger
 
     /**
      * Whether [RainbowCakeViewModel.execute] should consume and log any uncaught
@@ -36,7 +36,7 @@ interface RainbowCakeConfigurator {
      *
      * Default value: true.
      */
-    var consumeExecuteExceptions: Boolean
+    public var consumeExecuteExceptions: Boolean
 
 }
 

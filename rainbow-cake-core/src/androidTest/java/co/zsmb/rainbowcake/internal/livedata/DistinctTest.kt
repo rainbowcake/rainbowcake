@@ -10,7 +10,7 @@ import co.zsmb.rainbowcake.util.MockObserver
 import org.junit.Before
 import org.junit.Test
 
-class DistinctTest : LifecycleTest() {
+internal class DistinctTest : LifecycleTest() {
 
     private val mutableLiveData: MutableLiveData<String> = MutableLiveData()
     private val liveData: LiveData<String> = mutableLiveData.distinct()

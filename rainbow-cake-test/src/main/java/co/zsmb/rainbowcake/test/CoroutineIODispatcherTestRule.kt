@@ -15,7 +15,7 @@ import org.junit.runners.model.Statement
  * run on the single test thread.
  */
 @ExperimentalCoroutinesApi
-class CoroutineIODispatcherTestRule : TestRule {
+public class CoroutineIODispatcherTestRule : TestRule {
 
     private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 

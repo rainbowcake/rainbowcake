@@ -30,7 +30,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
  * }
  * ```
  */
-fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
+public fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
         observers: (stateObserver: MockObserver<VS>, eventsObserver: MockObserver<OneShotEvent>) -> Unit
 ) {
     val stateObserver = MockLiveDataObserver<VS>()
@@ -74,7 +74,7 @@ fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
  * }
  * ```
  */
-fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
+public fun <VS : Any> RainbowCakeViewModel<VS>.observeStateAndEvents(
         observers: (stateObserver: MockObserver<VS>,
                     eventsObserver: MockObserver<OneShotEvent>,
                     queuedEventsObserver: MockObserver<QueuedOneShotEvent>) -> Unit

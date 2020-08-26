@@ -5,19 +5,19 @@ import android.util.Log
 /**
  * The interface used by the framework's internals to perform logging.
  */
-interface Logger {
-    fun log(tag: String, message: String)
+public interface Logger {
+    public fun log(tag: String, message: String)
 }
 
 /**
  * Built-in [Logger] options.
  */
-object Loggers {
+public object Loggers {
 
     /**
      * Logs nothing.
      */
-    object NONE : Logger {
+    public object NONE : Logger {
         override fun log(tag: String, message: String) {
             /* empty */
         }
@@ -26,7 +26,7 @@ object Loggers {
     /**
      * Logs to Logcat using [Log.d].
      */
-    object ANDROID : Logger {
+    public object ANDROID : Logger {
         override fun log(tag: String, message: String) {
             Log.d(tag, message)
         }

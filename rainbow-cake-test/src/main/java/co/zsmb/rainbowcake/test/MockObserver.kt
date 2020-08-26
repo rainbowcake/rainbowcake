@@ -12,8 +12,8 @@ import org.junit.Assert
  * from a [RainbowCakeViewModel]. These values can be asserted on:
  * see the extensions for this type.
  */
-interface MockObserver<T : Any> {
-    val observed: MutableList<T?>
+public interface MockObserver<T : Any> {
+    public val observed: MutableList<T?>
 }
 
 /**
@@ -32,7 +32,7 @@ internal class MockLiveDataObserver<T : Any> : Observer<T>, MockObserver<T> {
  * Asserts that the [expected] elements (and only those) have been
  * observed by the observer, in the correct order.
  */
-inline fun <T : Any> MockObserver<T>.assertObserved(vararg expected: T?) {
+public inline fun <T : Any> MockObserver<T>.assertObserved(vararg expected: T?) {
     Assert.assertEquals(listOf(*expected), observed)
 }
 
@@ -40,20 +40,20 @@ inline fun <T : Any> MockObserver<T>.assertObserved(vararg expected: T?) {
  * Asserts that at one point, the [expected] element has been observed
  * by the observer, at least once.
  */
-inline fun <T : Any> MockObserver<T>.assertDidObserve(expected: T?) {
+public inline fun <T : Any> MockObserver<T>.assertDidObserve(expected: T?) {
     Assert.assertTrue(expected in observed)
 }
 
 /**
  * Asserts that [expected] is the element last seen by the observer.
  */
-inline fun <T : Any> MockObserver<T>.assertObservedLast(expected: T?) {
+public inline fun <T : Any> MockObserver<T>.assertObservedLast(expected: T?) {
     Assert.assertEquals(expected, observed.last())
 }
 
 /**
  * Clears all previously observed elements from the observer.
  */
-inline fun <T : Any> MockObserver<T>.reset() {
+public inline fun <T : Any> MockObserver<T>.reset() {
     observed.clear()
 }

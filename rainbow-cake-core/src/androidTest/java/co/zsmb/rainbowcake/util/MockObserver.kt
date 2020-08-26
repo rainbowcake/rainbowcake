@@ -4,7 +4,7 @@ import androidx.lifecycle.Observer
 import org.junit.Assert
 import java.util.ArrayList
 
-class MockObserver<T> : Observer<T> {
+internal class MockObserver<T> : Observer<T> {
     private val observed: MutableList<T?> = ArrayList()
 
     override fun onChanged(t: T?) {

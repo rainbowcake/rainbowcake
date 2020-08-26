@@ -5,7 +5,7 @@ package co.zsmb.rainbowcake.base
  * to be dispatched from a ViewModel are clearly identifiable and that the
  * associated methods don't deal with the very broad [Any] type.
  */
-interface OneShotEvent
+public interface OneShotEvent
 
 /**
  * An additional marker interface for a more specific kind of [OneShotEvent].
@@ -15,4 +15,4 @@ interface OneShotEvent
  * [queuedEvents][RainbowCakeViewModel.queuedEvents].
  *
  */
-interface QueuedOneShotEvent : OneShotEvent
+public interface QueuedOneShotEvent : OneShotEvent

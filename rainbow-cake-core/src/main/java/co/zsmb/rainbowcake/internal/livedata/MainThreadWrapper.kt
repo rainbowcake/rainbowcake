@@ -15,7 +15,7 @@ import java.util.concurrent.Executor
  * need to replace the main thread instead of directly .
  */
 @VisibleForTesting(otherwise = PACKAGE_PRIVATE)
-object MainThreadWrapper {
+public object MainThreadWrapper {
     @Suppress("ObjectPropertyName")
     private var _executor: Executor? = null
 

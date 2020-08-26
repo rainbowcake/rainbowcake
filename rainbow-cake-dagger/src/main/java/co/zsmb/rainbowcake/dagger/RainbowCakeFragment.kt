@@ -13,7 +13,7 @@ import co.zsmb.rainbowcake.base.ViewModelScope
  * @param scope The scope that the ViewModel should be fetched from and exist in.
  *              See [ViewModelScope] for details.
  */
-inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
+public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = ViewModelScope.Default
 ): VM {
     val viewModelFactory = (getContext()?.applicationContext as? RainbowCakeApplication)

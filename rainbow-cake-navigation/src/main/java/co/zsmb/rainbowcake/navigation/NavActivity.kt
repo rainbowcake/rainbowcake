@@ -12,12 +12,12 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 /**
  * Activity base class with built-in Fragment based navigation support.
  */
-abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCakeActivity<VS, VM>() {
+public abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCakeActivity<VS, VM>() {
 
     /**
      * The Navigator that subclasses can access to perform navigation actions.
      */
-    val navigator: ExtendedNavigator
+    public val navigator: ExtendedNavigator
         get() = navigatorImpl
 
     /**
@@ -27,7 +27,7 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
     private lateinit var navigatorImpl: NavigatorImpl
 
     @CallSuper
-    override fun onBackPressed() = navigatorImpl.onBackPressed()
+    override fun onBackPressed(): Unit = navigatorImpl.onBackPressed()
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
      */
     @AnimRes
     @AnimatorRes
-    open val defaultEnterAnim: Int = R.anim.default_transition_in
+    public open val defaultEnterAnim: Int = R.anim.default_transition_in
 
     /**
      * The default enter animation for the outgoing Fragment in navigation
@@ -84,7 +84,7 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
      */
     @AnimRes
     @AnimatorRes
-    open val defaultExitAnim: Int = R.anim.default_transition_out
+    public open val defaultExitAnim: Int = R.anim.default_transition_out
 
     /**
      * The default reenter animation for when the outgoing Fragment in
@@ -104,7 +104,7 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
      */
     @AnimRes
     @AnimatorRes
-    open val defaultPopEnterAnim: Int = R.anim.default_transition_in
+    public open val defaultPopEnterAnim: Int = R.anim.default_transition_in
 
     /**
      * The default exit animation for the incoming Fragment in navigation
@@ -124,6 +124,6 @@ abstract class NavActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : RainbowCak
      */
     @AnimRes
     @AnimatorRes
-    open val defaultPopExitAnim: Int = R.anim.default_transition_out
+    public open val defaultPopExitAnim: Int = R.anim.default_transition_out
 
 }

@@ -6,7 +6,7 @@ package co.zsmb.rainbowcake.base
  * these ViewModel scopes only exist in terms of Fragment ViewModels, as
  * Activity ViewModels are always scoped to their Activity.
  */
-sealed class ViewModelScope {
+public sealed class ViewModelScope {
 
     /**
      * A ViewModel with this scope is scoped to its Fragment.
@@ -17,7 +17,7 @@ sealed class ViewModelScope {
      *
      * This is the default behaviour of ViewModels.
      */
-    object Default : ViewModelScope()
+    public object Default : ViewModelScope()
 
     /**
      * A ViewModel with this scope is scoped to the parent of its Fragment.
@@ -37,11 +37,11 @@ sealed class ViewModelScope {
      *
      * @param key The key for this ViewModel, used as described above.
      */
-    sealed class ParentFragment(val key: String? = null) : ViewModelScope() {
+    public sealed class ParentFragment(public val key: String? = null) : ViewModelScope() {
         internal class KeyedParentFragment(key: String) : ParentFragment(key)
 
-        companion object : ParentFragment() {
-            operator fun invoke(key: String): ViewModelScope {
+        public companion object : ParentFragment() {
+            public operator fun invoke(key: String): ViewModelScope {
                 return KeyedParentFragment(key)
             }
         }
@@ -60,11 +60,11 @@ sealed class ViewModelScope {
      *
      * @param key The key for this ViewModel, used as described above.
      */
-    sealed class Activity(val key: String? = null) : ViewModelScope() {
+    public sealed class Activity(public val key: String? = null) : ViewModelScope() {
         internal class KeyedActivity(key: String) : Activity(key)
 
-        companion object : Activity() {
-            operator fun invoke(key: String): ViewModelScope {
+        public companion object : Activity() {
+            public operator fun invoke(key: String): ViewModelScope {
                 return KeyedActivity(key)
             }
         }

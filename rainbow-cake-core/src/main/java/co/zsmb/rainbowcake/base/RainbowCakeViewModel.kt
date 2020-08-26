@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
  * - one-time event support via [SingleShotLiveData] implementations,
  * - the ability to easily start coroutines in a UI context via [execute].
  */
-abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
+public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewModel() {
 
     //region Logging
     private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeViewModel ($this)" }

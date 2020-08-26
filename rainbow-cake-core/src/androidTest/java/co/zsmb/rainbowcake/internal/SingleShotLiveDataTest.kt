@@ -2,7 +2,6 @@ package co.zsmb.rainbowcake.internal
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import co.zsmb.rainbowcake.internal.livedata.SingleShotLiveData
 import co.zsmb.rainbowcake.util.LifecycleTest
 import co.zsmb.rainbowcake.util.MockObserver
@@ -10,7 +9,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 @Suppress("UsePropertyAccessSyntax")
-class SingleShotLiveDataTest : LifecycleTest() {
+internal class SingleShotLiveDataTest : LifecycleTest() {
 
     private val singleShotLiveData: MutableLiveData<String> = SingleShotLiveData()
 
@@ -19,7 +18,7 @@ class SingleShotLiveDataTest : LifecycleTest() {
     @Test(expected = IllegalStateException::class)
     fun multipleObservers() {
         singleShotLiveData.observe(this, mockObserver)
-        singleShotLiveData.observe(this, Observer {})
+        singleShotLiveData.observe(this) {}
     }
 
     @Test

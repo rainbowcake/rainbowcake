@@ -10,5 +10,5 @@ private object Timber : Logger {
     }
 }
 
-val Loggers.TIMBER: Logger
+public val Loggers.TIMBER: Logger
     get() = Timber
