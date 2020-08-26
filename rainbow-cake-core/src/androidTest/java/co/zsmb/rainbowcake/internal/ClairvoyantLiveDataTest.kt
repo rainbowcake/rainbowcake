@@ -8,7 +8,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 @Suppress("UsePropertyAccessSyntax")
-class ClairvoyantLiveDataTest {
+internal class ClairvoyantLiveDataTest {
 
     @Test
     fun placeValueIsInstant() = runBlocking(Dispatchers.Main) {

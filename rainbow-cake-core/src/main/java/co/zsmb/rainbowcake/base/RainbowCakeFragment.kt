@@ -11,13 +11,12 @@ import androidx.annotation.AnimatorRes
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import co.zsmb.rainbowcake.internal.logging.log
 
 /**
  * Base class for Fragments that connects them to the appropriate ViewModel instances.
  */
-abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
+public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
 
     private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeFragment ($this)" }
 
@@ -31,12 +30,12 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
         super.onCreate(savedInstanceState)
         viewModel = provideViewModel()
 
-        viewModel.events.observe(this, Observer { event ->
+        viewModel.events.observe(this) { event ->
             event?.let { onEvent(it) }
-        })
-        viewModel.queuedEvents.observe(this, Observer { event ->
+        }
+        viewModel.queuedEvents.observe(this) { event ->
             event?.let { onEvent(it) }
-        })
+        }
     }
 
     /**
@@ -53,9 +52,9 @@ abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fr
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.state.observe(viewLifecycleOwner, Observer { viewState ->
+        viewModel.state.observe(viewLifecycleOwner) { viewState ->
             viewState?.let { render(it) }
-        })
+        }
     }
 
     /**

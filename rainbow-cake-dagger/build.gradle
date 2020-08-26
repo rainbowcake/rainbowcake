@@ -4,13 +4,22 @@ apply plugin: 'kotlin-android'
 dependencies {
     implementation project(':rainbow-cake-core')
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
 }
 
 /////////////////  Publishing  /////////////////

@@ -12,7 +12,7 @@ import org.junit.Before
 import org.junit.Test
 
 
-class MutableLiveDataCollectionImplTest : LifecycleTest() {
+internal class MutableLiveDataCollectionImplTest : LifecycleTest() {
 
     private val mutableLiveDataCollection: MutableLiveDataCollectionImpl<String> =
             MutableLiveDataCollectionImpl(::MutableLiveData)

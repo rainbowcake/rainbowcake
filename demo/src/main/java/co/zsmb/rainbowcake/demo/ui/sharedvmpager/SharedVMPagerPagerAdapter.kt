@@ -7,7 +7,7 @@ import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenOneFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenThreeFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenTwoFragment
 
-class SharedVMPagerPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class SharedVMPagerPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     class Page(
             val title: String,

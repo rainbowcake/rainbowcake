@@ -6,7 +6,7 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 import java.util.concurrent.Executor
 
-class LiveDataTestRule : TestRule {
+internal class LiveDataTestRule : TestRule {
 
     override fun apply(base: Statement, description: Description?): Statement {
         return object : Statement() {

@@ -8,7 +8,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
  * Uses the ViewModelFactory from the [RainbowCakeComponent] inside the [RainbowCakeApplication] to
  * fetch the appropriate ViewModel instance for the Activity.
  */
-inline fun <A : RainbowCakeActivity<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> A.getViewModelFromFactory(): VM {
+public inline fun <A : RainbowCakeActivity<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> A.getViewModelFromFactory(): VM {
     val viewModelFactory = (this.getApplicationContext() as? RainbowCakeApplication)
             ?.injector
             ?.viewModelFactory()

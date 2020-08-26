@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
  *
  * @return the Fragment instance
  */
-inline fun <T : Fragment> T.applyArgs(argSetup: Bundle.() -> Unit): T = apply {
+public inline fun <T : Fragment> T.applyArgs(argSetup: Bundle.() -> Unit): T = apply {
     val bundle = Bundle()
     bundle.argSetup()
     arguments = bundle

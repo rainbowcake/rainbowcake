@@ -7,6 +7,15 @@ dependencies {
     api 'com.jakewharton.timber:timber:4.7.1'
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
+}
+
 /////////////////  Publishing  /////////////////
 
 ext {

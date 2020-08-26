@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleRegistry
 import org.junit.Rule
 import org.junit.rules.TestRule
 
-abstract class LifecycleTest : LifecycleOwner {
+internal abstract class LifecycleTest : LifecycleOwner {
 
     @JvmField
     @Rule
