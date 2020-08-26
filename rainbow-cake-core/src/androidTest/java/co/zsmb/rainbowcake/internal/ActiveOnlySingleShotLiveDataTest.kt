@@ -9,7 +9,7 @@ import co.zsmb.rainbowcake.util.MockObserver
 import org.junit.Before
 import org.junit.Test
 
-class ActiveOnlySingleShotLiveDataTest : LifecycleTest() {
+internal class ActiveOnlySingleShotLiveDataTest : LifecycleTest() {
 
     private val activeOnlyLiveData: MutableLiveData<String> = ActiveOnlySingleShotLiveData()
 

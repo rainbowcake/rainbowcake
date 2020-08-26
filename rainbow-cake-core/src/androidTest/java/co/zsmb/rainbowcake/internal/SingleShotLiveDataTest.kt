@@ -9,7 +9,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 @Suppress("UsePropertyAccessSyntax")
-class SingleShotLiveDataTest : LifecycleTest() {
+internal class SingleShotLiveDataTest : LifecycleTest() {
 
     private val singleShotLiveData: MutableLiveData<String> = SingleShotLiveData()
 

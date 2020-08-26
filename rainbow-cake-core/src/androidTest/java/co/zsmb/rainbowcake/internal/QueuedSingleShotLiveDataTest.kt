@@ -10,7 +10,7 @@ import org.junit.Before
 import org.junit.Test
 
 @Suppress("UsePropertyAccessSyntax")
-class QueuedSingleShotLiveDataTest : LifecycleTest() {
+internal class QueuedSingleShotLiveDataTest : LifecycleTest() {
 
     private val queuedLiveData: MutableLiveData<String> = QueuedSingleShotLiveData()
 

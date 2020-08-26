@@ -12,7 +12,7 @@ import java.util.Calendar
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
-class BundleTest {
+internal class BundleTest {
 
     //region Boolean
     @Test
