@@ -6,6 +6,7 @@ import co.zsmb.rainbowcake.dagger.RainbowCakeApplication
 import co.zsmb.rainbowcake.demo.di.AppComponent
 import co.zsmb.rainbowcake.demo.di.DaggerAppComponent
 import co.zsmb.rainbowcake.demo.ui.UIModule
+import co.zsmb.rainbowcake.demo.ui.mapper.mapperExampleModule
 import co.zsmb.rainbowcake.timber.TIMBER
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -31,7 +32,7 @@ open class DemoApplication : RainbowCakeApplication() {
         Timber.plant(Timber.DebugTree())
 
         startKoin {
-            modules(UIModule)
+            modules(UIModule, mapperExampleModule)
         }
     }
 

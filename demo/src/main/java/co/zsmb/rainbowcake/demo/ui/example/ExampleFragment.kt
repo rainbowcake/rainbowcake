@@ -7,6 +7,7 @@ import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
 import co.zsmb.rainbowcake.demo.ui.foo.FooFragment
 import co.zsmb.rainbowcake.demo.ui.koin.KoinFragment
+import co.zsmb.rainbowcake.demo.ui.mapper.koin.KoinMapperFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.SharedVMPagerFragment
 import co.zsmb.rainbowcake.navigation.navigator
 import kotlinx.android.synthetic.main.fragment_example.*
@@ -33,6 +34,10 @@ class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>(
 
         koinExampleDemoButton.setOnClickListener {
             navigator?.add(KoinFragment())
+        }
+
+        koinMapperExampleDemoButton.setOnClickListener {
+            navigator?.add(KoinMapperFragment())
         }
     }
 
