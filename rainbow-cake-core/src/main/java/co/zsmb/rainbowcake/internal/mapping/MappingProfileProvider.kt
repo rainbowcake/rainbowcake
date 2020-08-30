@@ -53,7 +53,7 @@ class MappingProfileProvider private constructor(private val profiles: MutableLi
 
     /**
      * Add profile and register profile for [MappingProfileProvider], so [Mapper] can use it after
-     * he called [registerProfileProvider]
+     * he called [createProfileProvider]
      */
     fun addProfile(profile: MappingProfile) {
         profiles.add(profile)
@@ -69,7 +69,7 @@ class MappingProfileProvider private constructor(private val profiles: MutableLi
          * Creates [MappingProfileProvider].
          * Note should be registered at [Mapper]
          */
-        fun registerProfileProvider(profiles: List<MappingProfile>) = MappingProfileProvider(
+        fun createProfileProvider(profiles: List<MappingProfile>) = MappingProfileProvider(
                 profiles.toMutableList()
         )
     }
