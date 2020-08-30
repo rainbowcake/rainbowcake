@@ -23,7 +23,7 @@ class Mapper(val profileProvider: MappingProfileProvider) {
     }
 
     /**
-     * Arrays are not iterable, so we need to do this
+     * Map from Array<TIn> type to List<TOut>
      */
     inline fun <reified TIn, reified TOut> map(arr: Array<TIn>): List<TOut> = map(arr.asIterable())
 }

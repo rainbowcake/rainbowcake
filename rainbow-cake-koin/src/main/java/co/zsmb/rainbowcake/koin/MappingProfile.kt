@@ -20,7 +20,7 @@ inline fun <reified T : MappingProfile> Module.mappingProfile(profile: T) = sing
 fun Module.registerMapper() {
     single { MappingProfileProvider() }
     single {
-        getAll<MappingProfile>()
+        getAll<MappingProfile>() // Force all declared mappingProfiles to init
         Mapper(get())
     }
 }
