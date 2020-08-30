@@ -23,5 +23,4 @@ class KoinMapperFragment : RainbowCakeFragment<KoinMapperViewState, KoinMapperVi
     override fun render(viewState: KoinMapperViewState) {
         textView.text = viewState.data
     }
-
 }

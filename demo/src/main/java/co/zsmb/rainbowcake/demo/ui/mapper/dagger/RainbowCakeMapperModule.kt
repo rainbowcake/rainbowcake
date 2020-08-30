@@ -15,7 +15,7 @@ class RainbowCakeMapperModule {
     @Provides
     @Singleton
     fun provideMappingProfileProvider(
-            profiles: Set<@JvmSuppressWildcards MappingProfile>
+        profiles: Set<@JvmSuppressWildcards MappingProfile>
     ): MappingProfileProvider {
         return MappingProfileProvider
                 .createProfileProvider(profiles.toList())

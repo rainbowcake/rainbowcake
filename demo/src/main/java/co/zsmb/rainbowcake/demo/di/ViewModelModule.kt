@@ -45,5 +45,4 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DaggerMapperViewModel::class)
     abstract fun bindDaggerMapperViewModel(daggerMapperViewModel: DaggerMapperViewModel): ViewModel
-
 }

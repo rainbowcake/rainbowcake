@@ -11,5 +11,4 @@ class KoinMapperPresenter(private val mapper: Mapper) {
     suspend fun getData(): String = withIOContext {
         mapper.map<Int, String>(calls++)
     }
-
 }

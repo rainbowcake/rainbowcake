@@ -23,5 +23,4 @@ class DaggerMapperFragment : RainbowCakeFragment<DaggerMapperViewState, DaggerMa
     override fun render(viewState: DaggerMapperViewState) {
         textView.text = viewState.data
     }
-
 }
