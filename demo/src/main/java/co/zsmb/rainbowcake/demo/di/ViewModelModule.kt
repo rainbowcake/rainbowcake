@@ -7,6 +7,7 @@ import co.zsmb.rainbowcake.demo.ui.example.ExampleViewModel
 import co.zsmb.rainbowcake.demo.ui.foo.FooViewModel
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.SharedVMPagerViewModel
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.pages.ScreenViewModel
+import co.zsmb.rainbowcake.demo.ui.viewbinding.ViewBindingSampleViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -39,5 +40,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ScreenViewModel::class)
     abstract fun bindScreenViewModel(screenViewModel: ScreenViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ViewBindingSampleViewModel::class)
+    abstract fun bindViewBindingSampleViewModel(viewBindingSampleViewModel: ViewBindingSampleViewModel): ViewModel
 
 }
