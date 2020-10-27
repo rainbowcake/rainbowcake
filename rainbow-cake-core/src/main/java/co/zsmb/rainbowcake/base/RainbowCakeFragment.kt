@@ -104,10 +104,11 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
      */
     @AnimRes
     @AnimatorRes
-    @set:JvmName("overrideAnimation")
-    internal var overrideAnimation: Int? = null
+    @InternalRainbowCakeApi
+    public var overrideAnimation: Int? = null
 
     @CallSuper
+    @OptIn(InternalRainbowCakeApi::class)
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         overrideAnimation?.let { override ->
             val animation = if (override != 0) {
@@ -126,5 +127,4 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
         }
         return null
     }
-
 }
