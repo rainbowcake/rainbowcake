@@ -44,7 +44,6 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
      * to be customized. In these cases, [getViewResource] can return any value
      * as it won't be used (recommendation: 0).
      */
-    @CallSuper
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewResource = getViewResource()
         require(viewResource != 0) {
