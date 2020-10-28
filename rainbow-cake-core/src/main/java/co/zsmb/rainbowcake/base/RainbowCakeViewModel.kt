@@ -1,4 +1,4 @@
-@file:Suppress("RedundantVisibilityModifier")
+@file:[Suppress("RedundantVisibilityModifier") OptIn(InternalRainbowCakeApi::class)]
 
 package co.zsmb.rainbowcake.base
 
@@ -8,6 +8,7 @@ import androidx.annotation.VisibleForTesting.PACKAGE_PRIVATE
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 import co.zsmb.rainbowcake.internal.livedata.ActiveOnlySingleShotLiveData
 import co.zsmb.rainbowcake.internal.livedata.ClairvoyantLiveData
@@ -152,8 +153,12 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      * start on the UI thread) and have a SupervisorJob as their parent. This job
      * is cancelled when the ViewModel is cleared, which also cancels all its
      * children coroutines.
+     *
+     * Public to allow extension of RainbowCakeViewModel with extensions that
+     * make use of this scope.
      */
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    @InternalRainbowCakeApi
+    public val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
 
     @CallSuper
     override fun onCleared() {

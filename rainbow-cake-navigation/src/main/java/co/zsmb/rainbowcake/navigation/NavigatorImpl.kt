@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import kotlin.reflect.KClass
 
 
@@ -60,7 +61,8 @@ internal class NavigatorImpl(
         }
 
         (getTopFragment() as? RainbowCakeFragment<*, *>)?.let { rcFragment ->
-            AccessibilityHack.setOverrideAnimation(rcFragment, exitAnim)
+            @OptIn(InternalRainbowCakeApi::class)
+            rcFragment.overrideAnimation = exitAnim
         }
         supportFragmentManager.popBackStackImmediate()
 

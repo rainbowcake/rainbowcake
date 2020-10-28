@@ -11,6 +11,7 @@ import androidx.annotation.AnimatorRes
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import co.zsmb.rainbowcake.internal.logging.log
 
 /**
@@ -43,9 +44,12 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
      * to be customized. In these cases, [getViewResource] can return any value
      * as it won't be used (recommendation: 0).
      */
-    @CallSuper
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getViewResource(), container, false)
+        val viewResource = getViewResource()
+        require(viewResource != 0) {
+            "Override getViewResource to provide a layout resource ID, or override onCreateView to provide a layout directly"
+        }
+        return inflater.inflate(viewResource, container, false)
     }
 
     @CallSuper
@@ -87,22 +91,23 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
     }
 
     /**
-     * Returns the ID of the Fragment's layout resource. If you need custom inflation logic
-     * for your Fragment, besides choosing a layout resource to inflate, override the
-     * [onViewCreated] method.
+     * Returns the ID of the Fragment's layout resource to be inflated. If you need custom
+     * inflation logic for your Fragment, besides choosing a layout resource to inflate,
+     * override the [onViewCreated] method instead.
      */
     @LayoutRes
-    protected abstract fun getViewResource(): Int
+    protected open fun getViewResource(): Int = 0
 
     /**
      * Extension point for navigation addon library. Do not use this yourself.
      */
     @AnimRes
     @AnimatorRes
-    @set:JvmName("overrideAnimation")
-    internal var overrideAnimation: Int? = null
+    @InternalRainbowCakeApi
+    public var overrideAnimation: Int? = null
 
     @CallSuper
+    @OptIn(InternalRainbowCakeApi::class)
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         overrideAnimation?.let { override ->
             val animation = if (override != 0) {
@@ -121,5 +126,4 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
         }
         return null
     }
-
 }
