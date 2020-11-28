@@ -1,5 +1,7 @@
 package co.zsmb.rainbowcake.koin
 
+import androidx.fragment.app.Fragment
+import co.zsmb.rainbowcake.base.RainbowCakeBottomFragment
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope
@@ -18,13 +20,23 @@ import org.koin.core.qualifier.named
 public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
+    return getFragmentViewModel(scope)
+}
+
+public inline fun <F : RainbowCakeBottomFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
+        scope: ViewModelScope = Default
+): VM {
+    return getFragmentViewModel(scope)
+}
+
+public inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(scope: ViewModelScope): VM {
     return when (scope) {
         Default -> {
             this.getViewModel()
         }
         is ParentFragment -> {
             val parentFragment = getParentFragment()
-                    ?: throw IllegalStateException("No parent Fragment")
+                ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
                 parentFragment.getViewModel(named(key))

@@ -5,6 +5,7 @@ import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.demo.R
 import co.zsmb.rainbowcake.koin.getViewModelFromFactory
+import kotlinx.android.synthetic.main.fragment_example.bottomSheetExampleDemoButton
 import kotlinx.android.synthetic.main.fragment_koin.*
 
 class KoinFragment : RainbowCakeFragment<KoinViewState, KoinViewModel>() {
@@ -17,6 +18,10 @@ class KoinFragment : RainbowCakeFragment<KoinViewState, KoinViewModel>() {
 
         textView.setOnClickListener {
             viewModel.load()
+        }
+
+        bottomSheetExampleDemoButton.setOnClickListener {
+            fragmentManager?.let { KoinBottomSheetFragment().show(it, "FooBottomSheetFragmentKoin") }
         }
     }
 
