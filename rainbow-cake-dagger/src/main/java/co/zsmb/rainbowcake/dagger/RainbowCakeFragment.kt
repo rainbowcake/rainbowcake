@@ -1,10 +1,11 @@
 package co.zsmb.rainbowcake.dagger
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import co.zsmb.rainbowcake.base.RainbowCakeBottomFragment
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope
-
 
 /**
  * Uses the ViewModelFactory from the [RainbowCakeComponent] inside the [RainbowCakeApplication] to
@@ -21,13 +22,28 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
             ?.viewModelFactory()
             ?: throw IllegalStateException("RainbowCakeFragment should not be used without an Application that inherits from RainbowCakeApplication")
 
+    return getFragmentViewModel(scope, viewModelFactory)
+}
+
+public inline fun <F : RainbowCakeBottomFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
+        scope: ViewModelScope = ViewModelScope.Default
+): VM {
+    val viewModelFactory = (getContext()?.applicationContext as? RainbowCakeApplication)
+            ?.injector
+            ?.viewModelFactory()
+            ?: throw IllegalStateException("RainbowCakeBottomFragment should not be used without an Application that inherits from RainbowCakeApplication")
+
+    return getFragmentViewModel(scope, viewModelFactory)
+}
+
+public inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(scope: ViewModelScope, viewModelFactory: ViewModelProvider.Factory): VM {
     return when (scope) {
         ViewModelScope.Default -> {
             ViewModelProvider(this, viewModelFactory).get(VM::class.java)
         }
         is ViewModelScope.ParentFragment -> {
             val parentFragment = getParentFragment()
-                    ?: throw IllegalStateException("No parent Fragment")
+                ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
                 ViewModelProvider(parentFragment, viewModelFactory).get(key, VM::class.java)
