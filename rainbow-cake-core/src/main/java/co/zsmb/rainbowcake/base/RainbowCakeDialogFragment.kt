@@ -10,12 +10,12 @@ import androidx.fragment.app.DialogFragment
 import co.zsmb.rainbowcake.internal.logging.log
 
 /**
- * Base class for BottomSheetDialogFragments that connects them to the appropriate ViewModel instances.
+ * Base class for DialogFragment that connects them to the appropriate ViewModel instances.
  */
 public abstract class RainbowCakeDialogFragment<VS : Any, VM : RainbowCakeViewModel<VS>>
     : DialogFragment() {
 
-    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeBottomSheetFragment ($this)" }
+    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeDialogFragment ($this)" }
 
     /**
      * The ViewModel of this Fragment.
