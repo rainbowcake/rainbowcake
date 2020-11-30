@@ -2,7 +2,7 @@ package co.zsmb.rainbowcake.dagger
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import co.zsmb.rainbowcake.base.RainbowCakeBottomFragment
+import co.zsmb.rainbowcake.base.RainbowCakeBottomSheetFragment
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope
@@ -21,7 +21,7 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
     return getFragmentViewModel(scope, viewModelFactory)
 }
 
-public inline fun <F : RainbowCakeBottomFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
+public inline fun <F : RainbowCakeBottomSheetFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope, viewModelFactory)
