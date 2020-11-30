@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 dependencies {
     // Google libraries
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    api 'com.google.android.material:material:1.2.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
