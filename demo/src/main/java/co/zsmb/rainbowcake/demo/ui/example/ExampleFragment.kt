@@ -42,7 +42,7 @@ class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>(
         }
 
         bottomSheetExampleDemoButton.setOnClickListener {
-            fragmentManager?.let { FooBottomSheetFragment().show(it, "FooBottomSheetFragment") }
+            FooBottomSheetFragment().show(requireFragmentManager(), "FooBottomSheetFragment")
         }
     }
 
