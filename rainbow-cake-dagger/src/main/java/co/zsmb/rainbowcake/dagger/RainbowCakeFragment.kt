@@ -21,7 +21,7 @@ import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
 public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
-    return getFragmentViewModel(scope, viewModelFactory)
+    return getFragmentViewModel(scope)
 }
 
 /**
@@ -34,7 +34,7 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
 public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
-    return getFragmentViewModel(scope, viewModelFactory)
+    return getFragmentViewModel(scope)
 }
 
 /**
@@ -47,21 +47,18 @@ public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : Rainb
 public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
-    return getFragmentViewModel(scope, viewModelFactory)
+    return getFragmentViewModel(scope)
 }
 
 @PublishedApi
-internal inline val Fragment.viewModelFactory: ViewModelProvider.Factory
-    get() = (context?.applicationContext as? RainbowCakeApplication)
+internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(
+        scope: ViewModelScope
+): VM {
+    val viewModelFactory = (context?.applicationContext as? RainbowCakeApplication)
             ?.injector
             ?.viewModelFactory()
             ?: throw IllegalStateException("The Dagger based getViewModelFromFactory function requires an Application that inherits from RainbowCakeApplication")
 
-@PublishedApi
-internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(
-        scope: ViewModelScope,
-        viewModelFactory: ViewModelProvider.Factory
-): VM {
     return when (scope) {
         Default -> {
             ViewModelProvider(this, viewModelFactory).get(VM::class.java)
