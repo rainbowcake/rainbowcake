@@ -7,10 +7,10 @@
     android:minHeight="200dp">
 
     <TextView
-        android:id="@+id/fooBottomSheetFragmentText"
+        android:id="@+id/exampleBottomSheetFragmentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FooBottomSheetFragment\n\n"
+        android:text="ExampleBottomSheetFragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
