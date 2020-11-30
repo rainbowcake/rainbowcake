@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 /**
  * Base class for BottomSheetDialogFragments that connects them to the appropriate ViewModel instances.
  */
-public abstract class RainbowCakeBottomSheetFragment<VS : Any, VM : RainbowCakeViewModel<VS>>
+public abstract class RainbowCakeBottomSheetDialogFragment<VS : Any, VM : RainbowCakeViewModel<VS>>
     : BottomSheetDialogFragment() {
 
     private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeBottomSheetFragment ($this)" }
