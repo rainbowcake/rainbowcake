@@ -24,12 +24,24 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
     return getFragmentViewModel(scope)
 }
 
+/**
+ * Uses the global Koin instance to fetch the appropriate ViewModel instance for the Fragment.
+ *
+ * @param scope The scope that the ViewModel should be fetched from and exist in.
+ *              See [ViewModelScope] for details.
+ */
 public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
 
+/**
+ * Uses the global Koin instance to fetch the appropriate ViewModel instance for the Fragment.
+ *
+ * @param scope The scope that the ViewModel should be fetched from and exist in.
+ *              See [ViewModelScope] for details.
+ */
 public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
