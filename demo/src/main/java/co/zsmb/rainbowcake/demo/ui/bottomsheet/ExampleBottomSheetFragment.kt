@@ -1,24 +1,20 @@
 package co.zsmb.rainbowcake.demo.ui.bottomsheet
 
-import co.zsmb.rainbowcake.base.RainbowCakeBottomSheetFragment
+import co.zsmb.rainbowcake.base.RainbowCakeDialogFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
-import co.zsmb.rainbowcake.demo.ui.foo.FooViewModel
-import co.zsmb.rainbowcake.demo.ui.foo.FooViewState
+import co.zsmb.rainbowcake.demo.ui.example.ExampleViewModel
+import co.zsmb.rainbowcake.demo.ui.example.ExampleViewState
 import kotlinx.android.synthetic.main.fragment_example_bottom_sheet.*
 
-class ExampleBottomSheetFragment : RainbowCakeBottomSheetFragment<FooViewState, FooViewModel>() {
+class ExampleBottomSheetFragment : RainbowCakeDialogFragment<ExampleViewState, ExampleViewModel>() {
 
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_example_bottom_sheet
-    override fun onStart() {
-        super.onStart()
 
-        viewModel.load()
-    }
-
-    override fun render(viewState: FooViewState) {
-        exampleBottomSheetFragmentText.text = viewState.data
+    override fun render(viewState: ExampleViewState) {
+        exampleBottomSheetFragmentText.text
+        viewModel
     }
 
 }
