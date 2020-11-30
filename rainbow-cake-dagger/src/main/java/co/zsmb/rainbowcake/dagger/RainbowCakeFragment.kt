@@ -7,7 +7,9 @@ import co.zsmb.rainbowcake.base.RainbowCakeDialogFragment
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope
+import co.zsmb.rainbowcake.base.ViewModelScope.Activity
 import co.zsmb.rainbowcake.base.ViewModelScope.Default
+import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
 
 /**
  * Uses the ViewModelFactory from the [RainbowCakeComponent] inside the [RainbowCakeApplication] to
@@ -50,7 +52,7 @@ internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFrag
         Default -> {
             ViewModelProvider(this, viewModelFactory).get(VM::class.java)
         }
-        is ViewModelScope.ParentFragment -> {
+        is ParentFragment -> {
             val parentFragment = parentFragment ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
@@ -59,7 +61,7 @@ internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFrag
                 ViewModelProvider(parentFragment, viewModelFactory).get(VM::class.java)
             }
         }
-        is ViewModelScope.Activity -> {
+        is Activity -> {
             val key = scope.key
             if (key != null) {
                 ViewModelProvider(requireActivity(), viewModelFactory).get(key, VM::class.java)
