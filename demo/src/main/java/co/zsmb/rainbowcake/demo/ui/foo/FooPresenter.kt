@@ -6,7 +6,7 @@ import javax.inject.Inject
 class FooPresenter @Inject constructor() {
 
     suspend fun getData(): String = withIOContext {
-        "Data"
+        ""
     }
 
 }
