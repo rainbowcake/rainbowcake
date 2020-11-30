@@ -33,12 +33,12 @@ It ships in several artifacts - feel free to pick and choose from them (for more
 
 ```groovy
 dependencies {
-    implementation "co.zsmb:rainbow-cake-core:1.2.0" // Core library (required)
-    implementation "co.zsmb:rainbow-cake-dagger:1.2.0" // Dagger 2 support
-    implementation "co.zsmb:rainbow-cake-koin:1.2.0" // Koin support
-    implementation "co.zsmb:rainbow-cake-navigation:1.2.0" // Navigation features
-    implementation "co.zsmb:rainbow-cake-timber:1.2.0" // Internal logging through Timber
-    testImplementation "co.zsmb:rainbow-cake-test:1.2.0" // Testing utilities
+    implementation "co.zsmb:rainbow-cake-core:1.3.0" // Core library (required)
+    implementation "co.zsmb:rainbow-cake-dagger:1.3.0" // Dagger 2 support
+    implementation "co.zsmb:rainbow-cake-koin:1.3.0" // Koin support
+    implementation "co.zsmb:rainbow-cake-navigation:1.3.0" // Navigation features
+    implementation "co.zsmb:rainbow-cake-timber:1.3.0" // Internal logging through Timber
+    testImplementation "co.zsmb:rainbow-cake-test:1.3.0" // Testing utilities
 }
 ```
 
