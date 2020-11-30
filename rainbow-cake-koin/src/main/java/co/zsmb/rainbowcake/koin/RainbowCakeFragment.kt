@@ -2,6 +2,7 @@ package co.zsmb.rainbowcake.koin
 
 import androidx.fragment.app.Fragment
 import co.zsmb.rainbowcake.base.RainbowCakeBottomSheetFragment
+import co.zsmb.rainbowcake.base.RainbowCakeDialogFragment
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import co.zsmb.rainbowcake.base.ViewModelScope
@@ -18,6 +19,12 @@ import org.koin.core.qualifier.named
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
+        scope: ViewModelScope = Default
+): VM {
+    return getFragmentViewModel(scope)
+}
+
+public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
         scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
