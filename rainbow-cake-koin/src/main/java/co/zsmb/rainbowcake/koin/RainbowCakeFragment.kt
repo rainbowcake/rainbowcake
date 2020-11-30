@@ -29,14 +29,14 @@ public inline fun <F : RainbowCakeBottomFragment<VS, VM>, VS, reified VM : Rainb
     return getFragmentViewModel(scope)
 }
 
-public inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(scope: ViewModelScope): VM {
+@PublishedApi
+internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(scope: ViewModelScope): VM {
     return when (scope) {
         Default -> {
             this.getViewModel()
         }
         is ParentFragment -> {
-            val parentFragment = getParentFragment()
-                ?: throw IllegalStateException("No parent Fragment")
+            val parentFragment = parentFragment ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
                 parentFragment.getViewModel(named(key))
