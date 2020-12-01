@@ -4,22 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import androidx.annotation.AnimRes
-import androidx.annotation.AnimatorRes
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.Fragment
-import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import co.zsmb.rainbowcake.internal.logging.log
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**
- * Base class for Fragments that connects them to the appropriate ViewModel instances.
+ * Base class for BottomSheetDialogFragments that connects them to the appropriate ViewModel instances.
  */
-public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS>> : Fragment() {
+public abstract class RainbowCakeBottomSheetDialogFragment<VS : Any, VM : RainbowCakeViewModel<VS>>
+    : BottomSheetDialogFragment() {
 
-    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeFragment ($this)" }
+    private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeBottomSheetFragment ($this)" }
 
     /**
      * The ViewModel of this Fragment.
@@ -97,33 +93,4 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
      */
     @LayoutRes
     protected open fun getViewResource(): Int = 0
-
-    /**
-     * Extension point for navigation addon library. Do not use this yourself.
-     */
-    @AnimRes
-    @AnimatorRes
-    @InternalRainbowCakeApi
-    public var overrideAnimation: Int? = null
-
-    @CallSuper
-    @OptIn(InternalRainbowCakeApi::class)
-    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        overrideAnimation?.let { override ->
-            val animation = if (override != 0) {
-                AnimationUtils.loadAnimation(context, override)
-            } else {
-                object : Animation() {
-                    init {
-                        duration = 0
-                    }
-                }
-            }
-
-            overrideAnimation = null
-
-            return animation
-        }
-        return null
-    }
 }

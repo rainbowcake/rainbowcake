@@ -5,6 +5,8 @@ import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.demo.R
+import co.zsmb.rainbowcake.demo.ui.bottomsheet.ExampleBottomSheetDialogFragment
+import co.zsmb.rainbowcake.demo.ui.dialog.ExampleDialogFragment
 import co.zsmb.rainbowcake.demo.ui.foo.FooFragment
 import co.zsmb.rainbowcake.demo.ui.koin.KoinFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.SharedVMPagerFragment
@@ -38,6 +40,14 @@ class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>(
 
         koinExampleDemoButton.setOnClickListener {
             navigator?.add(KoinFragment())
+        }
+
+        bottomSheetExampleDemoButton.setOnClickListener {
+            ExampleBottomSheetDialogFragment().show(requireFragmentManager(), "BottomSheetFragment")
+        }
+
+        dialogExampleDemoButton.setOnClickListener {
+            ExampleDialogFragment().show(requireFragmentManager(), "DialogFragment")
         }
     }
 
