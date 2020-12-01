@@ -1,6 +1,6 @@
 # RainbowCake
 
-[![Build Status](https://app.bitrise.io/app/63be494637ff98da/status.svg?token=sjWBvcVPa3xZGA_I6Cfolw&branch=dev)](https://app.bitrise.io/app/63be494637ff98da)
+![Build Status](https://github.com/rainbowcake/rainbowcake/workflows/Build%20and%20test/badge.svg)
 
 <img src="/docs/icon.png" alt="RainbowCake logo" width="200" height="200" />
 
