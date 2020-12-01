@@ -64,7 +64,7 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
     /**
      * This method should return a ViewModel instance for the current Fragment.
      *
-     * If one of RainbowCake's own DI libraries are being used, this method should
+     * If one of RainbowCake's own DI libraries is being used, this method should
      * return the result of a [getViewModelFromFactory] call.
      */
     protected abstract fun provideViewModel(): VM
