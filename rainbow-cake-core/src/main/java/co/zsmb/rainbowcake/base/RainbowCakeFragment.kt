@@ -105,6 +105,8 @@ public abstract class RainbowCakeFragment<VS : Any, VM : RainbowCakeViewModel<VS
     @AnimatorRes
     @InternalRainbowCakeApi
     public var overrideAnimation: Int? = null
+        @InternalRainbowCakeApi get
+        @InternalRainbowCakeApi set
 
     @CallSuper
     @OptIn(InternalRainbowCakeApi::class)

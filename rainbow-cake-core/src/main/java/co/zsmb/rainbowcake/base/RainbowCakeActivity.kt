@@ -39,7 +39,7 @@ public abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS
      * If one of RainbowCake's own DI libraries is being used, this method should
      * return the result of a [getViewModelFromFactory] call.
      */
-    public abstract fun provideViewModel(): VM
+    protected abstract fun provideViewModel(): VM
 
     /**
      * Renders the view state. Called when the view state changes and the UI should be
@@ -49,12 +49,12 @@ public abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS
      * state of the UI. In other words, the same view state being set must always result
      * in the same state for the displayed UI.
      */
-    public abstract fun render(viewState: VS)
+    protected abstract fun render(viewState: VS)
 
     /**
      * Handles one-time events emitted by the ViewModel.
      */
-    public open fun onEvent(event: OneShotEvent) {
+    protected open fun onEvent(event: OneShotEvent) {
         log(logTag, "Unhandled event: $event")
     }
 

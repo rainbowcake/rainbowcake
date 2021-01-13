@@ -1,6 +1,7 @@
 package co.zsmb.rainbowcake.internal.livedata
 
 import androidx.lifecycle.MutableLiveData
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 
 /**
  * A [MutableLiveData] implementation that may only be used from the main thread,
@@ -12,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 internal class ActiveOnlySingleShotLiveData<T : Any> : SingleShotLiveData<T>() {
 
     override fun postValue(value: T?) {
+        @OptIn(InternalRainbowCakeApi::class)
         MainThreadWrapper.executor.execute { setValue(value) }
     }
 
