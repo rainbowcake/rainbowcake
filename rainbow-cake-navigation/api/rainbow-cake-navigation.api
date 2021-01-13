@@ -1,0 +1,75 @@
+public abstract interface class co/zsmb/rainbowcake/navigation/BackPressAware {
+	public abstract fun onBackPressed ()Z
+}
+
+public final class co/zsmb/rainbowcake/navigation/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public abstract interface class co/zsmb/rainbowcake/navigation/ExtendedNavigator : co/zsmb/rainbowcake/navigation/Navigator {
+	public abstract fun getTopFragment ()Landroidx/fragment/app/Fragment;
+	public abstract fun onBackPressed ()V
+}
+
+public abstract class co/zsmb/rainbowcake/navigation/NavActivity : co/zsmb/rainbowcake/base/RainbowCakeActivity {
+	public fun <init> ()V
+	public fun getDefaultEnterAnim ()I
+	public fun getDefaultExitAnim ()I
+	public fun getDefaultPopEnterAnim ()I
+	public fun getDefaultPopExitAnim ()I
+	public final fun getNavigator ()Lco/zsmb/rainbowcake/navigation/ExtendedNavigator;
+	public fun onBackPressed ()V
+	protected fun onCreate (Landroid/os/Bundle;)V
+}
+
+public abstract interface class co/zsmb/rainbowcake/navigation/Navigator {
+	public abstract fun add (Landroidx/fragment/app/Fragment;)V
+	public abstract fun add (Landroidx/fragment/app/Fragment;IIII)V
+	public abstract fun closeApplication ()V
+	public abstract fun executePending ()V
+	public abstract fun pop ()Z
+	public abstract fun popUntil (Lkotlin/reflect/KClass;)Z
+	public abstract fun replace (Landroidx/fragment/app/Fragment;)V
+	public abstract fun replace (Landroidx/fragment/app/Fragment;IIII)V
+	public abstract fun setStack (Ljava/lang/Iterable;)V
+	public abstract fun setStack ([Landroidx/fragment/app/Fragment;)V
+}
+
+public final class co/zsmb/rainbowcake/navigation/NavigatorKt {
+	public static final fun getNavigator (Landroidx/fragment/app/Fragment;)Lco/zsmb/rainbowcake/navigation/Navigator;
+}
+
+public abstract class co/zsmb/rainbowcake/navigation/SimpleNavActivity : co/zsmb/rainbowcake/navigation/NavActivity {
+	public fun <init> ()V
+	public synthetic fun provideViewModel ()Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;
+	protected final fun provideViewModel ()Lco/zsmb/rainbowcake/navigation/SimpleNavViewModel;
+	protected final fun render (Lco/zsmb/rainbowcake/navigation/SimpleNavViewState;)V
+	public synthetic fun render (Ljava/lang/Object;)V
+}
+
+public final class co/zsmb/rainbowcake/navigation/SimpleNavViewModel : co/zsmb/rainbowcake/base/RainbowCakeViewModel {
+	public static final field INSTANCE Lco/zsmb/rainbowcake/navigation/SimpleNavViewModel;
+}
+
+public final class co/zsmb/rainbowcake/navigation/SimpleNavViewState {
+	public static final field INSTANCE Lco/zsmb/rainbowcake/navigation/SimpleNavViewState;
+}
+
+public final class co/zsmb/rainbowcake/navigation/extensions/BundleKt {
+	public static final fun getBooleanOrNull (Landroid/os/Bundle;Ljava/lang/String;)Ljava/lang/Boolean;
+	public static final fun getIntOrNull (Landroid/os/Bundle;Ljava/lang/String;)Ljava/lang/Integer;
+	public static final fun getLongOrNull (Landroid/os/Bundle;Ljava/lang/String;)Ljava/lang/Long;
+	public static final fun getStringOrNull (Landroid/os/Bundle;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun requireBoolean (Landroid/os/Bundle;Ljava/lang/String;)Z
+	public static final fun requireInt (Landroid/os/Bundle;Ljava/lang/String;)I
+	public static final fun requireLong (Landroid/os/Bundle;Ljava/lang/String;)J
+	public static final fun requireString (Landroid/os/Bundle;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class co/zsmb/rainbowcake/navigation/extensions/FragmentKt {
+	public static final fun applyArgs (Landroidx/fragment/app/Fragment;Lkotlin/jvm/functions/Function1;)Landroidx/fragment/app/Fragment;
+}
+
