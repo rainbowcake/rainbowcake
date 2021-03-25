@@ -12,6 +12,6 @@ import org.junit.Rule
 public abstract class PresenterTest {
 
     @get:Rule
-    public var ioDispatcherTestRule: CoroutineIODispatcherTestRule = CoroutineIODispatcherTestRule()
+    public val ioDispatcherTestRule: CoroutineIODispatcherTestRule = CoroutineIODispatcherTestRule()
 
 }

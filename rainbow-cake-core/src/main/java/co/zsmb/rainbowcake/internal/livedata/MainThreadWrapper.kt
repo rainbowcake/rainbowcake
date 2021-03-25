@@ -4,8 +4,7 @@ package co.zsmb.rainbowcake.internal.livedata
 
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PACKAGE_PRIVATE
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import java.util.concurrent.Executor
 
 /**
@@ -14,7 +13,7 @@ import java.util.concurrent.Executor
  * Consider using the LiveDataTestRule class of rainbow-cake-test if you
  * need to replace the main thread instead of directly .
  */
-@VisibleForTesting(otherwise = PACKAGE_PRIVATE)
+@InternalRainbowCakeApi
 public object MainThreadWrapper {
     @Suppress("ObjectPropertyName")
     private var _executor: Executor? = null

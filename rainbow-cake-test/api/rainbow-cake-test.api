@@ -1,0 +1,51 @@
+public final class co/zsmb/rainbowcake/test/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class co/zsmb/rainbowcake/test/CoroutineIODispatcherTestRule : org/junit/rules/TestRule {
+	public fun <init> ()V
+	public fun apply (Lorg/junit/runners/model/Statement;Lorg/junit/runner/Description;)Lorg/junit/runners/model/Statement;
+}
+
+public final class co/zsmb/rainbowcake/test/CoroutineMainDispatcherTestRule : org/junit/rules/TestRule {
+	public fun <init> ()V
+	public fun apply (Lorg/junit/runners/model/Statement;Lorg/junit/runner/Description;)Lorg/junit/runners/model/Statement;
+}
+
+public final class co/zsmb/rainbowcake/test/LiveDataTestRule : org/junit/rules/TestRule {
+	public fun <init> ()V
+	public fun apply (Lorg/junit/runners/model/Statement;Lorg/junit/runner/Description;)Lorg/junit/runners/model/Statement;
+}
+
+public abstract interface class co/zsmb/rainbowcake/test/MockObserver {
+	public abstract fun getObserved ()Ljava/util/List;
+}
+
+public final class co/zsmb/rainbowcake/test/MockObserverKt {
+	public static final fun assertDidObserve (Lco/zsmb/rainbowcake/test/MockObserver;Ljava/lang/Object;)V
+	public static final fun assertObserved (Lco/zsmb/rainbowcake/test/MockObserver;[Ljava/lang/Object;)V
+	public static final fun assertObservedLast (Lco/zsmb/rainbowcake/test/MockObserver;Ljava/lang/Object;)V
+	public static final fun reset (Lco/zsmb/rainbowcake/test/MockObserver;)V
+}
+
+public final class co/zsmb/rainbowcake/test/UtilKt {
+	public static final fun observeStateAndEvents (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;Lkotlin/jvm/functions/Function2;)V
+	public static final fun observeStateAndEvents (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;Lkotlin/jvm/functions/Function3;)V
+}
+
+public abstract class co/zsmb/rainbowcake/test/base/PresenterTest {
+	public fun <init> ()V
+	public final fun getIoDispatcherTestRule ()Lco/zsmb/rainbowcake/test/CoroutineIODispatcherTestRule;
+}
+
+public abstract class co/zsmb/rainbowcake/test/base/ViewModelTest {
+	public fun <init> ()V
+	public final fun getInstantTaskExecutorRule ()Landroidx/arch/core/executor/testing/InstantTaskExecutorRule;
+	public final fun getIoDispatcherTestRule ()Lco/zsmb/rainbowcake/test/CoroutineIODispatcherTestRule;
+	public final fun getLiveDataTestRule ()Lco/zsmb/rainbowcake/test/LiveDataTestRule;
+	public final fun getMainDispatcherTestRule ()Lco/zsmb/rainbowcake/test/CoroutineMainDispatcherTestRule;
+}
+

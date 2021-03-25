@@ -1,0 +1,32 @@
+public final class co/zsmb/rainbowcake/dagger/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public abstract class co/zsmb/rainbowcake/dagger/RainbowCakeApplication : android/app/Application {
+	public fun <init> ()V
+	public abstract fun getInjector ()Lco/zsmb/rainbowcake/dagger/RainbowCakeComponent;
+	public fun onCreate ()V
+	protected abstract fun setupInjector ()V
+}
+
+public abstract interface class co/zsmb/rainbowcake/dagger/RainbowCakeComponent {
+	public abstract fun viewModelFactory ()Landroidx/lifecycle/ViewModelProvider$Factory;
+}
+
+public abstract class co/zsmb/rainbowcake/dagger/RainbowCakeModule {
+	public fun <init> ()V
+	public abstract fun bindViewModelFactory (Lco/zsmb/rainbowcake/dagger/ViewModelFactory;)Landroidx/lifecycle/ViewModelProvider$Factory;
+}
+
+public final class co/zsmb/rainbowcake/dagger/ViewModelFactory : androidx/lifecycle/ViewModelProvider$Factory {
+	public fun <init> (Ljava/util/Map;)V
+	public fun create (Ljava/lang/Class;)Landroidx/lifecycle/ViewModel;
+}
+
+public abstract interface annotation class co/zsmb/rainbowcake/dagger/ViewModelKey : java/lang/annotation/Annotation {
+	public abstract fun value ()Ljava/lang/Class;
+}
+
