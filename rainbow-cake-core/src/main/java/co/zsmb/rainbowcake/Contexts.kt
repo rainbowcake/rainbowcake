@@ -1,6 +1,7 @@
 package co.zsmb.rainbowcake
 
 import androidx.annotation.VisibleForTesting
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,8 +13,8 @@ import kotlin.coroutines.CoroutineContext
  *
  * For more details, see the [withContext] function that this function delegates to.
  */
-@Suppress("DEPRECATION")
 public suspend inline fun <T> withIOContext(noinline block: suspend CoroutineScope.() -> T): T {
+    @OptIn(InternalRainbowCakeApi::class)
     return withContext(ioContext, block = block)
 }
 
@@ -23,5 +24,5 @@ public suspend inline fun <T> withIOContext(noinline block: suspend CoroutineSco
  * Can be modified for testing purposes.
  */
 @VisibleForTesting
-@Deprecated(message = "ioContext should only be used in tests", level = DeprecationLevel.WARNING)
+@InternalRainbowCakeApi
 public var ioContext: CoroutineContext = Dispatchers.IO
