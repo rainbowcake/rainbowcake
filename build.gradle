@@ -5,7 +5,7 @@ buildscript {
     ext.coroutines_version = '1.4.2'
 
     ext.dagger_version = '2.29.1'
-    ext.koin_version = '2.1.6'
+    ext.koin_version = '3.0.2'
 
     ext.target_sdk = 30
     ext.min_sdk = 19
