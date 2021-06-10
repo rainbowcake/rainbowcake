@@ -31,4 +31,4 @@ ext {
     PUBLISH_VERSION = rainbowcake_version
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
+apply from: "${rootDir}/scripts/publish-module.gradle"
