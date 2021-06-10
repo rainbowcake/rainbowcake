@@ -194,7 +194,7 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      *                 launches via [execute] until it completes.
      */
     @Suppress("RedundantUnitReturnType")
-    protected fun execute(blocking: Boolean = true, task: suspend () -> Unit): Unit {
+    protected fun execute(blocking: Boolean = true, task: suspend CoroutineScope.() -> Unit): Unit {
         executeImpl(blocking, task)
     }
 
@@ -203,7 +203,7 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      * (subjectively) cleaner syntax.
      */
     @Suppress("RedundantUnitReturnType")
-    protected fun executeNonBlocking(task: suspend () -> Unit): Unit {
+    protected fun executeNonBlocking(task: suspend CoroutineScope.() -> Unit): Unit {
         executeImpl(blocking = false, task = task)
     }
 
@@ -211,7 +211,7 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      * A variation of [execute] that returns the Job for the coroutine it
      * started, mainly for manual coroutine cancellation purposes.
      */
-    protected fun executeCancellable(blocking: Boolean = true, task: suspend () -> Unit): Job {
+    protected fun executeCancellable(blocking: Boolean = true, task: suspend CoroutineScope.() -> Unit): Job {
         return executeImpl(blocking, task)
     }
 
@@ -219,7 +219,7 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      * Actual private implementation of executing a given task. For details,
      * see [execute], which is the usual entry point to this method.
      */
-    private fun executeImpl(blocking: Boolean = true, task: suspend () -> Unit): Job {
+    private fun executeImpl(blocking: Boolean = true, task: suspend CoroutineScope.() -> Unit): Job {
         return coroutineScope.launch {
             if (blocking) {
                 if (busy) {
