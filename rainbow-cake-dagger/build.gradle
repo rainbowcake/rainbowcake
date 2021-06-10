@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 dependencies {
     implementation project(':rainbow-cake-core')
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -30,4 +30,4 @@ ext {
     PUBLISH_VERSION = rainbowcake_version
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
+apply from: "${rootDir}/scripts/publish-module.gradle"

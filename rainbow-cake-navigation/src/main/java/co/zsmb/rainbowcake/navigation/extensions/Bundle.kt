@@ -12,12 +12,28 @@ import java.io.Serializable
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.requireBoolean(key)",
+                "co.zsmb.requirektx.requireBoolean",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.requireBoolean(key: String): Boolean = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.getBooleanOrNull(key)",
+                "co.zsmb.requirektx.getBooleanOrNull",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.getBooleanOrNull(key: String): Boolean? = getOrNullImpl(key)
 
 /**
@@ -26,12 +42,28 @@ public inline fun Bundle.getBooleanOrNull(key: String): Boolean? = getOrNullImpl
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.requireInt(key)",
+                "co.zsmb.requirektx.requireInt",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.requireInt(key: String): Int = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.getIntOrNull(key)",
+                "co.zsmb.requirektx.getIntOrNull",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.getIntOrNull(key: String): Int? = getOrNullImpl(key)
 
 /**
@@ -40,12 +72,28 @@ public inline fun Bundle.getIntOrNull(key: String): Int? = getOrNullImpl(key)
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.requireLong(key)",
+                "co.zsmb.requirektx.requireLong",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.requireLong(key: String): Long = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.getLongOrNull(key)",
+                "co.zsmb.requirektx.getLongOrNull",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.getLongOrNull(key: String): Long? = getOrNullImpl(key)
 
 /**
@@ -54,12 +102,28 @@ public inline fun Bundle.getLongOrNull(key: String): Long? = getOrNullImpl(key)
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.requireString(key)",
+                "co.zsmb.requirektx.requireString",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.requireString(key: String): String = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.getStringOrNull(key)",
+                "co.zsmb.requirektx.getStringOrNull",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun Bundle.getStringOrNull(key: String): String? = getOrNullImpl(key)
 
 /**
@@ -68,12 +132,28 @@ public inline fun Bundle.getStringOrNull(key: String): String? = getOrNullImpl(k
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.requireParcelable(key)",
+                "co.zsmb.requirektx.requireParcelable",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun <reified T : Parcelable> Bundle.requireParcelable(key: String): T = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.getParcelableOrNull(key)",
+                "co.zsmb.requirektx.getParcelableOrNull",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun <reified T : Parcelable> Bundle.getParcelableOrNull(key: String): T? = getOrNullImpl(key)
 
 /**
@@ -82,12 +162,28 @@ public inline fun <reified T : Parcelable> Bundle.getParcelableOrNull(key: Strin
  * @throws IllegalArgumentException if the key does not exist.
  * @throws IllegalStateException if the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.requireSerializable(key)",
+                "co.zsmb.requirektx.requireSerializable",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun <reified T : Serializable> Bundle.requireSerializable(key: String): T = requireImpl(key)
 
 /**
  * Returns the value associated with the given key, or null if the key doesn't exist,
  * or the stored value is of the wrong type.
  */
+@Deprecated(
+        message = "Use extension from requireKTX instead",
+        replaceWith = ReplaceWith(
+                "this.getSerializableOrNull(key)",
+                "co.zsmb.requirektx.getSerializableOrNull",
+        ),
+        level = DeprecationLevel.WARNING,
+)
 public inline fun <reified T : Serializable> Bundle.getSerializableOrNull(key: String): T? = getOrNullImpl(key)
 
 

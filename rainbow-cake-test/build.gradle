@@ -14,12 +14,12 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 
-    implementation 'androidx.lifecycle:lifecycle-livedata-core-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation 'androidx.arch.core:core-testing:2.1.0'
 
-    implementation 'junit:junit:4.13'
+    implementation 'junit:junit:4.13.2'
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -27,6 +27,7 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         freeCompilerArgs += [
                 '-progressive',
                 '-Xexplicit-api=strict',
+                '-Xopt-in=kotlin.RequiresOptIn',
         ]
     }
 }
@@ -39,4 +40,4 @@ ext {
     PUBLISH_VERSION = rainbowcake_version
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
+apply from: "${rootDir}/scripts/publish-module.gradle"

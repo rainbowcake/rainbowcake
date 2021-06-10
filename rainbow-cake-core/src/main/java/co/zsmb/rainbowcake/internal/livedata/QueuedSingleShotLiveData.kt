@@ -2,6 +2,7 @@ package co.zsmb.rainbowcake.internal.livedata
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import java.util.LinkedList
 import java.util.Queue
 
@@ -18,6 +19,7 @@ internal class QueuedSingleShotLiveData<T : Any> : SingleShotLiveData<T>() {
     private val queue: Queue<T> = LinkedList()
 
     override fun postValue(value: T?) {
+        @OptIn(InternalRainbowCakeApi::class)
         MainThreadWrapper.executor.execute { setValue(value) }
     }
 

@@ -9,7 +9,7 @@ import co.zsmb.rainbowcake.base.ViewModelScope
 import co.zsmb.rainbowcake.base.ViewModelScope.Activity
 import co.zsmb.rainbowcake.base.ViewModelScope.Default
 import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
-import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.qualifier.named
 
 /**

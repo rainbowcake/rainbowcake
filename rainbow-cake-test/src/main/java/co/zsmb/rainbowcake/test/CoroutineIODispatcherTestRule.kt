@@ -1,5 +1,6 @@
 package co.zsmb.rainbowcake.test
 
+import co.zsmb.rainbowcake.internal.InternalRainbowCakeApi
 import co.zsmb.rainbowcake.ioContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,6 +20,7 @@ public class CoroutineIODispatcherTestRule : TestRule {
 
     private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
+    @OptIn(InternalRainbowCakeApi::class)
     override fun apply(base: Statement, description: Description?): Statement {
         return object : Statement() {
             override fun evaluate() {
