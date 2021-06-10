@@ -23,7 +23,7 @@ jobs:
       - name: Release build and source jar generation
         run: ./gradlew :rainbow-cake-core:assembleRelease :rainbow-cake-test:assembleRelease :rainbow-cake-dagger:assembleRelease :rainbow-cake-koin:assembleRelease :rainbow-cake-navigation:assembleRelease :rainbow-cake-timber:assembleRelease :rainbow-cake-core:androidSourcesJar :rainbow-cake-test:androidSourcesJar :rainbow-cake-dagger:androidSourcesJar :rainbow-cake-koin:androidSourcesJar :rainbow-cake-navigation:androidSourcesJar :rainbow-cake-timber:androidSourcesJar
       - name: Publish to MavenCentral
-        run: ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseRepository
+        run: ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
