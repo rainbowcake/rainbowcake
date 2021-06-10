@@ -24,7 +24,7 @@ jobs:
       - name: Release build and source jar generation
         run: ./gradlew assembleRelease androidSourcesJar -x :demo:assembleRelease -x :hilt-demo:assembleRelease
       - name: Publish to MavenCentral
-        run: ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseRepository
+        run: ./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
