@@ -1,7 +1,8 @@
 include ':rainbow-cake-core',
-        ':rainbow-cake-test',
         ':rainbow-cake-dagger',
+        ':rainbow-cake-hilt',
         ':rainbow-cake-koin',
         ':rainbow-cake-navigation',
+        ':rainbow-cake-test',
         ':rainbow-cake-timber',
         ':demo'

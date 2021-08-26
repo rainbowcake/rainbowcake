@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+    implementation project(':rainbow-cake-core')
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
+}
+
+/////////////////  Publishing  /////////////////
+
+ext {
+    PUBLISH_GROUP_ID = 'co.zsmb'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-hilt'
+    PUBLISH_VERSION = rainbowcake_version
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
