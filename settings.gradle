@@ -5,4 +5,5 @@ include ':rainbow-cake-core',
         ':rainbow-cake-navigation',
         ':rainbow-cake-test',
         ':rainbow-cake-timber',
-        ':demo'
+        ':demo',
+        ':hilt-demo'
