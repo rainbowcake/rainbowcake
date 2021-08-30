@@ -6,7 +6,6 @@ buildscript {
 
     ext.dagger_version = '2.38.1'
     ext.koin_version = '3.1.2'
-    ext.hilt_version = '2.38.1'
 
     ext.target_sdk = 30
     ext.min_sdk = 19
@@ -22,7 +21,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'org.jetbrains.kotlinx:binary-compatibility-validator:0.3.0'
 
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$dagger_version"
 
         classpath "io.github.gradle-nexus:publish-plugin:1.1.0"
     }

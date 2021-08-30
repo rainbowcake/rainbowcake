@@ -14,11 +14,11 @@ import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
 /**
  * Uses the HiltViewModelFactory provided by Hilt to
  * fetch the appropriate ViewModel instance for the Fragment.
-
+ *
  * @param scope The scope that the ViewModel should be fetched from and exist in.
  *              See [ViewModelScope] for details.
  */
-public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModel(
+public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
     scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
@@ -27,11 +27,11 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
 /**
  * Uses the HiltViewModelFactory provided by Hilt to
  * fetch the appropriate ViewModel instance for the Fragment.
-
+ *
  * @param scope The scope that the ViewModel should be fetched from and exist in.
  *              See [ViewModelScope] for details.
  */
-public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModel(
+public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
     scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
@@ -40,11 +40,11 @@ public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : Rainb
 /**
  * Uses the HiltViewModelFactory provided by Hilt to
  * fetch the appropriate ViewModel instance for the Fragment.
-
+ *
  * @param scope The scope that the ViewModel should be fetched from and exist in.
  *              See [ViewModelScope] for details.
  */
-public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModel(
+public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
     scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
@@ -57,12 +57,11 @@ internal inline fun <reified VM : RainbowCakeViewModel<VS>, VS> Fragment.getFrag
             ViewModelProvider(this).get(VM::class.java)
         }
         is ParentFragment -> {
-            val parentFragment = parentFragment ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
-                ViewModelProvider(parentFragment).get(key, VM::class.java)
+                ViewModelProvider(requireParentFragment()).get(key, VM::class.java)
             } else {
-                ViewModelProvider(parentFragment).get(VM::class.java)
+                ViewModelProvider(requireParentFragment()).get(VM::class.java)
             }
         }
         is Activity -> {
