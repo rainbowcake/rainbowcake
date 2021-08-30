@@ -7,6 +7,6 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 /**
  * Fetch the appropriate ViewModel instance for the Activity.
  */
-public inline fun <A : RainbowCakeActivity<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> A.getViewModel(): VM {
+public inline fun <A : RainbowCakeActivity<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> A.getViewModelFromFactory(): VM {
     return ViewModelProvider(this).get(VM::class.java)
 }
