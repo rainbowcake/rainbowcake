@@ -31,7 +31,7 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
  * @param scope The scope that the ViewModel should be fetched from and exist in.
  *              See [ViewModelScope] for details.
  */
-public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
+public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModel(
     scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
