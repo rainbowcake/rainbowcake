@@ -73,11 +73,11 @@ public abstract class co/zsmb/rainbowcake/base/RainbowCakeFragment : androidx/fr
 
 public abstract class co/zsmb/rainbowcake/base/RainbowCakeViewModel : androidx/lifecycle/ViewModel {
 	public fun <init> (Ljava/lang/Object;)V
-	protected final fun execute (ZLkotlin/jvm/functions/Function1;)V
-	public static synthetic fun execute$default (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	protected final fun executeCancellable (ZLkotlin/jvm/functions/Function1;)Lkotlinx/coroutines/Job;
-	public static synthetic fun executeCancellable$default (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;ZLkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lkotlinx/coroutines/Job;
-	protected final fun executeNonBlocking (Lkotlin/jvm/functions/Function1;)V
+	protected final fun execute (ZLkotlin/jvm/functions/Function2;)V
+	public static synthetic fun execute$default (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;ZLkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
+	protected final fun executeCancellable (ZLkotlin/jvm/functions/Function2;)Lkotlinx/coroutines/Job;
+	public static synthetic fun executeCancellable$default (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;ZLkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lkotlinx/coroutines/Job;
+	protected final fun executeNonBlocking (Lkotlin/jvm/functions/Function2;)V
 	public final fun getEvents ()Lco/zsmb/rainbowcake/internal/livedata/LiveDataCollection;
 	public final fun getQueuedEvents ()Lco/zsmb/rainbowcake/internal/livedata/LiveDataCollection;
 	public final fun getState ()Landroidx/lifecycle/LiveData;
@@ -93,6 +93,7 @@ public abstract class co/zsmb/rainbowcake/base/ViewModelScope {
 
 public abstract class co/zsmb/rainbowcake/base/ViewModelScope$Activity : co/zsmb/rainbowcake/base/ViewModelScope {
 	public static final field Companion Lco/zsmb/rainbowcake/base/ViewModelScope$Activity$Companion;
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getKey ()Ljava/lang/String;
 }
@@ -107,6 +108,7 @@ public final class co/zsmb/rainbowcake/base/ViewModelScope$Default : co/zsmb/rai
 
 public abstract class co/zsmb/rainbowcake/base/ViewModelScope$ParentFragment : co/zsmb/rainbowcake/base/ViewModelScope {
 	public static final field Companion Lco/zsmb/rainbowcake/base/ViewModelScope$ParentFragment$Companion;
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getKey ()Ljava/lang/String;
 }
