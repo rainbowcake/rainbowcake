@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation project(':rainbow-cake-core')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"

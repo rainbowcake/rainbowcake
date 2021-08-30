@@ -19,7 +19,7 @@ import org.koin.core.qualifier.named
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
+    scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
@@ -31,7 +31,7 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
+    scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
@@ -43,7 +43,7 @@ public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : Rainb
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
+    scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
@@ -55,12 +55,11 @@ internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFrag
             this.getViewModel()
         }
         is ParentFragment -> {
-            val parentFragment = parentFragment ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
-                parentFragment.getViewModel(named(key))
+                requireParentFragment().getViewModel(named(key))
             } else {
-                parentFragment.getViewModel()
+                requireParentFragment().getViewModel()
             }
         }
         is Activity -> {

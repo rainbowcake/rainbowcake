@@ -1,4 +1,4 @@
-package co.zsmb.rainbowcake.dagger
+package co.zsmb.rainbowcake.hilt
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +12,7 @@ import co.zsmb.rainbowcake.base.ViewModelScope.Default
 import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
 
 /**
- * Uses the ViewModelFactory from the [RainbowCakeComponent] inside the [RainbowCakeApplication] to
+ * Uses the HiltViewModelFactory provided by Hilt to
  * fetch the appropriate ViewModel instance for the Fragment.
  *
  * @param scope The scope that the ViewModel should be fetched from and exist in.
@@ -25,7 +25,7 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
 }
 
 /**
- * Uses the ViewModelFactory from the [RainbowCakeComponent] inside the [RainbowCakeApplication] to
+ * Uses the HiltViewModelFactory provided by Hilt to
  * fetch the appropriate ViewModel instance for the Fragment.
  *
  * @param scope The scope that the ViewModel should be fetched from and exist in.
@@ -38,7 +38,7 @@ public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : Rainb
 }
 
 /**
- * Uses the ViewModelFactory from the [RainbowCakeComponent] inside the [RainbowCakeApplication] to
+ * Uses the HiltViewModelFactory provided by Hilt to
  * fetch the appropriate ViewModel instance for the Fragment.
  *
  * @param scope The scope that the ViewModel should be fetched from and exist in.
@@ -51,32 +51,25 @@ public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified
 }
 
 @PublishedApi
-internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(
-    scope: ViewModelScope
-): VM {
-    val viewModelFactory = (context?.applicationContext as? RainbowCakeApplication)
-        ?.injector
-        ?.viewModelFactory()
-        ?: throw IllegalStateException("The Dagger based getViewModelFromFactory function requires an Application that inherits from RainbowCakeApplication")
-
+internal inline fun <reified VM : RainbowCakeViewModel<VS>, VS> Fragment.getFragmentViewModel(scope: ViewModelScope): VM {
     return when (scope) {
-        Default -> {
-            ViewModelProvider(this, viewModelFactory).get(VM::class.java)
+        is Default -> {
+            ViewModelProvider(this).get(VM::class.java)
         }
         is ParentFragment -> {
             val key = scope.key
             if (key != null) {
-                ViewModelProvider(requireParentFragment(), viewModelFactory).get(key, VM::class.java)
+                ViewModelProvider(requireParentFragment()).get(key, VM::class.java)
             } else {
-                ViewModelProvider(requireParentFragment(), viewModelFactory).get(VM::class.java)
+                ViewModelProvider(requireParentFragment()).get(VM::class.java)
             }
         }
         is Activity -> {
             val key = scope.key
             if (key != null) {
-                ViewModelProvider(requireActivity(), viewModelFactory).get(key, VM::class.java)
+                ViewModelProvider(requireActivity()).get(key, VM::class.java)
             } else {
-                ViewModelProvider(requireActivity(), viewModelFactory).get(VM::class.java)
+                ViewModelProvider(requireActivity()).get(VM::class.java)
             }
         }
     }
