@@ -38,7 +38,7 @@ subprojects { project ->
     group = 'co.zsmb'
     version = rainbowcake_version
     afterEvaluate { p ->
-        if (p.hasProperty("android")) {
+        plugins.withId('com.android.library') {
             setAndroidProps(p)
         }
     }

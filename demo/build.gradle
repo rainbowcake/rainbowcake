@@ -7,7 +7,7 @@ android {
     compileSdkVersion compile_sdk
     defaultConfig {
         applicationId "co.zsmb.rainbowcake.demo"
-        minSdkVersion min_sdk
+        minSdkVersion 21
         targetSdkVersion target_sdk
         versionCode 1
         versionName "1.0"
