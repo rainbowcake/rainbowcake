@@ -3,8 +3,9 @@ apply plugin: 'kotlin-android'
 
 dependencies {
     implementation project(':rainbow-cake-core')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'com.jakewharton.timber:timber:4.7.1'
+    api 'com.jakewharton.timber:timber:5.0.0'
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

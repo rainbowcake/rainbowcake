@@ -19,7 +19,7 @@ import co.zsmb.rainbowcake.base.ViewModelScope.ParentFragment
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
+    scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
@@ -32,7 +32,7 @@ public inline fun <F : RainbowCakeFragment<VS, VM>, VS, reified VM : RainbowCake
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
+    scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
@@ -45,31 +45,30 @@ public inline fun <F : RainbowCakeDialogFragment<VS, VM>, VS, reified VM : Rainb
  *              See [ViewModelScope] for details.
  */
 public inline fun <F : RainbowCakeBottomSheetDialogFragment<VS, VM>, VS, reified VM : RainbowCakeViewModel<VS>> F.getViewModelFromFactory(
-        scope: ViewModelScope = Default
+    scope: ViewModelScope = Default
 ): VM {
     return getFragmentViewModel(scope)
 }
 
 @PublishedApi
 internal inline fun <VS, reified VM : RainbowCakeViewModel<VS>> Fragment.getFragmentViewModel(
-        scope: ViewModelScope
+    scope: ViewModelScope
 ): VM {
     val viewModelFactory = (context?.applicationContext as? RainbowCakeApplication)
-            ?.injector
-            ?.viewModelFactory()
-            ?: throw IllegalStateException("The Dagger based getViewModelFromFactory function requires an Application that inherits from RainbowCakeApplication")
+        ?.injector
+        ?.viewModelFactory()
+        ?: throw IllegalStateException("The Dagger based getViewModelFromFactory function requires an Application that inherits from RainbowCakeApplication")
 
     return when (scope) {
         Default -> {
             ViewModelProvider(this, viewModelFactory).get(VM::class.java)
         }
         is ParentFragment -> {
-            val parentFragment = parentFragment ?: throw IllegalStateException("No parent Fragment")
             val key = scope.key
             if (key != null) {
-                ViewModelProvider(parentFragment, viewModelFactory).get(key, VM::class.java)
+                ViewModelProvider(requireParentFragment(), viewModelFactory).get(key, VM::class.java)
             } else {
-                ViewModelProvider(parentFragment, viewModelFactory).get(VM::class.java)
+                ViewModelProvider(requireParentFragment(), viewModelFactory).get(VM::class.java)
             }
         }
         is Activity -> {
