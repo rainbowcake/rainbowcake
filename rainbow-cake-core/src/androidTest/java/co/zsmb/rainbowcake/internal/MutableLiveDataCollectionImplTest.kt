@@ -15,7 +15,7 @@ import org.junit.Test
 internal class MutableLiveDataCollectionImplTest : LifecycleTest() {
 
     private val mutableLiveDataCollection: MutableLiveDataCollectionImpl<String> =
-            MutableLiveDataCollectionImpl(::MutableLiveData)
+        MutableLiveDataCollectionImpl(::MutableLiveData)
 
     private val observer1 = MockObserver<String>()
     private val observer2 = MockObserver<String>()
@@ -88,4 +88,25 @@ internal class MutableLiveDataCollectionImplTest : LifecycleTest() {
         observer3.assertObserved("c")
     }
 
+    @Test
+    fun manuallyRemoveObserver() {
+        mutableLiveDataCollection.observe(this, observer1)
+        observer1.assertObserved()
+
+        mutableLiveDataCollection.setValue("a")
+        lifecycle.handleLifecycleEvent(ON_START)
+        observer1.assertObserved("a")
+
+        mutableLiveDataCollection.removeObserver(observer1)
+        mutableLiveDataCollection.setValue("b")
+        observer1.assertObserved() // Nothing observed after removal
+    }
+
+    @Test
+    fun manuallyRemoveNonAttachedObserver() {
+        mutableLiveDataCollection.observe(this, observer1)
+
+        mutableLiveDataCollection.removeObserver(observer2)
+        mutableLiveDataCollection.removeObserver(observer3)
+    }
 }
