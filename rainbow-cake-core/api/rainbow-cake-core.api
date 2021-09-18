@@ -150,5 +150,6 @@ public abstract interface annotation class co/zsmb/rainbowcake/internal/Internal
 
 public abstract interface class co/zsmb/rainbowcake/internal/livedata/LiveDataCollection {
 	public abstract fun observe (Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Observer;)V
+	public abstract fun removeObserver (Landroidx/lifecycle/Observer;)V
 }
 
