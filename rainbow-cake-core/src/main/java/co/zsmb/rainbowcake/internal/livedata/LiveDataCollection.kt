@@ -16,4 +16,8 @@ public interface LiveDataCollection<T : Any> {
      */
     public fun observe(owner: LifecycleOwner, observer: Observer<T>)
 
+    /**
+     * Removes the given observer from this collection.
+     */
+    public fun removeObserver(observer: Observer<T>)
 }
