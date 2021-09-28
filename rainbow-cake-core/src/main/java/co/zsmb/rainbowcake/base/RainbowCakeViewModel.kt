@@ -159,7 +159,6 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      */
     @InternalRainbowCakeApi
     public val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-        @InternalRainbowCakeApi get
 
     @CallSuper
     override fun onCleared() {

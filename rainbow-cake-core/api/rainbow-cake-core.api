@@ -52,6 +52,7 @@ public abstract class co/zsmb/rainbowcake/base/RainbowCakeDialogFragment : andro
 public abstract class co/zsmb/rainbowcake/base/RainbowCakeFragment : androidx/fragment/app/Fragment {
 	protected field viewModel Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;
 	public fun <init> ()V
+	public final fun getOverrideAnimation ()Ljava/lang/Integer;
 	protected final fun getViewModel ()Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;
 	protected fun getViewResource ()I
 	public fun onCreate (Landroid/os/Bundle;)V
@@ -71,6 +72,7 @@ public abstract class co/zsmb/rainbowcake/base/RainbowCakeViewModel : androidx/l
 	protected final fun executeCancellable (ZLkotlin/jvm/functions/Function2;)Lkotlinx/coroutines/Job;
 	public static synthetic fun executeCancellable$default (Lco/zsmb/rainbowcake/base/RainbowCakeViewModel;ZLkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lkotlinx/coroutines/Job;
 	protected final fun executeNonBlocking (Lkotlin/jvm/functions/Function2;)V
+	public final fun getCoroutineScope ()Lkotlinx/coroutines/CoroutineScope;
 	public final fun getEvents ()Lco/zsmb/rainbowcake/internal/livedata/LiveDataCollection;
 	public final fun getQueuedEvents ()Lco/zsmb/rainbowcake/internal/livedata/LiveDataCollection;
 	public final fun getState ()Landroidx/lifecycle/LiveData;
@@ -150,5 +152,6 @@ public abstract interface annotation class co/zsmb/rainbowcake/internal/Internal
 
 public abstract interface class co/zsmb/rainbowcake/internal/livedata/LiveDataCollection {
 	public abstract fun observe (Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Observer;)V
+	public abstract fun removeObserver (Landroidx/lifecycle/Observer;)V
 }
 

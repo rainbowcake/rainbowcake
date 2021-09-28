@@ -1,5 +1,6 @@
 package co.zsmb.rainbowcake.internal.livedata
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -17,59 +18,63 @@ import androidx.lifecycle.OnLifecycleEvent
  *                   if required by a new observer being added.
  */
 internal class MutableLiveDataCollectionImpl<T : Any>(
-        private val factory: () -> MutableLiveData<T>
+    private val factory: () -> MutableLiveData<T>
 ) : MutableLiveDataCollection<T> {
 
     /**
      * The set of currently contained [LiveData] instances. Instances
      * that are no longer observed are removed immediately, see [LiveDataRemover].
-     *
-     * Internal visibility only for testing.
      */
-    internal val activeLiveData: MutableSet<MutableLiveData<T>> = mutableSetOf()
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    internal val activeLiveData: MutableMap<Observer<T>, MutableLiveData<T>> = mutableMapOf()
 
     override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
         val liveData = factory()
-        activeLiveData += liveData
-        attachRemover(owner, liveData)
+        activeLiveData[observer] = liveData
+        attachRemover(owner, observer)
         liveData.observe(owner, observer)
     }
 
+    override fun removeObserver(observer: Observer<T>) {
+        removeLiveData(observer)
+    }
+
     override fun setValue(value: T?) {
-        activeLiveData.forEach { it.setValue(value) }
+        activeLiveData.forEach { (_, livedata) -> livedata.setValue(value) }
     }
 
     override fun postValue(value: T?) {
-        activeLiveData.forEach { it.postValue(value) }
+        activeLiveData.forEach { (_, livedata) -> livedata.postValue(value) }
     }
 
     /**
-     * Removes a given [LiveData] instance from the set of stored instances.
+     * Removes the [LiveData] instance belonging to the [observer] from the set of
+     * stored instances.
      */
-    private fun removeLiveData(liveData: LiveData<T>) {
-        activeLiveData.remove(liveData)
+    private fun removeLiveData(observer: Observer<T>) {
+        activeLiveData.remove(key = observer)
     }
 
     /**
-     * Creates a [LiveDataRemover] which will remove the given [liveData] from
-     * the set of contained instances when the [owner]'s lifecycle is destroyed.
+     * Creates a [LiveDataRemover] which will remove the given [observer]'s LiveData
+     * from the set of contained instances when the [owner]'s lifecycle is destroyed.
      */
-    private fun attachRemover(owner: LifecycleOwner, liveData: MutableLiveData<T>) {
-        val watcher = LiveDataRemover(liveData)
+    private fun attachRemover(owner: LifecycleOwner, observer: Observer<T>) {
+        val watcher = LiveDataRemover(observer)
         owner.lifecycle.addObserver(watcher)
     }
 
     /**
-     * A [LifecycleObserver] that removes a given [liveData] from the collection
-     * when the lifecycle it observes is destroyed.
+     * A [LifecycleObserver] that removes the LiveData belonging to the [observer]
+     * from the collection when the lifecycle it observes in is destroyed.
      */
-    private inner class LiveDataRemover(private val liveData: MutableLiveData<T>) : LifecycleObserver {
+    private inner class LiveDataRemover(private val observer: Observer<T>) : LifecycleObserver {
         /**
-         * Removes the [liveData] instance from the collection.
+         * Removes the [observer] instance from the collection.
          */
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         fun onDestroy() {
-            removeLiveData(liveData)
+            removeLiveData(observer)
         }
     }
 
