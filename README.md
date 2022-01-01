@@ -19,6 +19,8 @@ While RainbowCake is heavily opinionated, it also encourages you to deviate from
 
 For more information, see the official documentation on [**rainbowcake.dev**](https://rainbowcake.dev/).
 
+> **Note:** RainbowCake is stable and maintained, but it's a framework from 2019, so browse and use it with that in mind. You'll find a lot of the same ideas in Google's official [Guide to app architecture](https://developer.android.com/jetpack/guide) as well, which is updated more actively.
+
 ### Setup
 
 RainbowCake is available from MavenCentral.
