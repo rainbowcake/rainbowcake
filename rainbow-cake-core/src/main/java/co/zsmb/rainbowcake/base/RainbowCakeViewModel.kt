@@ -18,7 +18,9 @@ import co.zsmb.rainbowcake.internal.livedata.MutableLiveDataCollectionImpl
 import co.zsmb.rainbowcake.internal.livedata.QueuedSingleShotLiveData
 import co.zsmb.rainbowcake.internal.livedata.SingleShotLiveData
 import co.zsmb.rainbowcake.internal.livedata.distinct
+import co.zsmb.rainbowcake.internal.logging.LogLevel
 import co.zsmb.rainbowcake.internal.logging.log
+import co.zsmb.rainbowcake.internal.logging.logError
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -248,11 +250,11 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
         try {
             task()
         } catch (e: CancellationException) {
-            log(logTag, "Job cancelled exception:")
-            log(logTag, e)
+            log(logTag, "Job cancelled exception:", e, LogLevel.ERROR)
+            logError(logTag, e)
         } catch (e: Exception) {
-            log(logTag, "Unhandled exception in ViewModel:")
-            log(logTag, e)
+            log(logTag, "Unhandled exception in ViewModel:", e, LogLevel.ERROR)
+            logError(logTag, e)
         }
     }
     //endregion

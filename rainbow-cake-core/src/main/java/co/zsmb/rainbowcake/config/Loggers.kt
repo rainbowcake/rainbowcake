@@ -8,6 +8,7 @@ import co.zsmb.rainbowcake.internal.logging.LogLevel
  */
 public interface Logger {
     public fun log(tag: String, message: String, logLevel: LogLevel = LogLevel.DEBUG)
+    public fun logThrowable(tag: String, message: String, throwable: Throwable?, logLevel: LogLevel = LogLevel.DEBUG)
 }
 
 /**
@@ -20,6 +21,10 @@ public object Loggers {
      */
     public object NONE : Logger {
         override fun log(tag: String, message: String, logLevel: LogLevel) {
+            /* empty */
+        }
+
+        override fun logThrowable(tag: String, message: String, throwable: Throwable?, logLevel: LogLevel) {
             /* empty */
         }
     }
@@ -36,6 +41,20 @@ public object Loggers {
                 LogLevel.WARN -> Log.w(tag, message)
                 LogLevel.ERROR,
                 LogLevel.ASSERT -> Log.e(tag, message)
+                LogLevel.OFF -> {
+                    // Do nothing
+                }
+            }
+        }
+
+        override fun logThrowable(tag: String, message: String, throwable: Throwable?, logLevel: LogLevel) {
+            when (logLevel) {
+                LogLevel.VERBOSE -> Log.v(tag, message, throwable)
+                LogLevel.DEBUG -> Log.d(tag, message, throwable)
+                LogLevel.INFO -> Log.i(tag, message, throwable)
+                LogLevel.WARN -> Log.w(tag, message, throwable)
+                LogLevel.ERROR,
+                LogLevel.ASSERT -> Log.e(tag, message, throwable)
                 LogLevel.OFF -> {
                     // Do nothing
                 }
