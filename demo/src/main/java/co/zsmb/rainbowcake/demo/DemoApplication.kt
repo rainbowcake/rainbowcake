@@ -22,7 +22,7 @@ open class DemoApplication : RainbowCakeApplication() {
         super.onCreate()
 
         rainbowCake {
-            isDebug = BuildConfig.DEBUG
+            isLoggable = BuildConfig.DEBUG
             logger = Loggers.TIMBER
 
             consumeExecuteExceptions = false

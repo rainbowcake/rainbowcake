@@ -15,7 +15,7 @@ class HiltDemoApplication : Application() {
 
         rainbowCake {
             logger = Loggers.TIMBER
-            isDebug = BuildConfig.DEBUG
+            isLoggable = BuildConfig.DEBUG
             consumeExecuteExceptions = !BuildConfig.DEBUG
         }
 

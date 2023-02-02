@@ -9,7 +9,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 public interface RainbowCakeConfigurator {
 
     /**
-     * Whether the application is currently in a Debug build.
+     * Whether the application is currently loggable or not.
      * Should almost always take the value of BuildConfig.DEBUG.
      *
      * Effects:
@@ -17,7 +17,7 @@ public interface RainbowCakeConfigurator {
      *
      * Default value: false.
      */
-    public var isDebug: Boolean
+    public var isLoggable: Boolean
 
     /**
      * The logging method to use for the library's internals.
@@ -41,7 +41,7 @@ public interface RainbowCakeConfigurator {
 }
 
 /**
- * Whether the application is running in production.
+ * Whether the application is not allowed to send log.
  */
-internal val RainbowCakeConfigurator.isProd
-    get() = !isDebug
+internal val RainbowCakeConfigurator.isNotLoggable
+    get() = !isLoggable

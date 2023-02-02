@@ -1,13 +1,13 @@
 package co.zsmb.rainbowcake.internal.logging
 
-import co.zsmb.rainbowcake.config.isProd
+import co.zsmb.rainbowcake.config.isNotLoggable
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 import java.io.PrintWriter
 import java.io.StringWriter
 
 @Suppress("unused")
 internal fun log(tag: String, message: String, throwable: Throwable? = null, logLevel: LogLevel = LogLevel.DEBUG) {
-    if (RainbowCakeConfiguration.isProd) {
+    if (RainbowCakeConfiguration.isNotLoggable) {
         return
     }
     if (throwable == null) {
@@ -21,7 +21,7 @@ internal fun log(tag: String, message: String, throwable: Throwable? = null, log
  * Allows logging errors without message
  */
 internal inline fun <reified T> T.logError(tag: String, e: Throwable, logLevel: LogLevel = LogLevel.DEBUG) {
-    if (RainbowCakeConfiguration.isProd) {
+    if (RainbowCakeConfiguration.isNotLoggable) {
         return
     }
     log(tag, getStacktraceString(e), e, logLevel)
