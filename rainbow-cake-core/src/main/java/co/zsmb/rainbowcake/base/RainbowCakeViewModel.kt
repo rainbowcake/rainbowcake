@@ -221,6 +221,7 @@ public abstract class RainbowCakeViewModel<VS : Any>(initialState: VS) : ViewMod
      * see [execute], which is the usual entry point to this method.
      */
     private fun executeImpl(blocking: Boolean = true, task: suspend CoroutineScope.() -> Unit): Job {
+        log(logTag, "Start task execution", logLevel = LogLevel.INFO)
         return coroutineScope.launch {
             if (blocking) {
                 if (busy) {

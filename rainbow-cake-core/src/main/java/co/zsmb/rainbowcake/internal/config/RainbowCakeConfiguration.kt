@@ -9,6 +9,8 @@ import co.zsmb.rainbowcake.config.RainbowCakeConfigurator
  */
 internal object RainbowCakeConfiguration : RainbowCakeConfigurator {
 
+    override var isDebug: Boolean = false
+
     override var isLoggable: Boolean = false
 
     override var logger: Logger = Loggers.NONE
