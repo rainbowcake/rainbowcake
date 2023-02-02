@@ -6,18 +6,18 @@ import java.io.PrintWriter
 import java.io.StringWriter
 
 @Suppress("unused")
-internal fun log(tag: String, message: String) {
+internal fun log(tag: String, message: String, logLevel: LogLevel = LogLevel.DEBUG) {
     if (RainbowCakeConfiguration.isProd) {
         return
     }
-    RainbowCakeConfiguration.logger.log(tag, message)
+    RainbowCakeConfiguration.logger.log(tag, message, logLevel)
 }
 
-internal inline fun <reified T> T.log(tag: String, e: Throwable) {
+internal inline fun <reified T> T.log(tag: String, e: Throwable, logLevel: LogLevel = LogLevel.DEBUG) {
     if (RainbowCakeConfiguration.isProd) {
         return
     }
-    log(tag, getStacktraceString(e))
+    log(tag, getStacktraceString(e), logLevel)
 }
 
 private fun getStacktraceString(e: Throwable): String {
