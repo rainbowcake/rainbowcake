@@ -4,7 +4,7 @@
 
 <img src="/docs/icon.png" alt="RainbowCake logo" width="200" height="200" />
 
-[**RainbowCake**](https://rainbowcake.dev/) is an Android architecture framework, providing tools and guidance for building modern Android applications. It builds on top of Jetpack, both in terms of code and ideas.
+[**RainbowCake**](https://rainbowcake.github.io/) is an Android architecture framework, providing tools and guidance for building modern Android applications. It builds on top of Jetpack, both in terms of code and ideas.
 
 Some of the main goals of this architecture:
 
@@ -17,7 +17,7 @@ Some of the main goals of this architecture:
 
 While RainbowCake is heavily opinionated, it also encourages you to deviate from it as needed. Feel free to pick and choose the ideas and library artifacts provided according to your own application’s needs!
 
-For more information, see the official documentation on [**rainbowcake.dev**](https://rainbowcake.dev/).
+For more information, see the official documentation on [**rainbowcake.dev**](https://rainbowcake.github.io/).
 
 > **Note:** RainbowCake is stable and maintained, but it's a framework from 2019, so browse and use it with that in mind. You'll find a lot of the same ideas in Google's official [Guide to app architecture](https://developer.android.com/jetpack/guide) as well, which is updated more actively.
 
@@ -31,7 +31,7 @@ repositories {
 }
 ```
 
-It ships in several artifacts - feel free to pick and choose from them (for more info, see [Dependencies](https://rainbowcake.dev/getting-started/dependencies/)):
+It ships in several artifacts - feel free to pick and choose from them (for more info, see [Dependencies](https://rainbowcake.github.io/getting-started/dependencies/)):
 
 ```groovy
 dependencies {
