@@ -23,6 +23,7 @@ open class DemoApplication : RainbowCakeApplication() {
 
         rainbowCake {
             isDebug = BuildConfig.DEBUG
+            isLoggable = BuildConfig.DEBUG
             logger = Loggers.TIMBER
 
             consumeExecuteExceptions = false
@@ -34,5 +35,4 @@ open class DemoApplication : RainbowCakeApplication() {
             modules(UIModule)
         }
     }
-
 }
