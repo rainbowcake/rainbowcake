@@ -1,5 +1,9 @@
 # RainbowCake
 
+> **DEPRECATION NOTICE:**
+> 
+> **This project is no longer maintained, as its core features are not relevant anymore with Compose. You can still use the architectural concepts, and you'll find a lot of the same ideas in Google's official [Guide to app architecture](https://developer.android.com/jetpack/guide) as well, which is actively maintained. This project was also tied to Android, while the same ideas also work now with [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform/).**
+
 ![Build Status](https://github.com/rainbowcake/rainbowcake/workflows/Build%20and%20test/badge.svg)
 
 <img src="/docs/icon.png" alt="RainbowCake logo" width="200" height="200" />
@@ -18,8 +22,6 @@ Some of the main goals of this architecture:
 While RainbowCake is heavily opinionated, it also encourages you to deviate from it as needed. Feel free to pick and choose the ideas and library artifacts provided according to your own application’s needs!
 
 For more information, see the official documentation on [**rainbowcake.dev**](https://rainbowcake.github.io/).
-
-> **Note:** RainbowCake is stable and maintained, but it's a framework from 2019, so browse and use it with that in mind. You'll find a lot of the same ideas in Google's official [Guide to app architecture](https://developer.android.com/jetpack/guide) as well, which is updated more actively.
 
 ### Setup
 
