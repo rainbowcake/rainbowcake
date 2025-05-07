@@ -1,23 +1,30 @@
 package co.zsmb.rainbowcake.internal.logging
 
-import co.zsmb.rainbowcake.config.isProd
+import co.zsmb.rainbowcake.config.isNotLoggable
 import co.zsmb.rainbowcake.internal.config.RainbowCakeConfiguration
 import java.io.PrintWriter
 import java.io.StringWriter
 
 @Suppress("unused")
-internal fun log(tag: String, message: String) {
-    if (RainbowCakeConfiguration.isProd) {
+internal fun log(tag: String, message: String, throwable: Throwable? = null, logLevel: LogLevel = LogLevel.DEBUG) {
+    if (RainbowCakeConfiguration.isNotLoggable) {
         return
     }
-    RainbowCakeConfiguration.logger.log(tag, message)
+    if (throwable == null) {
+        RainbowCakeConfiguration.logger.log(tag, message, logLevel)
+    } else {
+        RainbowCakeConfiguration.logger.logThrowable(tag, message, throwable, logLevel)
+    }
 }
 
-internal inline fun <reified T> T.log(tag: String, e: Throwable) {
-    if (RainbowCakeConfiguration.isProd) {
+/**
+ * Allows logging errors without message
+ */
+internal inline fun <reified T> T.logError(tag: String, e: Throwable, logLevel: LogLevel = LogLevel.DEBUG) {
+    if (RainbowCakeConfiguration.isNotLoggable) {
         return
     }
-    log(tag, getStacktraceString(e))
+    log(tag, getStacktraceString(e), e, logLevel)
 }
 
 private fun getStacktraceString(e: Throwable): String {

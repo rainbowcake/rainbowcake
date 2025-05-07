@@ -117,7 +117,13 @@ public final class co/zsmb/rainbowcake/config/ConfigurationKt {
 }
 
 public abstract interface class co/zsmb/rainbowcake/config/Logger {
-	public abstract fun log (Ljava/lang/String;Ljava/lang/String;)V
+	public abstract fun log (Ljava/lang/String;Ljava/lang/String;Lco/zsmb/rainbowcake/internal/logging/LogLevel;)V
+	public abstract fun logThrowable (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Lco/zsmb/rainbowcake/internal/logging/LogLevel;)V
+}
+
+public final class co/zsmb/rainbowcake/config/Logger$DefaultImpls {
+	public static synthetic fun log$default (Lco/zsmb/rainbowcake/config/Logger;Ljava/lang/String;Ljava/lang/String;Lco/zsmb/rainbowcake/internal/logging/LogLevel;ILjava/lang/Object;)V
+	public static synthetic fun logThrowable$default (Lco/zsmb/rainbowcake/config/Logger;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Lco/zsmb/rainbowcake/internal/logging/LogLevel;ILjava/lang/Object;)V
 }
 
 public final class co/zsmb/rainbowcake/config/Loggers {
@@ -126,20 +132,24 @@ public final class co/zsmb/rainbowcake/config/Loggers {
 
 public final class co/zsmb/rainbowcake/config/Loggers$ANDROID : co/zsmb/rainbowcake/config/Logger {
 	public static final field INSTANCE Lco/zsmb/rainbowcake/config/Loggers$ANDROID;
-	public fun log (Ljava/lang/String;Ljava/lang/String;)V
+	public fun log (Ljava/lang/String;Ljava/lang/String;Lco/zsmb/rainbowcake/internal/logging/LogLevel;)V
+	public fun logThrowable (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Lco/zsmb/rainbowcake/internal/logging/LogLevel;)V
 }
 
 public final class co/zsmb/rainbowcake/config/Loggers$NONE : co/zsmb/rainbowcake/config/Logger {
 	public static final field INSTANCE Lco/zsmb/rainbowcake/config/Loggers$NONE;
-	public fun log (Ljava/lang/String;Ljava/lang/String;)V
+	public fun log (Ljava/lang/String;Ljava/lang/String;Lco/zsmb/rainbowcake/internal/logging/LogLevel;)V
+	public fun logThrowable (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;Lco/zsmb/rainbowcake/internal/logging/LogLevel;)V
 }
 
 public abstract interface class co/zsmb/rainbowcake/config/RainbowCakeConfigurator {
 	public abstract fun getConsumeExecuteExceptions ()Z
 	public abstract fun getLogger ()Lco/zsmb/rainbowcake/config/Logger;
 	public abstract fun isDebug ()Z
+	public abstract fun isLoggable ()Z
 	public abstract fun setConsumeExecuteExceptions (Z)V
 	public abstract fun setDebug (Z)V
+	public abstract fun setLoggable (Z)V
 	public abstract fun setLogger (Lco/zsmb/rainbowcake/config/Logger;)V
 }
 
@@ -153,5 +163,18 @@ public abstract interface annotation class co/zsmb/rainbowcake/internal/Internal
 public abstract interface class co/zsmb/rainbowcake/internal/livedata/LiveDataCollection {
 	public abstract fun observe (Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Observer;)V
 	public abstract fun removeObserver (Landroidx/lifecycle/Observer;)V
+}
+
+public final class co/zsmb/rainbowcake/internal/logging/LogLevel : java/lang/Enum {
+	public static final field ASSERT Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static final field DEBUG Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static final field ERROR Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static final field INFO Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static final field OFF Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static final field VERBOSE Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static final field WARN Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public final fun getPriority ()I
+	public static fun valueOf (Ljava/lang/String;)Lco/zsmb/rainbowcake/internal/logging/LogLevel;
+	public static fun values ()[Lco/zsmb/rainbowcake/internal/logging/LogLevel;
 }
 
